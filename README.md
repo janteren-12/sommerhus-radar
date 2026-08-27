@@ -8,12 +8,16 @@ There's no database and no server that runs all the time. It's just:
 
 1. A Python script (`scrape.py`) that checks Boliga.dk's listings and writes
    the results to a file: `docs/data.json`.
-2. A plain HTML page (`docs/index.html`) that reads that file and displays
-   it. No frameworks, no build step - you can open it by double-clicking it.
-3. A GitHub Actions workflow that runs the script automatically once an
-   hour and saves the updated file back into the repo.
-4. GitHub Pages serves the `docs/` folder as a website, so the page is
-   always showing the latest data without you doing anything.
+2. A second Python script (`rental_scrape.py`) that checks which big rental
+   companies operate in each area, and writes `docs/rentals.json`.
+3. A plain HTML site (`docs/index.html` plus `docs/rentals.html`) that reads
+   those files and displays them. No frameworks, no build step - you can
+   open it by double-clicking it.
+4. A GitHub Actions workflow that runs both scripts automatically once an
+   hour and saves the updated files back into the repo.
+5. GitHub Pages (and, as of this update, also Vercel) serves the `docs/`
+   folder as a website, so the page is always showing the latest data
+   without you doing anything.
 
 ## How the "what's new" part works
 
@@ -32,13 +36,18 @@ history of what you've seen instead of it just vanishing.
 
 | File | What it's for |
 |---|---|
-| `scrape.py` | The scraper. Run with `python scrape.py`. |
+| `scrape.py` | The for-sale scraper. Run with `python scrape.py`. |
+| `rental_scrape.py` | The rental-companies checker. Run with `python rental_scrape.py`. |
 | `areas.yaml` | The list of areas and postal codes to watch. Edit this to add/remove areas. |
 | `config.yaml` | Optional filters (max price, min size, etc.) and politeness settings. |
-| `docs/index.html` | The website. |
-| `docs/data.json` | The data the website reads. Rewritten by the scraper every run - don't edit by hand. |
-| `.github/workflows/scrape.yml` | Tells GitHub to run the scraper every hour. |
-| `requirements.txt` | The two Python packages the scraper needs. |
+| `rental_sources.yaml` | Which page on each rental company's site covers each area. |
+| `docs/index.html` | The main website (for-sale listings). |
+| `docs/rentals.html` | The "which companies rent here" subpage. |
+| `docs/data.json` | The for-sale data. Rewritten every run - don't edit by hand. |
+| `docs/rentals.json` | The rental-companies data. Rewritten every run - don't edit by hand. |
+| `.github/workflows/scrape.yml` | Tells GitHub to run both scripts every hour. |
+| `requirements.txt` | The two Python packages the scrapers need. |
+| `vercel.json`, `.vercelignore` | Tell Vercel this is a static site living in `docs/`, not a Python app. |
 
 ## Running it yourself
 
@@ -122,29 +131,46 @@ greyed out/disabled), and open a run to see any error.
   archiving old `sold_or_removed` entries out of the live file rather than
   switching to a database.
 
-## Phase 2 (not built yet)
+## Phase 2: rental companies per area
 
-The idea: for each area, count how many holiday homes are currently listed
-*for rent* by the big Danish rental agencies - Novasol, Sol og Strand,
-Feriepartner, DanCenter, and Esmark - and show that count as a "rental
-demand score" on each for-sale card. The theory being: an area where
-rental agencies list a lot of houses is an area with strong rental demand,
-which matters if you're buying partly as a rental investment.
+`docs/rentals.html` (linked from the top of the main page) shows, for each
+area, which of the big Danish rental companies operate there: DanCenter,
+Novasol, Sol og Strand, and Feriepartner. It's driven by `rental_scrape.py`
+and `rental_sources.yaml`, refreshed on the same hourly schedule as the
+for-sale data.
 
-This hasn't been started. Some things to figure out when it's time:
+What it actually shows, and why it's not a clean "5 companies, 1 number
+each" table:
 
-- None of those five sites have a public API like Boliga's, so this would
-  mean either scraping their search/listing pages directly (fragile - they
-  can change their HTML any time, and scraping frequency will need the
-  same polite-request approach used here) or checking whether any of them
-  offer a partner/affiliate data feed instead.
-  Sol og Strand, Novasol, and DanCenter are all under the same parent
-  company (Awaze) as of a few years ago, so it's possible two or three of
-  the five need only one scraping approach.
-  Matching a rental listing to one of your defined areas will need to be
-  done by postal code, same as the sale side.
-- A sensible score is probably just a raw count of active rental listings
-  per area per agency (or summed across agencies), refreshed on the same
-  hourly cadence as the sale scraper, and stored in its own JSON file
-  (e.g. `docs/rental_demand.json`) so a broken rental scrape can never
-  block the sale-listings scrape from updating.
+- **DanCenter** gives a real, live count ("66 boliger") - their area pages
+  show the number in plain page text (`"Din søgning fandt 66
+  ferieboliger."`), so this one is trustworthy and genuinely current.
+- **Novasol, Sol og Strand, and Feriepartner** only show "Ja" (yes) or "Nej"
+  (no) - whether the company has a page for that area at all, meaning they
+  operate there. All three load their real listing *counts* with
+  JavaScript after the page loads, which a plain Python script reading raw
+  HTML can't see. Getting real numbers from these three would need a
+  headless browser (e.g. Playwright) running real Chrome to render the
+  page first - a much heavier dependency than the rest of this project, and
+  something to add later if the presence-only view turns out not to be
+  enough.
+- **Esmark** isn't checked automatically at all. Its site returns the exact
+  same placeholder numbers no matter what area you ask about until
+  JavaScript runs, so a plain request can't even confirm whether it
+  operates in an area, let alone count anything. `docs/rentals.html` shows
+  a note about this rather than a made-up answer.
+- All four companies' pages were checked against their own `robots.txt`
+  before scraping - only publicly listed, crawlable pages are used
+  (nothing behind a disallowed search/booking path).
+- Feriepartner's server quietly returns 404 for requests that don't look
+  like they come from a normal browser, even on pages their own
+  `robots.txt` explicitly allows crawling - so `rental_scrape.py` uses an
+  ordinary browser User-Agent string for its requests, unlike `scrape.py`'s
+  more honest, descriptive one for Boliga (which Boliga has no problem
+  with).
+
+If you want real live counts from Novasol, Sol og Strand, and Feriepartner
+too, the next step would be adding Playwright to `requirements.txt` and
+having the GitHub Actions workflow install a headless Chromium browser -
+that's a real jump in complexity and run time for this project, so it
+wasn't done by default.

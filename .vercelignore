@@ -1,6 +1,8 @@
 scrape.py
+rental_scrape.py
 requirements.txt
 areas.yaml
 config.yaml
+rental_sources.yaml
 .github
 README.md

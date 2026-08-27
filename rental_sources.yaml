@@ -1,0 +1,81 @@
+# Where to look up each rental company's presence in each area.
+#
+# For every area (matching the keys in areas.yaml) this lists the page on
+# each rental company's own website that covers that area.
+#
+# DanCenter's pages show a real, live "we found X holiday homes" count in
+# the page text, so rental_scrape.py extracts a number for them.
+#
+# Novasol, Sol og Strand, and Feriepartner all load their real listing
+# counts with JavaScript after the page loads, which a simple script like
+# this one can't run - so for those three we can only check whether the
+# page exists at all (meaning: yes, they operate in this area), not how
+# many houses they currently have listed there.
+#
+# Esmark isn't included here - see the README for why.
+
+blaavand:
+  dancenter: "https://www.dancenter.dk/sommerhus/vestjylland-syd/sydlige-vestkyst/blavand/"
+  novasol: "https://www.novasol.dk/danmark/vestjylland/blavand"
+  sologstrand: "https://www.sologstrand.dk/regioner/jyllands-vestkyst/blavand"
+  feriepartner: "https://www.feriepartner.dk/danmark/vestjylland/blaavand/"
+
+ringkoebing:
+  dancenter: "https://www.dancenter.dk/sommerhus/vestjylland/ringkobing-fjord/"
+  novasol: "https://www.novasol.dk/danmark/vestjylland/ringkoebing"
+  sologstrand: "https://www.sologstrand.dk/regioner/jyllands-vestkyst/sondervig-houvig/ringkobing"
+  feriepartner: "https://www.feriepartner.dk/danmark/vestjylland/hvide-sande/"
+
+fanoe:
+  dancenter: "https://www.dancenter.dk/sommerhus/vestjylland-syd/fano/"
+  novasol: "https://www.novasol.dk/danmark/fanoe"
+  sologstrand: "https://www.sologstrand.dk/regioner/jyllands-vestkyst/fano"
+  feriepartner: "https://www.feriepartner.dk/danmark/vestjylland/fanoe/"
+
+roemoe:
+  dancenter: "https://www.dancenter.dk/sommerhus/vestjylland-syd/romo-mando/"
+  novasol: "https://www.novasol.dk/danmark/roemoe"
+  sologstrand: "https://www.sologstrand.dk/regioner/jyllands-vestkyst/romo"
+  feriepartner: "https://www.feriepartner.dk/danmark/vestjylland/roemoe/"
+
+jammerbugt:
+  dancenter: "https://www.dancenter.dk/sommerhus/nordjylland/jammerbugten/"
+  novasol: "https://www.novasol.dk/danmark/jammerbugten"
+  sologstrand: "https://www.sologstrand.dk/regioner/nordvestjylland/blokhus"
+  feriepartner: "https://www.feriepartner.dk/danmark/nordjylland/jammerbugten/"
+
+skagen:
+  dancenter: "https://www.dancenter.dk/sommerhus/nordjylland/skagen-omraadet/"
+  novasol: "https://www.novasol.dk/danmark/nordjylland/skagen"
+  sologstrand: "https://www.sologstrand.dk/regioner/nordvestjylland/skagen"
+  feriepartner: "https://www.feriepartner.dk/danmark/nordjylland/skagen/"
+
+djursland:
+  dancenter: "https://www.dancenter.dk/sommerhus/ostjylland/djursland-mols/"
+  novasol: "https://www.novasol.dk/danmark/djursland"
+  sologstrand: "https://www.sologstrand.dk/regioner/djursland-og-mols"
+  feriepartner: "https://www.feriepartner.dk/danmark/oestjylland/djursland/"
+
+odsherred:
+  dancenter: "https://www.dancenter.dk/sommerhus/sjaelland/nordvestsjaelland/"
+  novasol: "https://www.novasol.dk/danmark/odsherred"
+  sologstrand: "https://www.sologstrand.dk/regioner/sjaelland/nordvest-sjaelland/rorvig"
+  feriepartner: "https://www.feriepartner.dk/danmark/odsherred/"
+
+nordsjaelland:
+  dancenter: "https://www.dancenter.dk/sommerhus/sjaelland/nordsjaelland-ostsjaelland/"
+  novasol: "https://www.novasol.dk/danmark/nordsjaelland"
+  sologstrand: "https://www.sologstrand.dk/regioner/sjaelland/nordost-sjaelland/hornbaek"
+  feriepartner: "https://www.feriepartner.dk/danmark/nordsjaelland/"
+
+falster:
+  dancenter: "https://www.dancenter.dk/sommerhus/falster/"
+  novasol: "https://www.novasol.dk/danmark/falster"
+  sologstrand: "https://www.sologstrand.dk/regioner/lolland-falster-og-mon/falster"
+  feriepartner: "https://www.feriepartner.dk/danmark/lolland-falster/falster/"
+
+bornholm:
+  dancenter: "https://www.dancenter.dk/sommerhus/bornholm/"
+  novasol: "https://www.novasol.dk/danmark/bornholm"
+  sologstrand: "https://www.sologstrand.dk/regioner/bornholm"
+  feriepartner: "https://www.feriepartner.dk/danmark/bornholm/"

@@ -30,13 +30,19 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run the scraper
+      - name: Run the for-sale scraper
         run: python scrape.py --force
 
-      - name: Commit updated data.json if it changed
+      - name: Run the rental-companies checker
+        # If a rental company changes their website and this breaks, the
+        # for-sale listings should still get committed below regardless.
+        continue-on-error: true
+        run: python rental_scrape.py --force
+
+      - name: Commit updated data if it changed
         run: |
           git config user.name "sommerhus-radar bot"
           git config user.email "actions@users.noreply.github.com"
-          git add docs/data.json
+          git add docs/data.json docs/rentals.json
           git diff --cached --quiet && echo "No changes to commit" || git commit -m "Update listings"
           git push

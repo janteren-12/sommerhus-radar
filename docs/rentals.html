@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Udlejning &middot; Sommerhus Radar</title>
+<style>
+  :root {
+    --bg: #fafaf8;
+    --card-bg: #ffffff;
+    --text: #14171a;
+    --text-muted: #6b7280;
+    --accent: #0f6b4c;
+    --accent-soft: #e6f2ec;
+    --yes: #0f6b4c;
+    --no: #b8bcc0;
+    --unknown: #c7a44a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 16px 80px;
+  }
+
+  a.back-link {
+    display: inline-block;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 4px;
+    letter-spacing: -0.02em;
+  }
+
+  .updated {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .intro {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+
+  .area-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+
+  .area-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .company-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .company-row:first-of-type {
+    border-top: none;
+  }
+
+  .company-name {
+    font-size: 0.92rem;
+  }
+
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .dot.yes { background: var(--yes); }
+  .dot.no { background: var(--no); }
+  .dot.unknown { background: var(--unknown); }
+
+  .status.yes { color: var(--yes); }
+  .status.no { color: var(--text-muted); }
+  .status.unknown { color: var(--unknown); }
+
+  .esmark-note {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-top: 24px;
+    padding: 14px 16px;
+    background: var(--accent-soft);
+    border-radius: 12px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #101314;
+      --card-bg: #1a1f20;
+      --text: #f2f2f0;
+      --text-muted: #9aa0a3;
+      --accent: #3ddc97;
+      --accent-soft: #17332a;
+      --yes: #3ddc97;
+      --no: #4b5254;
+      --unknown: #d9b95c;
+    }
+    .company-row { border-top-color: rgba(255,255,255,0.07); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back-link" href="index.html">&larr; Tilbage til sommerhuse</a>
+  <h1>Udlejningsvirksomheder</h1>
+  <div class="updated" id="updated-line">Sidst opdateret: —</div>
+  <div class="intro">
+    Hvilke af de store udlejningsbureauer der udlejer sommerhuse i hvert
+    område. DanCenter viser et rigtigt antal boliger lige nu; de andre
+    bureauer skjuler deres tal bag JavaScript, så der kan vi kun se om de
+    er til stede i området, ikke hvor mange huse de har.
+  </div>
+  <div id="areas"></div>
+</div>
+
+<script>
+  function statusClass(present) {
+    if (present === true) return "yes";
+    if (present === false) return "no";
+    return "unknown";
+  }
+
+  function statusText(present, count) {
+    if (present === true) {
+      return count != null ? `${count.toLocaleString("da-DK")} boliger` : "Ja";
+    }
+    if (present === false) return "Nej";
+    return "Ved ikke";
+  }
+
+  function buildCompanyRow(label, info) {
+    const cls = statusClass(info.present);
+    const row = document.createElement(info.url ? "a" : "div");
+    row.className = "company-row";
+    if (info.url) {
+      row.href = info.url;
+      row.target = "_blank";
+      row.rel = "noopener noreferrer";
+    }
+
+    const name = document.createElement("div");
+    name.className = "company-name";
+    name.textContent = label;
+
+    const status = document.createElement("div");
+    status.className = `status ${cls}`;
+    const dot = document.createElement("span");
+    dot.className = `dot ${cls}`;
+    status.appendChild(dot);
+    status.appendChild(document.createTextNode(statusText(info.present, info.count)));
+
+    row.appendChild(name);
+    row.appendChild(status);
+    return row;
+  }
+
+  function buildAreaCard(areaLabel, companies, companyLabels) {
+    const card = document.createElement("div");
+    card.className = "area-card";
+
+    const name = document.createElement("div");
+    name.className = "area-name";
+    name.textContent = areaLabel;
+    card.appendChild(name);
+
+    Object.keys(companyLabels).forEach(companyKey => {
+      const info = companies[companyKey] || { present: null, count: null, url: null };
+      card.appendChild(buildCompanyRow(companyLabels[companyKey], info));
+    });
+
+    return card;
+  }
+
+  async function init() {
+    try {
+      const res = await fetch("rentals.json", { cache: "no-store" });
+      const data = await res.json();
+
+      const updated = new Date(data.last_updated);
+      document.getElementById("updated-line").textContent =
+        "Sidst opdateret: " + updated.toLocaleString("da-DK", {
+          day: "2-digit", month: "2-digit", year: "numeric",
+          hour: "2-digit", minute: "2-digit"
+        });
+
+      const container = document.getElementById("areas");
+      Object.keys(data.areas).forEach(areaKey => {
+        const area = data.areas[areaKey];
+        container.appendChild(buildAreaCard(area.area_label, area.companies, data.company_labels));
+      });
+
+      const note = document.createElement("div");
+      note.className = "esmark-note";
+      note.textContent = "Esmark er ikke med i tabellen ovenfor - deres hjemmeside viser kun tal via JavaScript, som denne side ikke kan læse, så vi kan ikke sige noget pålideligt om dem endnu.";
+      document.getElementById("areas").after(note);
+    } catch (err) {
+      document.getElementById("updated-line").textContent = "Kunne ikke hente rentals.json";
+      console.error(err);
+    }
+  }
+
+  init();
+</script>
+</body>
+</html>

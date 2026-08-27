@@ -1,0 +1,342 @@
+{
+  "last_updated": "2026-08-27T19:04:46.993762+00:00",
+  "company_labels": {
+    "dancenter": "DanCenter",
+    "novasol": "Novasol",
+    "sologstrand": "Sol og Strand",
+    "feriepartner": "Feriepartner",
+    "esmark": "Esmark"
+  },
+  "areas": {
+    "blaavand": {
+      "area_label": "Blåvand",
+      "companies": {
+        "dancenter": {
+          "present": true,
+          "count": 66,
+          "url": "https://www.dancenter.dk/sommerhus/vestjylland-syd/sydlige-vestkyst/blavand/"
+        },
+        "novasol": {
+          "present": true,
+          "count": null,
+          "url": "https://www.novasol.dk/danmark/vestjylland/blavand"
+        },
+        "sologstrand": {
+          "present": true,
+          "count": null,
+          "url": "https://www.sologstrand.dk/regioner/jyllands-vestkyst/blavand"
+        },
+        "feriepartner": {
+          "present": true,
+          "count": null,
+          "url": "https://www.feriepartner.dk/danmark/vestjylland/blaavand/"
+        },
+        "esmark": {
+          "present": null,
+          "count": null,
+          "url": null
+        }
+      }
+    },
+    "ringkoebing": {
+      "area_label": "Ringkøbing",
+      "companies": {
+        "dancenter": {
+          "present": true,
+          "count": 185,
+          "url": "https://www.dancenter.dk/sommerhus/vestjylland/ringkobing-fjord/"
+        },
+        "novasol": {
+          "present": true,
+          "count": null,
+          "url": "https://www.novasol.dk/danmark/vestjylland/ringkoebing"
+        },
+        "sologstrand": {
+          "present": true,
+          "count": null,
+          "url": "https://www.sologstrand.dk/regioner/jyllands-vestkyst/sondervig-houvig/ringkobing"
+        },
+        "feriepartner": {
+          "present": true,
+          "count": null,
+          "url": "https://www.feriepartner.dk/danmark/vestjylland/hvide-sande/"
+        },
+        "esmark": {
+          "present": null,
+          "count": null,
+          "url": null
+        }
+      }
+    },
+    "fanoe": {
+      "area_label": "Fanø",
+      "companies": {
+        "dancenter": {
+          "present": true,
+          "count": 64,
+          "url": "https://www.dancenter.dk/sommerhus/vestjylland-syd/fano/"
+        },
+        "novasol": {
+          "present": true,
+          "count": null,
+          "url": "https://www.novasol.dk/danmark/fanoe"
+        },
+        "sologstrand": {
+          "present": true,
+          "count": null,
+          "url": "https://www.sologstrand.dk/regioner/jyllands-vestkyst/fano"
+        },
+        "feriepartner": {
+          "present": true,
+          "count": null,
+          "url": "https://www.feriepartner.dk/danmark/vestjylland/fanoe/"
+        },
+        "esmark": {
+          "present": null,
+          "count": null,
+          "url": null
+        }
+      }
+    },
+    "roemoe": {
+      "area_label": "Rømø",
+      "companies": {
+        "dancenter": {
+          "present": true,
+          "count": 140,
+          "url": "https://www.dancenter.dk/sommerhus/vestjylland-syd/romo-mando/"
+        },
+        "novasol": {
+          "present": true,
+          "count": null,
+          "url": "https://www.novasol.dk/danmark/roemoe"
+        },
+        "sologstrand": {
+          "present": true,
+          "count": null,
+          "url": "https://www.sologstrand.dk/regioner/jyllands-vestkyst/romo"
+        },
+        "feriepartner": {
+          "present": true,
+          "count": null,
+          "url": "https://www.feriepartner.dk/danmark/vestjylland/roemoe/"
+        },
+        "esmark": {
+          "present": null,
+          "count": null,
+          "url": null
+        }
+      }
+    },
+    "jammerbugt": {
+      "area_label": "Jammerbugt",
+      "companies": {
+        "dancenter": {
+          "present": true,
+          "count": 531,
+          "url": "https://www.dancenter.dk/sommerhus/nordjylland/jammerbugten/"
+        },
+        "novasol": {
+          "present": true,
+          "count": null,
+          "url": "https://www.novasol.dk/danmark/jammerbugten"
+        },
+        "sologstrand": {
+          "present": true,
+          "count": null,
+          "url": "https://www.sologstrand.dk/regioner/nordvestjylland/blokhus"
+        },
+        "feriepartner": {
+          "present": true,
+          "count": null,
+          "url": "https://www.feriepartner.dk/danmark/nordjylland/jammerbugten/"
+        },
+        "esmark": {
+          "present": null,
+          "count": null,
+          "url": null
+        }
+      }
+    },
+    "skagen": {
+      "area_label": "Skagen",
+      "companies": {
+        "dancenter": {
+          "present": true,
+          "count": 222,
+          "url": "https://www.dancenter.dk/sommerhus/nordjylland/skagen-omraadet/"
+        },
+        "novasol": {
+          "present": true,
+          "count": null,
+          "url": "https://www.novasol.dk/danmark/nordjylland/skagen"
+        },
+        "sologstrand": {
+          "present": true,
+          "count": null,
+          "url": "https://www.sologstrand.dk/regioner/nordvestjylland/skagen"
+        },
+        "feriepartner": {
+          "present": true,
+          "count": null,
+          "url": "https://www.feriepartner.dk/danmark/nordjylland/skagen/"
+        },
+        "esmark": {
+          "present": null,
+          "count": null,
+          "url": null
+        }
+      }
+    },
+    "djursland": {
+      "area_label": "Djursland",
+      "companies": {
+        "dancenter": {
+          "present": true,
+          "count": 188,
+          "url": "https://www.dancenter.dk/sommerhus/ostjylland/djursland-mols/"
+        },
+        "novasol": {
+          "present": true,
+          "count": null,
+          "url": "https://www.novasol.dk/danmark/djursland"
+        },
+        "sologstrand": {
+          "present": true,
+          "count": null,
+          "url": "https://www.sologstrand.dk/regioner/djursland-og-mols"
+        },
+        "feriepartner": {
+          "present": true,
+          "count": null,
+          "url": "https://www.feriepartner.dk/danmark/oestjylland/djursland/"
+        },
+        "esmark": {
+          "present": null,
+          "count": null,
+          "url": null
+        }
+      }
+    },
+    "odsherred": {
+      "area_label": "Odsherred",
+      "companies": {
+        "dancenter": {
+          "present": true,
+          "count": 169,
+          "url": "https://www.dancenter.dk/sommerhus/sjaelland/nordvestsjaelland/"
+        },
+        "novasol": {
+          "present": true,
+          "count": null,
+          "url": "https://www.novasol.dk/danmark/odsherred"
+        },
+        "sologstrand": {
+          "present": true,
+          "count": null,
+          "url": "https://www.sologstrand.dk/regioner/sjaelland/nordvest-sjaelland/rorvig"
+        },
+        "feriepartner": {
+          "present": true,
+          "count": null,
+          "url": "https://www.feriepartner.dk/danmark/odsherred/"
+        },
+        "esmark": {
+          "present": null,
+          "count": null,
+          "url": null
+        }
+      }
+    },
+    "nordsjaelland": {
+      "area_label": "Nordsjælland",
+      "companies": {
+        "dancenter": {
+          "present": true,
+          "count": 296,
+          "url": "https://www.dancenter.dk/sommerhus/sjaelland/nordsjaelland-ostsjaelland/"
+        },
+        "novasol": {
+          "present": true,
+          "count": null,
+          "url": "https://www.novasol.dk/danmark/nordsjaelland"
+        },
+        "sologstrand": {
+          "present": true,
+          "count": null,
+          "url": "https://www.sologstrand.dk/regioner/sjaelland/nordost-sjaelland/hornbaek"
+        },
+        "feriepartner": {
+          "present": true,
+          "count": null,
+          "url": "https://www.feriepartner.dk/danmark/nordsjaelland/"
+        },
+        "esmark": {
+          "present": null,
+          "count": null,
+          "url": null
+        }
+      }
+    },
+    "falster": {
+      "area_label": "Falster",
+      "companies": {
+        "dancenter": {
+          "present": true,
+          "count": 249,
+          "url": "https://www.dancenter.dk/sommerhus/falster/"
+        },
+        "novasol": {
+          "present": true,
+          "count": null,
+          "url": "https://www.novasol.dk/danmark/falster"
+        },
+        "sologstrand": {
+          "present": true,
+          "count": null,
+          "url": "https://www.sologstrand.dk/regioner/lolland-falster-og-mon/falster"
+        },
+        "feriepartner": {
+          "present": true,
+          "count": null,
+          "url": "https://www.feriepartner.dk/danmark/lolland-falster/falster/"
+        },
+        "esmark": {
+          "present": null,
+          "count": null,
+          "url": null
+        }
+      }
+    },
+    "bornholm": {
+      "area_label": "Bornholm",
+      "companies": {
+        "dancenter": {
+          "present": true,
+          "count": 228,
+          "url": "https://www.dancenter.dk/sommerhus/bornholm/"
+        },
+        "novasol": {
+          "present": true,
+          "count": null,
+          "url": "https://www.novasol.dk/danmark/bornholm"
+        },
+        "sologstrand": {
+          "present": true,
+          "count": null,
+          "url": "https://www.sologstrand.dk/regioner/bornholm"
+        },
+        "feriepartner": {
+          "present": true,
+          "count": null,
+          "url": "https://www.feriepartner.dk/danmark/bornholm/"
+        },
+        "esmark": {
+          "present": null,
+          "count": null,
+          "url": null
+        }
+      }
+    }
+  }
+}
