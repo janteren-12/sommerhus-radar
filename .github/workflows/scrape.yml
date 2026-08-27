@@ -1,0 +1,42 @@
+name: Scrape sommerhus listings
+
+on:
+  schedule:
+    # Runs at the top of every hour (UTC). GitHub Actions schedules are not
+    # always exactly on time - a few minutes of drift is normal.
+    - cron: "0 * * * *"
+  workflow_dispatch: {} # lets you trigger a run manually from the Actions tab
+
+# Only one run at a time, and never queue up a backlog of missed runs.
+concurrency:
+  group: scrape
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run the scraper
+        run: python scrape.py --force
+
+      - name: Commit updated data.json if it changed
+        run: |
+          git config user.name "sommerhus-radar bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/data.json
+          git diff --cached --quiet && echo "No changes to commit" || git commit -m "Update listings"
+          git push

@@ -1,0 +1,23 @@
+# Optional filters applied after fetching listings from Boliga.
+# Leave a value as "null" (or delete the line) to disable that filter.
+
+# Highest price to include, in kroner. Example: 3000000
+max_price: null
+
+# Smallest house size to include, in square metres.
+min_m2: null
+
+# Smallest plot ("grund") size to include, in square metres.
+min_grund_m2: null
+
+# Only show listings that have been on the market for at most this many
+# days. Useful if you only care about genuinely fresh listings.
+max_days_on_market: null
+
+# Listings whose address or city contains any of these words (not
+# case-sensitive) are skipped entirely. Example use: exclude a street name
+# you know is right next to a busy road.
+exclude_keywords: []
+
+# Politeness settings for the scraper. You shouldn't need to change these.
+seconds_between_requests: 1.5

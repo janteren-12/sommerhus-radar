@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sommerhus Radar</title>
+<style>
+  :root {
+    --bg: #fafaf8;
+    --card-bg: #ffffff;
+    --text: #14171a;
+    --text-muted: #6b7280;
+    --accent: #0f6b4c;
+    --accent-soft: #e6f2ec;
+    --border-faint: #eeeeec;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 16px 80px;
+  }
+
+  header {
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0 0 4px;
+    letter-spacing: -0.02em;
+  }
+
+  .updated {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .controls {
+    margin: 20px 0 28px;
+  }
+
+  .area-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .area-btn {
+    border: none;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .area-btn:hover {
+    background: #d9ece2;
+  }
+
+  .area-btn.active {
+    background: var(--accent);
+    color: white;
+  }
+
+  .price-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .price-filter label {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .price-filter input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent);
+  }
+
+  section h2 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin: 32px 0 14px;
+  }
+
+  section:first-of-type h2 {
+    margin-top: 0;
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  a.card {
+    display: block;
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 16px 18px;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    transition: transform 0.1s ease;
+  }
+
+  a.card:active {
+    transform: scale(0.99);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+
+  .price {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .ny-badge {
+    background: var(--accent);
+    color: white;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 3px 8px;
+    border-radius: 999px;
+    flex-shrink: 0;
+  }
+
+  .address {
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .meta {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .meta .area-tag {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .empty-state {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #101314;
+      --card-bg: #1a1f20;
+      --text: #f2f2f0;
+      --text-muted: #9aa0a3;
+      --accent: #3ddc97;
+      --accent-soft: #17332a;
+      --border-faint: #23292a;
+    }
+    .area-btn.active { color: #0a1a14; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1>Sommerhus Radar</h1>
+    <div class="updated" id="updated-line">Sidst opdateret: —</div>
+  </header>
+
+  <div class="controls">
+    <div class="area-filters" id="area-filters"></div>
+    <div class="price-filter">
+      <label><span>Maks pris</span><span id="price-value">Ingen grænse</span></label>
+      <input type="range" id="price-slider" min="0" max="10000000" step="100000" value="10000000">
+    </div>
+  </div>
+
+  <section id="new-section" style="display:none;">
+    <h2>Nye</h2>
+    <div class="cards" id="new-cards"></div>
+  </section>
+
+  <section>
+    <h2>Alle</h2>
+    <div class="cards" id="all-cards"></div>
+  </section>
+</div>
+
+<script>
+  const NEW_WINDOW_HOURS = 48;
+  let allListings = [];
+  let activeArea = null; // null = all areas
+  let maxPrice = 10000000;
+
+  function formatPrice(kr) {
+    if (kr == null) return "–";
+    return kr.toLocaleString("da-DK") + " kr";
+  }
+
+  function formatNumber(n) {
+    if (n == null) return "–";
+    return Math.round(n).toLocaleString("da-DK");
+  }
+
+  function formatTimestamp(iso) {
+    if (!iso) return "–";
+    const d = new Date(iso);
+    return d.toLocaleString("da-DK", {
+      day: "2-digit", month: "2-digit", year: "numeric",
+      hour: "2-digit", minute: "2-digit"
+    });
+  }
+
+  function isNew(listing) {
+    const seen = new Date(listing.first_seen);
+    const hoursAgo = (Date.now() - seen.getTime()) / (1000 * 60 * 60);
+    return hoursAgo <= NEW_WINDOW_HOURS;
+  }
+
+  function buildCard(listing) {
+    const a = document.createElement("a");
+    a.className = "card";
+    a.href = listing.link;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+
+    const top = document.createElement("div");
+    top.className = "card-top";
+
+    const price = document.createElement("div");
+    price.className = "price";
+    price.textContent = formatPrice(listing.price);
+    top.appendChild(price);
+
+    if (isNew(listing)) {
+      const badge = document.createElement("span");
+      badge.className = "ny-badge";
+      badge.textContent = "NY";
+      top.appendChild(badge);
+    }
+
+    const address = document.createElement("div");
+    address.className = "address";
+    address.textContent = `${listing.address || ""}, ${listing.postnummer || ""} ${listing.city || ""}`;
+
+    const meta = document.createElement("div");
+    meta.className = "meta";
+    const metaParts = [
+      `<span class="area-tag">${listing.area_label || ""}</span>`,
+      listing.m2 != null ? `${formatNumber(listing.m2)} m²` : null,
+      listing.grund_m2 != null ? `grund ${formatNumber(listing.grund_m2)} m²` : null,
+      listing.byggeaar != null ? `bygget ${listing.byggeaar}` : null,
+      listing.kr_per_m2 != null ? `${formatNumber(listing.kr_per_m2)} kr/m²` : null,
+      listing.dage_paa_markedet != null ? `${listing.dage_paa_markedet} dage på markedet` : null,
+    ].filter(Boolean);
+    meta.innerHTML = metaParts.join(" · ");
+
+    a.appendChild(top);
+    a.appendChild(address);
+    a.appendChild(meta);
+    return a;
+  }
+
+  function currentFilteredListings() {
+    return allListings.filter(l => {
+      if (l.sold_or_removed) return false;
+      if (activeArea && l.area !== activeArea) return false;
+      if (l.price != null && l.price > maxPrice) return false;
+      return true;
+    });
+  }
+
+  function render() {
+    const filtered = currentFilteredListings();
+
+    const newOnes = filtered.filter(isNew);
+    const rest = filtered
+      .filter(l => !isNew(l))
+      .sort((a, b) => new Date(b.first_seen) - new Date(a.first_seen));
+    newOnes.sort((a, b) => new Date(b.first_seen) - new Date(a.first_seen));
+
+    const newSection = document.getElementById("new-section");
+    const newCards = document.getElementById("new-cards");
+    newCards.innerHTML = "";
+    if (newOnes.length > 0) {
+      newSection.style.display = "";
+      newOnes.forEach(l => newCards.appendChild(buildCard(l)));
+    } else {
+      newSection.style.display = "none";
+    }
+
+    const allCards = document.getElementById("all-cards");
+    allCards.innerHTML = "";
+    if (rest.length === 0 && newOnes.length === 0) {
+      const empty = document.createElement("div");
+      empty.className = "empty-state";
+      empty.textContent = "Ingen sommerhuse matcher dine filtre lige nu.";
+      allCards.appendChild(empty);
+    } else {
+      rest.forEach(l => allCards.appendChild(buildCard(l)));
+    }
+  }
+
+  function buildAreaFilters() {
+    const areaMap = new Map();
+    allListings.forEach(l => {
+      if (!areaMap.has(l.area)) areaMap.set(l.area, l.area_label || l.area);
+    });
+
+    const container = document.getElementById("area-filters");
+    container.innerHTML = "";
+
+    const allBtn = document.createElement("button");
+    allBtn.className = "area-btn active";
+    allBtn.textContent = "Alle områder";
+    allBtn.onclick = () => setActiveArea(null, allBtn);
+    container.appendChild(allBtn);
+
+    areaMap.forEach((label, key) => {
+      const btn = document.createElement("button");
+      btn.className = "area-btn";
+      btn.textContent = label;
+      btn.onclick = () => setActiveArea(key, btn);
+      container.appendChild(btn);
+    });
+  }
+
+  function setActiveArea(areaKey, clickedBtn) {
+    activeArea = areaKey;
+    document.querySelectorAll(".area-btn").forEach(b => b.classList.remove("active"));
+    clickedBtn.classList.add("active");
+    render();
+  }
+
+  function setupPriceSlider() {
+    const slider = document.getElementById("price-slider");
+    const label = document.getElementById("price-value");
+
+    const prices = allListings.map(l => l.price).filter(p => p != null);
+    const highest = prices.length ? Math.max(...prices) : 10000000;
+    const sliderMax = Math.ceil(highest / 100000) * 100000;
+    slider.max = sliderMax;
+    slider.value = sliderMax;
+    maxPrice = sliderMax;
+    label.textContent = "Ingen grænse";
+
+    slider.addEventListener("input", () => {
+      maxPrice = Number(slider.value);
+      label.textContent = (maxPrice >= sliderMax) ? "Ingen grænse" : formatPrice(maxPrice);
+      render();
+    });
+  }
+
+  async function init() {
+    try {
+      const res = await fetch("data.json", { cache: "no-store" });
+      const data = await res.json();
+      allListings = data.listings || [];
+      document.getElementById("updated-line").textContent =
+        "Sidst opdateret: " + formatTimestamp(data.last_updated);
+      buildAreaFilters();
+      setupPriceSlider();
+      render();
+    } catch (err) {
+      document.getElementById("updated-line").textContent =
+        "Kunne ikke hente data.json";
+      console.error(err);
+    }
+  }
+
+  init();
+</script>
+</body>
+</html>

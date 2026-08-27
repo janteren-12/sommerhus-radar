@@ -1,0 +1,53 @@
+# Areas to watch for sommerhuse (holiday homes).
+#
+# Each area has a short label (used in the website filter buttons) and a
+# list of Danish postal codes ("postnumre") that belong to it.
+#
+# To add or remove an area, just edit this list - the scraper reads it
+# fresh every run. Postal codes must be numbers Boliga actually uses;
+# you can look one up by searching an address on boliga.dk and checking
+# the postal code shown.
+
+blaavand:
+  label: "Blåvand"
+  zipcodes: [6857, 6853, 6854, 6830]
+
+ringkoebing:
+  label: "Ringkøbing"
+  zipcodes: [6950, 6960]
+
+fanoe:
+  label: "Fanø"
+  zipcodes: [6720]
+
+roemoe:
+  label: "Rømø"
+  zipcodes: [6792]
+
+jammerbugt:
+  label: "Jammerbugt"
+  zipcodes: [9492, 9480, 9490]
+
+skagen:
+  label: "Skagen"
+  zipcodes: [9990, 9982]
+
+djursland:
+  label: "Djursland"
+  zipcodes: [8400, 8410, 8500]
+
+odsherred:
+  label: "Odsherred"
+  zipcodes: [4500, 4560, 4573, 4581, 4583]
+
+nordsjaelland:
+  label: "Nordsjælland"
+  zipcodes: [3210, 3220, 3250, 3360, 3370]
+
+falster:
+  label: "Falster"
+  zipcodes: [4873, 4874]
+
+bornholm:
+  label: "Bornholm"
+  zipcodes: [3700, 3720, 3730, 3740, 3770]
