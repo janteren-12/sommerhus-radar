@@ -155,10 +155,44 @@ def build_record(listing, area_key, area_label, existing_by_id, now_iso):
         "byggeaar": listing.get("buildYear"),
         "kr_per_m2": listing.get("squaremeterPrice"),
         "dage_paa_markedet": listing.get("daysForSale"),
+        # How much the asking price has changed since it was first listed,
+        # in percent (negative = price cut). Boliga only fills this in once
+        # a listing has actually had a price change.
+        "prisaendring_pct": listing.get("priceChangePercentTotal") or None,
+        "prisaendring_kr": listing.get("priceChangeCashTotal") or None,
+        # The minimum down payment Boliga shows for this listing (normally
+        # a flat 5% of the price).
+        "udbetaling": listing.get("downPayment"),
+        # "Ejerudgift": Boliga's own estimate of the monthly running costs
+        # of owning this property (property tax share, insurance,
+        # maintenance fund, etc). Not populated for every listing.
+        "ejerudgift_md": listing.get("exp") or None,
         "link": build_link(listing),
         "first_seen": first_seen,
         "sold_or_removed": False,
     }
+
+
+def compute_area_stats(records):
+    """Average kr/m2 per area, based on currently active listings only.
+    Lets the website show each listing next to its area's average, e.g.
+    "12% under områdegennemsnit"."""
+    prices_by_area = {}
+    for record in records:
+        if record["sold_or_removed"]:
+            continue
+        kr_per_m2 = record.get("kr_per_m2")
+        if not kr_per_m2:
+            continue
+        prices_by_area.setdefault(record["area"], []).append(kr_per_m2)
+
+    area_stats = {}
+    for area_key, prices in prices_by_area.items():
+        area_stats[area_key] = {
+            "avg_kr_per_m2": round(sum(prices) / len(prices)),
+            "listing_count": len(prices),
+        }
+    return area_stats
 
 
 def minutes_since(iso_timestamp):
@@ -236,6 +270,7 @@ def main():
 
     output = {
         "last_updated": now_iso,
+        "area_stats": compute_area_stats(fresh_records),
         "listings": fresh_records,
     }
 

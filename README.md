@@ -121,6 +121,22 @@ greyed out/disabled), and open a run to see any error.
 - **"NY" window is 48 hours** based on `first_seen`, per the spec. This is
   a fixed constant in `docs/index.html` (`NEW_WINDOW_HOURS`) if you want to
   change it later.
+- **Financial filters**: price reduction, days on market, price/m², down
+  payment, monthly owner costs ("Ejerudgift"), and price-vs-area-average are
+  all real numbers - either fields Boliga's API already returns per listing
+  (`priceChangePercentTotal`, `downPayment`, and a field literally called
+  `exp` that turned out to be Ejerudgift once checked against a real
+  listing page), or computed directly from your own tracked listings
+  (the area average is just the mean kr/m² across everything currently
+  active in that area, recalculated by `scrape.py` every run). Two fields
+  that looked promising in Boliga's raw response - `evaluationPrice`
+  (public valuation) and `lastSoldPrice`/`lastSoldDate` (sale history) -
+  turned out to always be zero/empty across every listing checked, so
+  those aren't shown; showing them would mean showing a made-up number.
+  There's no mortgage payment estimate, transaction cost estimate, or
+  rental income/yield on the site - those would need real assumptions
+  (interest rate, loan term) or data sources that don't exist publicly,
+  and weren't part of what was asked for in this pass.
 - **Design**: minimal, one accent colour (a muted green), rounded cards, no
   borders/shadows, single-column mobile-first layout, dark mode support via
   `prefers-color-scheme` since you'll mostly be opening this on a phone.

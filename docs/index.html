@@ -13,6 +13,8 @@
     --accent: #0f6b4c;
     --accent-soft: #e6f2ec;
     --border-faint: #eeeeec;
+    --warn: #b5551f;
+    --warn-soft: #f7e9e0;
   }
 
   * { box-sizing: border-box; }
@@ -106,6 +108,42 @@
     accent-color: var(--accent);
   }
 
+  .more-filters-toggle {
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 10px 0 0;
+    cursor: pointer;
+  }
+
+  .more-filters {
+    display: none;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-faint);
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .more-filters.open {
+    display: flex;
+  }
+
+  .filter-group label {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .filter-group .btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
   section h2 {
     font-size: 0.95rem;
     text-transform: uppercase;
@@ -148,10 +186,23 @@
     margin-bottom: 4px;
   }
 
+  .price-line {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
   .price {
     font-size: 1.35rem;
     font-weight: 700;
     letter-spacing: -0.01em;
+  }
+
+  .price-drop {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--warn);
   }
 
   .ny-badge {
@@ -182,6 +233,32 @@
     font-weight: 600;
   }
 
+  .finance-meta {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-top: 2px;
+  }
+
+  .area-avg-tag {
+    display: inline-block;
+    font-size: 0.76rem;
+    font-weight: 600;
+    margin-top: 6px;
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+
+  .area-avg-tag.good {
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .area-avg-tag.high {
+    color: var(--warn);
+    background: var(--warn-soft);
+  }
+
   .empty-state {
     color: var(--text-muted);
     font-size: 0.9rem;
@@ -198,6 +275,8 @@
       --accent: #3ddc97;
       --accent-soft: #17332a;
       --border-faint: #23292a;
+      --warn: #e0925a;
+      --warn-soft: #332319;
     }
     .area-btn.active { color: #0a1a14; }
   }
@@ -217,6 +296,23 @@
       <label><span>Maks pris</span><span id="price-value">Ingen grænse</span></label>
       <input type="range" id="price-slider" min="0" max="10000000" step="100000" value="10000000">
     </div>
+
+    <button class="more-filters-toggle" id="more-filters-toggle" type="button">Flere filtre &darr;</button>
+
+    <div class="more-filters" id="more-filters">
+      <div class="filter-group">
+        <label>Prisreduktion</label>
+        <div class="btn-row" id="price-drop-filters"></div>
+      </div>
+      <div class="filter-group">
+        <label>Dage på markedet</label>
+        <div class="btn-row" id="days-filters"></div>
+      </div>
+      <div class="filter-group">
+        <label><span>Maks kr/m²</span> <span id="kr-per-m2-value">Ingen grænse</span></label>
+        <input type="range" id="kr-per-m2-slider" min="0" max="100000" step="1000" value="100000">
+      </div>
+    </div>
   </div>
 
   <section id="new-section" style="display:none;">
@@ -232,9 +328,17 @@
 
 <script>
   const NEW_WINDOW_HOURS = 48;
+  // Below this, we don't bother showing an area-average comparison tag -
+  // it's not a meaningful enough difference to call out.
+  const AREA_AVG_TAG_THRESHOLD_PCT = 4;
+
   let allListings = [];
+  let areaStats = {};
   let activeArea = null; // null = all areas
   let maxPrice = 10000000;
+  let maxKrPerM2 = 100000;
+  let priceDropFilter = null; // null | "any" | 5 | 10 (percent)
+  let maxDaysOnMarket = null; // null = no limit
 
   function formatPrice(kr) {
     if (kr == null) return "–";
@@ -261,6 +365,24 @@
     return hoursAgo <= NEW_WINDOW_HOURS;
   }
 
+  function areaAverageTag(listing) {
+    const stats = areaStats[listing.area];
+    if (!stats || !stats.avg_kr_per_m2 || listing.kr_per_m2 == null) return null;
+
+    const deltaPct = ((listing.kr_per_m2 - stats.avg_kr_per_m2) / stats.avg_kr_per_m2) * 100;
+    if (Math.abs(deltaPct) < AREA_AVG_TAG_THRESHOLD_PCT) return null;
+
+    const tag = document.createElement("span");
+    if (deltaPct < 0) {
+      tag.className = "area-avg-tag good";
+      tag.textContent = `${Math.round(Math.abs(deltaPct))}% under områdegennemsnit`;
+    } else {
+      tag.className = "area-avg-tag high";
+      tag.textContent = `${Math.round(deltaPct)}% over områdegennemsnit`;
+    }
+    return tag;
+  }
+
   function buildCard(listing) {
     const a = document.createElement("a");
     a.className = "card";
@@ -271,10 +393,22 @@
     const top = document.createElement("div");
     top.className = "card-top";
 
-    const price = document.createElement("div");
+    const priceLine = document.createElement("div");
+    priceLine.className = "price-line";
+
+    const price = document.createElement("span");
     price.className = "price";
     price.textContent = formatPrice(listing.price);
-    top.appendChild(price);
+    priceLine.appendChild(price);
+
+    if (listing.prisaendring_pct != null && listing.prisaendring_pct < 0) {
+      const drop = document.createElement("span");
+      drop.className = "price-drop";
+      drop.textContent = `▼ ${Math.abs(listing.prisaendring_pct)}%`;
+      priceLine.appendChild(drop);
+    }
+
+    top.appendChild(priceLine);
 
     if (isNew(listing)) {
       const badge = document.createElement("span");
@@ -302,6 +436,21 @@
     a.appendChild(top);
     a.appendChild(address);
     a.appendChild(meta);
+
+    const financeParts = [
+      listing.udbetaling != null ? `Udbetaling ${formatPrice(listing.udbetaling)}` : null,
+      listing.ejerudgift_md != null ? `Ejerudgift ${formatPrice(listing.ejerudgift_md)}/md` : null,
+    ].filter(Boolean);
+    if (financeParts.length > 0) {
+      const financeMeta = document.createElement("div");
+      financeMeta.className = "finance-meta";
+      financeMeta.textContent = financeParts.join(" · ");
+      a.appendChild(financeMeta);
+    }
+
+    const avgTag = areaAverageTag(listing);
+    if (avgTag) a.appendChild(avgTag);
+
     return a;
   }
 
@@ -310,6 +459,18 @@
       if (l.sold_or_removed) return false;
       if (activeArea && l.area !== activeArea) return false;
       if (l.price != null && l.price > maxPrice) return false;
+      if (l.kr_per_m2 != null && l.kr_per_m2 > maxKrPerM2) return false;
+
+      if (priceDropFilter != null) {
+        const drop = l.prisaendring_pct != null ? -l.prisaendring_pct : 0;
+        if (priceDropFilter === "any" && drop <= 0) return false;
+        if (typeof priceDropFilter === "number" && drop < priceDropFilter) return false;
+      }
+
+      if (maxDaysOnMarket != null) {
+        if (l.dage_paa_markedet == null || l.dage_paa_markedet > maxDaysOnMarket) return false;
+      }
+
       return true;
     });
   }
@@ -395,15 +556,78 @@
     });
   }
 
+  function setupKrPerM2Slider() {
+    const slider = document.getElementById("kr-per-m2-slider");
+    const label = document.getElementById("kr-per-m2-value");
+
+    const values = allListings.map(l => l.kr_per_m2).filter(v => v != null);
+    const highest = values.length ? Math.max(...values) : 100000;
+    const sliderMax = Math.ceil(highest / 1000) * 1000;
+    slider.max = sliderMax;
+    slider.value = sliderMax;
+    maxKrPerM2 = sliderMax;
+    label.textContent = "Ingen grænse";
+
+    slider.addEventListener("input", () => {
+      maxKrPerM2 = Number(slider.value);
+      label.textContent = (maxKrPerM2 >= sliderMax) ? "Ingen grænse" : `${formatNumber(maxKrPerM2)} kr/m²`;
+      render();
+    });
+  }
+
+  function setupButtonGroup(containerId, options, onSelect) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = "";
+    options.forEach((opt, i) => {
+      const btn = document.createElement("button");
+      btn.className = "area-btn" + (i === 0 ? " active" : "");
+      btn.textContent = opt.label;
+      btn.onclick = () => {
+        container.querySelectorAll(".area-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        onSelect(opt.value);
+        render();
+      };
+      container.appendChild(btn);
+    });
+  }
+
+  function setupMoreFilters() {
+    setupButtonGroup("price-drop-filters", [
+      { label: "Alle", value: null },
+      { label: "Prisreduceret", value: "any" },
+      { label: "5%+ reduceret", value: 5 },
+      { label: "10%+ reduceret", value: 10 },
+    ], value => { priceDropFilter = value; });
+
+    setupButtonGroup("days-filters", [
+      { label: "Alle", value: null },
+      { label: "< 7 dage", value: 7 },
+      { label: "< 30 dage", value: 30 },
+      { label: "< 90 dage", value: 90 },
+    ], value => { maxDaysOnMarket = value; });
+
+    setupKrPerM2Slider();
+
+    const toggle = document.getElementById("more-filters-toggle");
+    const panel = document.getElementById("more-filters");
+    toggle.addEventListener("click", () => {
+      const isOpen = panel.classList.toggle("open");
+      toggle.textContent = isOpen ? "Flere filtre ↑" : "Flere filtre ↓";
+    });
+  }
+
   async function init() {
     try {
       const res = await fetch("data.json", { cache: "no-store" });
       const data = await res.json();
       allListings = data.listings || [];
+      areaStats = data.area_stats || {};
       document.getElementById("updated-line").textContent =
         "Sidst opdateret: " + formatTimestamp(data.last_updated);
       buildAreaFilters();
       setupPriceSlider();
+      setupMoreFilters();
       render();
     } catch (err) {
       document.getElementById("updated-line").textContent =
