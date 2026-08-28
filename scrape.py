@@ -100,6 +100,45 @@ def fetch_all_listings_for_zipcode(session, zipcode, seconds_between_requests):
     return all_results
 
 
+# The word people search for on Boliga when they want a "fixer-upper" deal.
+# Boliga's own search box supports free-text search (we found this by
+# trying a nonsense word - zero results - against a common one - thousands
+# of results - to confirm it's a real filter, not decoration). It seems to
+# search more of the agent's original listing text than what's rendered on
+# the public page, so this catches more than grepping the page text would.
+HAANDVAERKERTILBUD_QUERY = "håndværkertilbud"
+
+
+def fetch_haandvaerkertilbud_ids(session, seconds_between_requests):
+    """One nationwide search for fritidshus listings Boliga's own search
+    matches on "håndværkertilbud" - far cheaper than checking every
+    listing's page individually. Returns a set of matching listing ids."""
+    ids = set()
+    page = 1
+    while page <= MAX_PAGES_PER_ZIPCODE:
+        params = {
+            "propertyType": FRITIDSHUS_PROPERTY_TYPE,
+            "q": HAANDVAERKERTILBUD_QUERY,
+            "page": page,
+            "pageSize": 100,
+        }
+        response = session.get(API_URL, params=params, timeout=20)
+        response.raise_for_status()
+        data = response.json()
+
+        for result in data.get("results", []):
+            if result.get("propertyType") == FRITIDSHUS_PROPERTY_TYPE:
+                ids.add(result["id"])
+
+        total_pages = data.get("meta", {}).get("totalPages", 1)
+        if page >= total_pages:
+            break
+        page += 1
+        time.sleep(seconds_between_requests)
+
+    return ids
+
+
 def build_link(listing):
     ou_address = listing.get("ouAddress") or ""
     return f"https://www.boliga.dk/bolig/{listing['id']}/{ou_address}"
@@ -137,13 +176,14 @@ def passes_filters(listing, config):
     return True
 
 
-def build_record(listing, area_key, area_label, existing_by_id, now_iso):
+def build_record(listing, area_key, area_label, existing_by_id, now_iso, haandvaerkertilbud_ids):
     listing_id = listing["id"]
     existing = existing_by_id.get(listing_id)
     first_seen = existing["first_seen"] if existing else now_iso
 
     return {
         "id": listing_id,
+        "haandvaerkertilbud": listing_id in haandvaerkertilbud_ids,
         "address": listing.get("street"),
         "postnummer": listing.get("zipCode"),
         "city": listing.get("city"),
@@ -229,6 +269,14 @@ def main():
     seconds_between_requests = config.get("seconds_between_requests", 1.5)
     now_iso = datetime.now(timezone.utc).isoformat()
 
+    print("Checking which listings Boliga's own search matches on \"håndværkertilbud\"...")
+    try:
+        haandvaerkertilbud_ids = fetch_haandvaerkertilbud_ids(session, seconds_between_requests)
+    except requests.RequestException as error:
+        print(f"  Could not fetch håndværkertilbud matches: {error}")
+        haandvaerkertilbud_ids = set()
+    time.sleep(seconds_between_requests)
+
     seen_ids = set()
     fresh_records = []
 
@@ -250,7 +298,9 @@ def main():
             for listing in raw_listings:
                 if not passes_filters(listing, config):
                     continue
-                record = build_record(listing, area_key, label, existing_by_id, now_iso)
+                record = build_record(
+                    listing, area_key, label, existing_by_id, now_iso, haandvaerkertilbud_ids
+                )
                 seen_ids.add(record["id"])
                 fresh_records.append(record)
                 kept += 1

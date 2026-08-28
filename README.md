@@ -137,6 +137,22 @@ greyed out/disabled), and open a run to see any error.
   rental income/yield on the site - those would need real assumptions
   (interest rate, loan term) or data sources that don't exist publicly,
   and weren't part of what was asked for in this pass.
+- **Håndværkertilbud detection**: "håndværkertilbud" (a discounted,
+  fixer-upper sale arrangement) isn't a structured field anywhere in
+  Boliga's data - it's something an agent writes in the listing's own
+  text. Rather than fetching and scanning every listing's full page (slow,
+  and fragile since Boliga's HTML structure can change), `scrape.py` makes
+  one extra request per run to Boliga's own search with
+  `q=håndværkertilbud`, and flags any of your tracked listings whose id
+  comes back in that result. Confirmed this is a real search (not
+  decoration) by testing a nonsense word against it first (0 results)
+  compared to a common word like "udsigt" (2,369 results) - and confirmed
+  it's checking more than just the visible page text, since the exact
+  phrase doesn't always appear in a matched listing's rendered
+  "Beskrivelse" section (Boliga sometimes shows its own auto-generated
+  summary there instead of the agent's original text, but the search
+  index still seems to see the original). One extra request per run,
+  regardless of how many listings you're tracking.
 - **Design**: minimal, one accent colour (a muted green), rounded cards, no
   borders/shadows, single-column mobile-first layout, dark mode support via
   `prefers-color-scheme` since you'll mostly be opening this on a phone.

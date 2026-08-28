@@ -216,6 +216,17 @@
     flex-shrink: 0;
   }
 
+  .haandvaerker-badge {
+    display: inline-block;
+    background: var(--warn-soft);
+    color: var(--warn);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 999px;
+    margin-top: 6px;
+  }
+
   .address {
     font-size: 0.95rem;
     color: var(--text);
@@ -312,6 +323,10 @@
         <label><span>Maks kr/m²</span> <span id="kr-per-m2-value">Ingen grænse</span></label>
         <input type="range" id="kr-per-m2-slider" min="0" max="100000" step="1000" value="100000">
       </div>
+      <div class="filter-group">
+        <label>Håndværkertilbud</label>
+        <div class="btn-row" id="haandvaerker-filters"></div>
+      </div>
     </div>
   </div>
 
@@ -339,6 +354,7 @@
   let maxKrPerM2 = 100000;
   let priceDropFilter = null; // null | "any" | 5 | 10 (percent)
   let maxDaysOnMarket = null; // null = no limit
+  let haandvaerkerFilter = null; // null | true (show only) | false (hide)
 
   function formatPrice(kr) {
     if (kr == null) return "–";
@@ -451,6 +467,13 @@
     const avgTag = areaAverageTag(listing);
     if (avgTag) a.appendChild(avgTag);
 
+    if (listing.haandvaerkertilbud) {
+      const badge = document.createElement("div");
+      badge.className = "haandvaerker-badge";
+      badge.textContent = "🔨 Håndværkertilbud";
+      a.appendChild(badge);
+    }
+
     return a;
   }
 
@@ -470,6 +493,9 @@
       if (maxDaysOnMarket != null) {
         if (l.dage_paa_markedet == null || l.dage_paa_markedet > maxDaysOnMarket) return false;
       }
+
+      if (haandvaerkerFilter === true && !l.haandvaerkertilbud) return false;
+      if (haandvaerkerFilter === false && l.haandvaerkertilbud) return false;
 
       return true;
     });
@@ -606,6 +632,12 @@
       { label: "< 30 dage", value: 30 },
       { label: "< 90 dage", value: 90 },
     ], value => { maxDaysOnMarket = value; });
+
+    setupButtonGroup("haandvaerker-filters", [
+      { label: "Alle", value: null },
+      { label: "Kun håndværkertilbud", value: true },
+      { label: "Skjul håndværkertilbud", value: false },
+    ], value => { haandvaerkerFilter = value; });
 
     setupKrPerM2Slider();
 
