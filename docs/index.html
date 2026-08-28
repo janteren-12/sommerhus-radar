@@ -324,7 +324,7 @@
         <input type="range" id="kr-per-m2-slider" min="0" max="100000" step="1000" value="100000">
       </div>
       <div class="filter-group">
-        <label>Håndværkertilbud</label>
+        <label>Renoveringsprojekt</label>
         <div class="btn-row" id="haandvaerker-filters"></div>
       </div>
     </div>
@@ -470,7 +470,7 @@
     if (listing.haandvaerkertilbud) {
       const badge = document.createElement("div");
       badge.className = "haandvaerker-badge";
-      badge.textContent = "🔨 Håndværkertilbud";
+      badge.textContent = "🔨 Renoveringsprojekt";
       a.appendChild(badge);
     }
 
@@ -635,8 +635,8 @@
 
     setupButtonGroup("haandvaerker-filters", [
       { label: "Alle", value: null },
-      { label: "Kun håndværkertilbud", value: true },
-      { label: "Skjul håndværkertilbud", value: false },
+      { label: "Kun renoveringsprojekter", value: true },
+      { label: "Skjul renoveringsprojekter", value: false },
     ], value => { haandvaerkerFilter = value; });
 
     setupKrPerM2Slider();
