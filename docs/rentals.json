@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-28T03:32:32.260249+00:00",
+  "last_updated": "2026-08-28T16:29:01.109173+00:00",
   "company_labels": {
     "dancenter": "DanCenter",
     "novasol": "Novasol",
@@ -43,7 +43,7 @@
       "companies": {
         "dancenter": {
           "present": true,
-          "count": 185,
+          "count": 186,
           "url": "https://www.dancenter.dk/sommerhus/vestjylland/ringkobing-fjord/"
         },
         "novasol": {
@@ -223,7 +223,7 @@
       "companies": {
         "dancenter": {
           "present": true,
-          "count": 169,
+          "count": 170,
           "url": "https://www.dancenter.dk/sommerhus/sjaelland/nordvestsjaelland/"
         },
         "novasol": {
@@ -313,7 +313,7 @@
       "companies": {
         "dancenter": {
           "present": true,
-          "count": 228,
+          "count": 229,
           "url": "https://www.dancenter.dk/sommerhus/bornholm/"
         },
         "novasol": {
