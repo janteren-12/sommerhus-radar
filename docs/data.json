@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-29T05:45:52.109581+00:00",
+  "last_updated": "2026-08-29T07:44:56.370637+00:00",
   "area_stats": {
     "odsherred": {
       "avg_kr_per_m2": 41592,
@@ -2069,12 +2069,7 @@
         "mispricing_available": true,
         "nettoafkast_available": false
       },
-      "reason": "34% over modelpris, 4 dage på markedet",
-      "bbr": {
-        "Boligtype": "4",
-        "1. Etage": "8 m²"
-      },
-      "bbr_checked": true
+      "reason": "34% over modelpris, 4 dage på markedet"
     },
     {
       "id": 2360586,
@@ -152241,5 +152236,5 @@
       "sold_or_removed": true
     }
   ],
-  "scoring_last_updated": "2026-08-29T05:45:52.109581+00:00"
+  "scoring_last_updated": "2026-08-29T07:44:56.370637+00:00"
 }
