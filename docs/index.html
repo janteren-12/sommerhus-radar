@@ -28,7 +28,7 @@
   }
 
   .page {
-    max-width: 720px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 24px 16px 80px;
   }
@@ -94,6 +94,7 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
+    max-width: 320px;
   }
 
   .price-filter label {
@@ -166,117 +167,11 @@
     margin-top: 0;
   }
 
-  .cards {
+  .sort-row {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  a.card {
-    display: block;
-    background: var(--card-bg);
-    border-radius: 16px;
-    padding: 16px 18px;
-    text-decoration: none;
-    color: inherit;
-    position: relative;
-    transition: transform 0.1s ease;
-  }
-
-  a.card:active {
-    transform: scale(0.99);
-  }
-
-  .card-top {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 4px;
-  }
-
-  .price-line {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
     flex-wrap: wrap;
-  }
-
-  .price {
-    font-size: 1.35rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-  }
-
-  .price-drop {
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--warn);
-  }
-
-  .ny-badge {
-    background: var(--accent);
-    color: white;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    padding: 3px 8px;
-    border-radius: 999px;
-    flex-shrink: 0;
-  }
-
-  .haandvaerker-badge {
-    display: inline-block;
-    background: var(--warn-soft);
-    color: var(--warn);
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 3px 9px;
-    border-radius: 999px;
-    margin-top: 6px;
-  }
-
-  .address {
-    font-size: 0.95rem;
-    color: var(--text);
-    margin-bottom: 8px;
-  }
-
-  .meta {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-  }
-
-  .meta .area-tag {
-    color: var(--accent);
-    font-weight: 600;
-  }
-
-  .finance-meta {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-    margin-top: 2px;
-  }
-
-  .area-avg-tag {
-    display: inline-block;
-    font-size: 0.76rem;
-    font-weight: 600;
-    margin-top: 6px;
-    padding: 3px 9px;
-    border-radius: 999px;
-  }
-
-  .area-avg-tag.good {
-    color: var(--accent);
-    background: var(--accent-soft);
-  }
-
-  .area-avg-tag.high {
-    color: var(--warn);
-    background: var(--warn-soft);
+    gap: 8px;
+    margin-bottom: 18px;
   }
 
   .empty-state {
@@ -286,89 +181,163 @@
     text-align: center;
   }
 
-  .card {
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border-faint);
+    border-radius: 12px;
     background: var(--card-bg);
-    border-radius: 16px;
-    padding: 16px 18px;
   }
 
-  a.card-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
+  table.listing-table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 720px;
   }
 
-  .score-row {
+  .listing-table th, .listing-table td {
+    text-align: left;
+    padding: 11px 14px;
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+
+  .listing-table th {
+    color: var(--text-muted);
+    font-weight: 700;
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--border-faint);
+  }
+
+  .listing-table td {
+    border-bottom: 1px solid var(--border-faint);
+  }
+
+  .listing-table th.num, .listing-table td.num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .listing-table tbody tr.listing-row {
+    cursor: pointer;
+  }
+
+  .listing-table tbody tr.listing-row:hover {
+    background: var(--accent-soft);
+  }
+
+  .listing-table tbody tr.flagged-row {
+    opacity: 0.6;
+  }
+
+  .listing-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-left: 6px;
+    vertical-align: 1px;
+    white-space: nowrap;
+  }
+
+  .badge.ny { background: var(--accent); color: white; }
+  .badge.fald { background: var(--warn-soft); color: var(--warn); }
+  .badge.haandvaerker { background: var(--warn-soft); color: var(--warn); }
+  .badge.udelukket { background: #e6e6e3; color: var(--text-muted); }
+
+  .area-avg-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin-left: 6px;
+    padding: 1px 7px;
+    border-radius: 999px;
+  }
+
+  .area-avg-tag.good { color: var(--accent); background: var(--accent-soft); }
+  .area-avg-tag.high { color: var(--warn); background: var(--warn-soft); }
+
+  .detail-row td {
+    background: var(--bg);
+    cursor: default;
+    white-space: normal;
+    padding: 0;
+  }
+
+  .detail {
+    padding: 18px 20px;
+    font-size: 0.82rem;
+  }
+
+  .detail-summary {
     display: flex;
     align-items: baseline;
     gap: 10px;
-    margin-bottom: 6px;
+    margin-bottom: 14px;
   }
 
-  .score-number {
-    font-size: 1.8rem;
+  .detail-summary .score-number {
+    font-size: 1.6rem;
     font-weight: 800;
     color: var(--accent);
     letter-spacing: -0.02em;
   }
 
-  .score-number .out-of-100 {
-    font-size: 0.9rem;
+  .detail-summary .score-number .out-of-100 {
+    font-size: 0.85rem;
     font-weight: 600;
     color: var(--text-muted);
     margin-left: 2px;
   }
 
-  .score-reason {
+  .detail-summary .score-reason {
+    color: var(--text-muted);
     font-size: 0.8rem;
-    color: var(--text-muted);
-  }
-
-  .score-disclaimer {
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    font-style: italic;
-    margin-top: 10px;
   }
 
   .no-score-note {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin-bottom: 6px;
-  }
-
-  .details-toggle {
-    background: none;
-    border: none;
-    color: var(--accent);
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding: 10px 0 0;
-    cursor: pointer;
-    display: block;
-  }
-
-  .details-panel {
-    display: none;
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid var(--border-faint);
     font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 14px;
   }
 
-  .details-panel.open {
-    display: block;
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px 20px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-faint);
   }
 
-  .details-panel h4 {
-    font-size: 0.75rem;
+  .detail-field .label {
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+  }
+
+  .detail-field .value {
+    font-size: 0.85rem;
+    margin-top: 2px;
+  }
+
+  .detail h4 {
+    font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-muted);
-    margin: 14px 0 6px;
+    margin: 16px 0 6px;
   }
 
-  .details-panel h4:first-child {
+  .detail h4:first-of-type {
     margin-top: 0;
   }
 
@@ -402,26 +371,23 @@
     margin-top: 14px;
   }
 
-  .sort-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 18px;
-  }
-
-  .flagged-card {
-    opacity: 0.55;
-  }
-
-  .flagged-card .score-row {
-    display: none;
-  }
-
   .flagged-note {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     color: var(--warn);
     font-weight: 600;
-    margin-top: 6px;
+    margin-bottom: 14px;
+  }
+
+  .broker-link {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 9px 16px;
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -437,6 +403,7 @@
       --warn-soft: #332319;
     }
     .area-btn.active { color: #0a1a14; }
+    .badge.ny { color: #0a1a14; }
   }
 </style>
 </head>
@@ -482,25 +449,75 @@
 
   <section id="new-section" style="display:none;">
     <h2>Nye</h2>
-    <div class="cards" id="new-cards"></div>
+    <div class="table-wrap">
+      <table class="listing-table">
+        <thead>
+          <tr>
+            <th>Adresse</th>
+            <th>Område</th>
+            <th class="num">Areal (m²)</th>
+            <th class="num">Pris (kr.)</th>
+            <th class="num">Pris/m²</th>
+            <th class="num">Score</th>
+            <th class="num">Afkast %</th>
+            <th class="num">Dage på markedet</th>
+          </tr>
+        </thead>
+        <tbody id="new-rows"></tbody>
+      </table>
+    </div>
   </section>
 
   <section>
     <h2>Alle</h2>
-    <div class="cards" id="all-cards"></div>
+    <div class="table-wrap">
+      <table class="listing-table">
+        <thead>
+          <tr>
+            <th>Adresse</th>
+            <th>Område</th>
+            <th class="num">Areal (m²)</th>
+            <th class="num">Pris (kr.)</th>
+            <th class="num">Pris/m²</th>
+            <th class="num">Score</th>
+            <th class="num">Afkast %</th>
+            <th class="num">Dage på markedet</th>
+          </tr>
+        </thead>
+        <tbody id="all-rows"></tbody>
+      </table>
+    </div>
+    <div class="empty-state" id="empty-msg" style="display:none;">Ingen sommerhuse matcher dine filtre lige nu.</div>
   </section>
 
   <section id="flagged-section" style="display:none;">
     <h2>Udelukket</h2>
-    <div class="cards" id="flagged-cards"></div>
+    <div class="table-wrap">
+      <table class="listing-table">
+        <thead>
+          <tr>
+            <th>Adresse</th>
+            <th>Område</th>
+            <th class="num">Areal (m²)</th>
+            <th class="num">Pris (kr.)</th>
+            <th class="num">Pris/m²</th>
+            <th class="num">Score</th>
+            <th class="num">Afkast %</th>
+            <th class="num">Dage på markedet</th>
+          </tr>
+        </thead>
+        <tbody id="flagged-rows"></tbody>
+      </table>
+    </div>
   </section>
 </div>
 
 <script>
   const NEW_WINDOW_HOURS = 48;
-  // Below this, we don't bother showing an area-average comparison tag -
+  // Below this, we don't bother showing an area-average comparison badge -
   // it's not a meaningful enough difference to call out.
   const AREA_AVG_TAG_THRESHOLD_PCT = 4;
+  const TABLE_COLSPAN = 8;
 
   let allListings = [];
   let areaStats = {};
@@ -541,82 +558,86 @@
     return listing.dage_paa_markedet != null && listing.dage_paa_markedet <= 2;
   }
 
-  function areaAverageTag(listing) {
+  function areaAverageInfo(listing) {
     const stats = areaStats[listing.area];
     if (!stats || !stats.avg_kr_per_m2 || listing.kr_per_m2 == null) return null;
 
     const deltaPct = ((listing.kr_per_m2 - stats.avg_kr_per_m2) / stats.avg_kr_per_m2) * 100;
     if (Math.abs(deltaPct) < AREA_AVG_TAG_THRESHOLD_PCT) return null;
 
-    const tag = document.createElement("span");
-    if (deltaPct < 0) {
-      tag.className = "area-avg-tag good";
-      tag.textContent = `${Math.round(Math.abs(deltaPct))}% under områdegennemsnit`;
-    } else {
-      tag.className = "area-avg-tag high";
-      tag.textContent = `${Math.round(deltaPct)}% over områdegennemsnit`;
-    }
-    return tag;
+    return {
+      good: deltaPct < 0,
+      shortLabel: `${deltaPct < 0 ? "-" : "+"}${Math.round(Math.abs(deltaPct))}%`,
+      fullLabel: deltaPct < 0
+        ? `${Math.round(Math.abs(deltaPct))}% under områdegennemsnit`
+        : `${Math.round(deltaPct)}% over områdegennemsnit`,
+    };
   }
 
-  function buildScoreRow(listing) {
-    const wrap = document.createDocumentFragment();
-
-    if (listing.score == null) {
-      const note = document.createElement("div");
-      note.className = "no-score-note";
-      note.textContent = listing.reason || "Ikke rangeret";
-      wrap.appendChild(note);
-      return wrap;
-    }
-
-    const row = document.createElement("div");
-    row.className = "score-row";
-    const num = document.createElement("div");
-    num.className = "score-number";
-    num.innerHTML = `${Math.round(listing.score)}<span class="out-of-100">/100</span>`;
-    row.appendChild(num);
-    wrap.appendChild(row);
-
-    const reason = document.createElement("div");
-    reason.className = "score-reason";
-    reason.textContent = listing.reason || "";
-    wrap.appendChild(reason);
-
-    return wrap;
-  }
-
-  function buildDetailsPanel(listing) {
-    const panel = document.createElement("div");
-    panel.className = "details-panel";
+  function buildDetailContent(listing) {
+    const wrap = document.createElement("div");
+    wrap.className = "detail";
     const breakdown = listing.score_breakdown;
     const mis = listing.mispricing;
     const yld = listing.nettoafkast;
+    const avgInfo = areaAverageInfo(listing);
 
     let html = "";
 
+    if (listing.flags) {
+      html += `<div class="flagged-note">Udelukket: ${listing.flags.join(", ")}</div>`;
+    }
+
+    if (listing.score != null) {
+      html += `<div class="detail-summary">
+        <div class="score-number">${Math.round(listing.score)}<span class="out-of-100">/100</span></div>
+        <div class="score-reason">${listing.reason || ""}</div>
+      </div>`;
+    } else {
+      html += `<div class="no-score-note">${listing.reason || "Ikke rangeret"}</div>`;
+    }
+
+    const gridFields = [
+      ["Grundareal", listing.grund_m2 != null ? `${formatNumber(listing.grund_m2)} m²` : ""],
+      ["Byggeår", listing.byggeaar || ""],
+      ["Energimærke", listing.energimaerke || ""],
+      ["Udbetaling", listing.udbetaling != null ? formatPrice(listing.udbetaling) : ""],
+      ["Ejerudgift/md", listing.ejerudgift_md != null ? formatPrice(listing.ejerudgift_md) : ""],
+      ["Områdegennemsnit kr/m²", avgInfo ? avgInfo.fullLabel : ""],
+    ].filter(([, v]) => v !== "");
+
+    if (gridFields.length > 0) {
+      html += '<div class="detail-grid">';
+      gridFields.forEach(([label, value]) => {
+        html += `<div class="detail-field"><div class="label">${label}</div><div class="value">${value}</div></div>`;
+      });
+      html += "</div>";
+    }
+
     html += "<h4>Sådan bliver scoren regnet ud</h4>";
-    html += `<div class="comp-row" style="margin-bottom:10px;">Hvert af de fire tal nedenfor er en percentil: hvor huset ligger sammenlignet med alle andre huse i puljen lige nu (100 = bedst af alle på det punkt, 50 = midt i feltet, 0 = dårligst). Hver percentil ganges med sin vægt, og de fire resultater lægges sammen til scoren.</div>`;
+    if (breakdown) {
+      html += `<div class="comp-row" style="margin-bottom:10px;">Hvert af de fire tal nedenfor er en percentil: hvor huset ligger sammenlignet med alle andre huse i puljen lige nu (100 = bedst af alle på det punkt, 50 = midt i feltet, 0 = dårligst). Hver percentil ganges med sin vægt, og de fire resultater lægges sammen til scoren.</div>`;
 
-    const weights = breakdown.weights || { mispricing: 0.40, nettoafkast: 0.30, motivation: 0.20, kvalitet: 0.10 };
-    const scoreRows = [
-      { label: "Mispricing", weight: weights.mispricing, pct: breakdown.mispricing_percentile, available: breakdown.mispricing_available },
-      { label: "Nettoafkast", weight: weights.nettoafkast, pct: breakdown.nettoafkast_percentile, available: breakdown.nettoafkast_available },
-      { label: "Sælgers motivation", weight: weights.motivation, pct: breakdown.motivation_percentile, available: true },
-      { label: "Kvalitet", weight: weights.kvalitet, pct: breakdown.kvalitet_percentile, available: true },
-    ];
+      const weights = breakdown.weights || { mispricing: 0.40, nettoafkast: 0.30, motivation: 0.20, kvalitet: 0.10 };
+      const scoreRows = [
+        { label: "Mispricing", weight: weights.mispricing, pct: breakdown.mispricing_percentile, available: breakdown.mispricing_available },
+        { label: "Nettoafkast", weight: weights.nettoafkast, pct: breakdown.nettoafkast_percentile, available: breakdown.nettoafkast_available },
+        { label: "Sælgers motivation", weight: weights.motivation, pct: breakdown.motivation_percentile, available: true },
+        { label: "Kvalitet", weight: weights.kvalitet, pct: breakdown.kvalitet_percentile, available: true },
+      ];
 
-    let contributionSum = 0;
-    scoreRows.forEach(row => {
-      const contribution = row.weight * row.pct;
-      contributionSum += contribution;
-      const unavailableNote = row.available ? "" : " (ingen data - sat til 50, hverken op- eller nedvægtet)";
-      html += `<div class="yield-line"><span>${row.label} (vægt ${Math.round(row.weight * 100)}%)</span><span>${row.pct} × ${row.weight.toFixed(2)} = ${contribution.toFixed(1)}</span></div>`;
-      if (unavailableNote) {
-        html += `<div class="comp-row" style="margin:-2px 0 4px;">${row.label}${unavailableNote}</div>`;
-      }
-    });
-    html += `<div class="yield-line total"><span>= Samlet score</span><span>${listing.score}</span></div>`;
+      scoreRows.forEach(row => {
+        const contribution = row.weight * row.pct;
+        const unavailableNote = row.available ? "" : " (ingen data - sat til 50, hverken op- eller nedvægtet)";
+        html += `<div class="yield-line"><span>${row.label} (vægt ${Math.round(row.weight * 100)}%)</span><span>${row.pct} × ${row.weight.toFixed(2)} = ${contribution.toFixed(1)}</span></div>`;
+        if (unavailableNote) {
+          html += `<div class="comp-row" style="margin:-2px 0 4px;">${row.label}${unavailableNote}</div>`;
+        }
+      });
+      html += `<div class="yield-line total"><span>= Samlet score</span><span>${listing.score}</span></div>`;
+    } else {
+      html += `<div class="comp-row">${listing.reason || "Ikke rangeret."}</div>`;
+    }
 
     if (mis) {
       html += "<h4>Prismodel</h4>";
@@ -669,117 +690,59 @@
       uhensigtsmæssig grund - ikke at du har fundet et kup. Tjek altid huset selv.
     </div>`;
 
-    panel.innerHTML = html;
-    return panel;
+    html += `<a class="broker-link" href="${listing.link}" target="_blank" rel="noopener noreferrer">Se hos mægler &rarr;</a>`;
+
+    wrap.innerHTML = html;
+    return wrap;
   }
 
-  function buildCard(listing) {
-    const card = document.createElement("div");
-    card.className = "card" + (listing.flags ? " flagged-card" : "");
+  function buildRow(listing) {
+    const tr = document.createElement("tr");
+    tr.className = "listing-row" + (listing.flags ? " flagged-row" : "");
+    if (listing.reason) tr.title = listing.reason;
 
-    card.appendChild(buildScoreRow(listing));
-
-    if (listing.flags) {
-      const flagNote = document.createElement("div");
-      flagNote.className = "flagged-note";
-      flagNote.textContent = "Udelukket: " + listing.flags.join(", ");
-      card.appendChild(flagNote);
-    }
-
-    const a = document.createElement("a");
-    a.className = "card-link";
-    a.href = listing.link;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-
-    const top = document.createElement("div");
-    top.className = "card-top";
-
-    const priceLine = document.createElement("div");
-    priceLine.className = "price-line";
-
-    const price = document.createElement("span");
-    price.className = "price";
-    price.textContent = formatPrice(listing.price);
-    priceLine.appendChild(price);
-
+    const badges = [];
+    if (isNew(listing)) badges.push('<span class="badge ny">NY</span>');
     if (listing.prisaendring_pct != null && listing.prisaendring_pct < 0) {
-      const drop = document.createElement("span");
-      drop.className = "price-drop";
-      drop.textContent = `▼ ${Math.abs(listing.prisaendring_pct)}%`;
-      priceLine.appendChild(drop);
+      badges.push(`<span class="badge fald">▼ ${Math.abs(listing.prisaendring_pct)}%</span>`);
     }
+    if (listing.haandvaerkertilbud) badges.push('<span class="badge haandvaerker">🔨 Renovering</span>');
+    if (listing.flags) badges.push('<span class="badge udelukket">Udelukket</span>');
 
-    top.appendChild(priceLine);
+    const avgInfo = areaAverageInfo(listing);
+    const krPerM2Html = listing.kr_per_m2 != null
+      ? `${formatNumber(listing.kr_per_m2)}${avgInfo ? `<span class="area-avg-tag ${avgInfo.good ? "good" : "high"}" title="${avgInfo.fullLabel}">${avgInfo.shortLabel}</span>` : ""}`
+      : "–";
 
-    if (isNew(listing)) {
-      const badge = document.createElement("span");
-      badge.className = "ny-badge";
-      badge.textContent = "NY";
-      top.appendChild(badge);
-    }
+    const scoreDisplay = listing.score != null ? Math.round(listing.score) : "–";
+    const afkastDisplay = listing.nettoafkast ? `${listing.nettoafkast.nettoafkast_pct}%` : "–";
+    const daysDisplay = listing.dage_paa_markedet != null ? formatNumber(listing.dage_paa_markedet) : "–";
 
-    const address = document.createElement("div");
-    address.className = "address";
-    address.textContent = `${listing.address || ""}, ${listing.postnummer || ""} ${listing.city || ""}`;
+    tr.innerHTML = `
+      <td>${listing.address || ""}, ${listing.postnummer || ""} ${listing.city || ""}${badges.join("")}</td>
+      <td>${listing.area_label || ""}</td>
+      <td class="num">${formatNumber(listing.m2)}</td>
+      <td class="num">${formatPrice(listing.price)}</td>
+      <td class="num">${krPerM2Html}</td>
+      <td class="num">${scoreDisplay}</td>
+      <td class="num">${afkastDisplay}</td>
+      <td class="num">${daysDisplay}</td>
+    `;
 
-    const meta = document.createElement("div");
-    meta.className = "meta";
-    const metaParts = [
-      `<span class="area-tag">${listing.area_label || ""}</span>`,
-      listing.m2 != null ? `${formatNumber(listing.m2)} m²` : null,
-      listing.grund_m2 != null ? `grund ${formatNumber(listing.grund_m2)} m²` : null,
-      listing.byggeaar != null ? `bygget ${listing.byggeaar}` : null,
-      listing.kr_per_m2 != null ? `${formatNumber(listing.kr_per_m2)} kr/m²` : null,
-      listing.dage_paa_markedet != null ? `${listing.dage_paa_markedet} dage på markedet` : null,
-    ].filter(Boolean);
-    meta.innerHTML = metaParts.join(" · ");
+    let detailTr = null;
+    tr.addEventListener("click", () => {
+      if (detailTr) { detailTr.remove(); detailTr = null; return; }
+      document.querySelectorAll(".detail-row").forEach(el => el.remove());
+      detailTr = document.createElement("tr");
+      detailTr.className = "detail-row";
+      const td = document.createElement("td");
+      td.colSpan = TABLE_COLSPAN;
+      td.appendChild(buildDetailContent(listing));
+      detailTr.appendChild(td);
+      tr.after(detailTr);
+    });
 
-    a.appendChild(top);
-    a.appendChild(address);
-    a.appendChild(meta);
-
-    const financeParts = [
-      listing.udbetaling != null ? `Udbetaling ${formatPrice(listing.udbetaling)}` : null,
-      listing.ejerudgift_md != null ? `Ejerudgift ${formatPrice(listing.ejerudgift_md)}/md` : null,
-    ].filter(Boolean);
-    if (financeParts.length > 0) {
-      const financeMeta = document.createElement("div");
-      financeMeta.className = "finance-meta";
-      financeMeta.textContent = financeParts.join(" · ");
-      a.appendChild(financeMeta);
-    }
-
-    const avgTag = areaAverageTag(listing);
-    if (avgTag) a.appendChild(avgTag);
-
-    if (listing.haandvaerkertilbud) {
-      const badge = document.createElement("div");
-      badge.className = "haandvaerker-badge";
-      badge.textContent = "🔨 Renoveringsprojekt";
-      a.appendChild(badge);
-    }
-
-    card.appendChild(a);
-
-    if (listing.score != null) {
-      const toggle = document.createElement("button");
-      toggle.className = "details-toggle";
-      toggle.type = "button";
-      toggle.textContent = "Se score-detaljer ↓";
-
-      const panel = buildDetailsPanel(listing);
-
-      toggle.addEventListener("click", () => {
-        const isOpen = panel.classList.toggle("open");
-        toggle.textContent = isOpen ? "Skjul score-detaljer ↑" : "Se score-detaljer ↓";
-      });
-
-      card.appendChild(toggle);
-      card.appendChild(panel);
-    }
-
-    return card;
+    return tr;
   }
 
   function passesSharedFilters(l) {
@@ -842,33 +805,28 @@
     const rest = sortListings(filtered.filter(l => !isNew(l)));
 
     const newSection = document.getElementById("new-section");
-    const newCards = document.getElementById("new-cards");
-    newCards.innerHTML = "";
+    const newRows = document.getElementById("new-rows");
+    newRows.innerHTML = "";
     if (newOnes.length > 0) {
       newSection.style.display = "";
-      newOnes.forEach(l => newCards.appendChild(buildCard(l)));
+      newOnes.forEach(l => newRows.appendChild(buildRow(l)));
     } else {
       newSection.style.display = "none";
     }
 
-    const allCards = document.getElementById("all-cards");
-    allCards.innerHTML = "";
-    if (rest.length === 0 && newOnes.length === 0) {
-      const empty = document.createElement("div");
-      empty.className = "empty-state";
-      empty.textContent = "Ingen sommerhuse matcher dine filtre lige nu.";
-      allCards.appendChild(empty);
-    } else {
-      rest.forEach(l => allCards.appendChild(buildCard(l)));
-    }
+    const allRows = document.getElementById("all-rows");
+    allRows.innerHTML = "";
+    document.getElementById("empty-msg").style.display =
+      (rest.length === 0 && newOnes.length === 0) ? "" : "none";
+    rest.forEach(l => allRows.appendChild(buildRow(l)));
 
     const flagged = currentFlaggedListings();
     const flaggedSection = document.getElementById("flagged-section");
-    const flaggedCards = document.getElementById("flagged-cards");
-    flaggedCards.innerHTML = "";
+    const flaggedRows = document.getElementById("flagged-rows");
+    flaggedRows.innerHTML = "";
     if (flagged.length > 0) {
       flaggedSection.style.display = "";
-      flagged.forEach(l => flaggedCards.appendChild(buildCard(l)));
+      flagged.forEach(l => flaggedRows.appendChild(buildRow(l)));
     } else {
       flaggedSection.style.display = "none";
     }
