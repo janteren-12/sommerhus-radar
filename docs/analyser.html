@@ -902,12 +902,37 @@
     // issues: checking whether this is one of the sommerhuse this project
     // already tracks, since data.json sits right next to this page on the
     // same origin.
+    //
+    // Boliga shows two different URL shapes for the exact same listing:
+    // /bolig/{id}/{slug} (what this project stores) and /adresse/{slug}
+    // -{ouId} (the canonical URL Boliga's own site redirects to, which is
+    // what you get copying the link from your browser's address bar after
+    // visiting the page). Handle both.
     const idMatch = url.match(/\/bolig\/(\d+)/);
-    if (idMatch) {
+    const adresseMatch = url.match(/\/adresse\/([a-z0-9-]+)/i);
+
+    if (idMatch || adresseMatch) {
       try {
         const res = await fetch('data.json', { cache: 'no-store' });
         const data = await res.json();
-        const listing = data.listings.find(l => l.id === Number(idMatch[1]) && !l.sold_or_removed);
+        let listing = null;
+
+        if (idMatch) {
+          listing = data.listings.find(l => l.id === Number(idMatch[1]) && !l.sold_or_removed);
+        }
+        if (!listing && adresseMatch) {
+          const pastedSlug = adresseMatch[1].toLowerCase();
+          listing = data.listings.find(l => {
+            if (l.sold_or_removed) return false;
+            const ownSlugMatch = l.link.match(/\/bolig\/\d+\/([a-z0-9-]+)/i);
+            if (!ownSlugMatch) return false;
+            const ownSlug = ownSlugMatch[1].toLowerCase();
+            // The /adresse/ URL is our slug plus "-{ouId}" tacked on, so
+            // match on that prefix rather than requiring an exact string.
+            return pastedSlug === ownSlug || pastedSlug.startsWith(ownSlug + '-');
+          });
+        }
+
         if (listing) {
           document.getElementById('price').value = listing.price;
           if (document.querySelector('.mode-btn[data-mode="sommerhus"]') && !document.querySelector('.mode-btn[data-mode="sommerhus"]').classList.contains('active')) {
