@@ -460,14 +460,18 @@ nothing else to build or deploy for it to work.** All the math
 (mortgage amortization, IRR via Newton-Raphson, everything) is plain
 JavaScript in that one file.
 
-**"Prøv at hente" (try to auto-fill from a link) will fail for almost
-any real link, and that's expected, not a bug.** Boliga's API only
-allows cross-origin requests from boliga.dk itself (checked its response
-headers directly), and most other sites either block automated requests
-outright or render their numbers with JavaScript a plain fetch can't
-see. There's no backend here to work around that with a proxy, so manual
-entry is the actual primary way to use this page - the auto-fill attempt
-is a nice-to-have for the rare case it works, not something to depend on.
+**"Slå op" only works for houses this project already tracks - and that's
+by design, not a limitation to fix later.** Boliga's own API only allows
+cross-origin requests from boliga.dk itself (checked its response headers
+directly), and most other sites either block automated requests outright
+or render their numbers with JavaScript a plain fetch can't see - there's
+no backend here to work around that with a proxy. What genuinely does
+work with zero CORS issues: `analyser.html` and `docs/data.json` are
+served from the same origin, so pasting a link to one of your tracked
+sommerhus listings looks its Boliga id up in data you already have and
+fills in the købspris. Paste any other link (or a Boliga listing outside
+your tracked areas) and it says so plainly rather than pretending to try
+harder - manual entry is the real, primary way to use this page.
 
 **Two rental types, because they're taxed completely differently in
 Denmark:**

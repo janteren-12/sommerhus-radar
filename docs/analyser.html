@@ -310,17 +310,19 @@
   <a class="back-link" href="index.html">&larr; Tilbage til sommerhuse</a>
   <h1>Analysér ejendom</h1>
   <div class="intro">
-    Indsæt et boliglink, eller indtast tallene selv nedenfor. Beregningen sker
-    i din browser - der er ingen server, så intet bliver gemt eller sendt
-    nogen steder.
+    Indtast tallene selv nedenfor, eller sæt et Boliga-link ind - det
+    udfylder kun købsprisen automatisk, og kun hvis huset er et af dem,
+    denne side allerede sporer (resten af nettet kan ikke hentes direkte
+    herfra, se hvorfor nedenfor). Beregningen sker i din browser - der er
+    ingen server, så intet bliver gemt eller sendt nogen steder.
   </div>
 
   <div class="card">
     <h2>Ejendommens tal</h2>
 
     <div class="fetch-row">
-      <input type="text" id="link-input" placeholder="Sæt boliglink ind (valgfrit)">
-      <button id="fetch-btn" type="button">Prøv at hente</button>
+      <input type="text" id="link-input" placeholder="Boliga-link til et af dine sporede sommerhuse (valgfrit)">
+      <button id="fetch-btn" type="button">Slå op</button>
     </div>
     <div class="fetch-note" id="fetch-note"></div>
 
@@ -890,17 +892,36 @@
     const url = document.getElementById('link-input').value.trim();
     const note = document.getElementById('fetch-note');
     if (!url) return;
-    note.textContent = 'Henter...';
+    note.textContent = 'Slår op...';
     note.classList.add('show');
-    try {
-      // Boliga's API only allows cross-origin requests from boliga.dk itself,
-      // so this will fail for essentially any real link - that's expected,
-      // not a bug. Indtast tallene manuelt herunder i stedet.
-      await fetch(url, { mode: 'cors' });
-      note.textContent = 'Hentet - tjek tallene herunder, og ret til hvis nødvendigt.';
-    } catch (err) {
-      note.textContent = 'Kunne ikke hente data automatisk fra dette link (siden blokerer sandsynligvis automatisk hentning, eller viser tallene via JavaScript). Indtast tallene manuelt herunder - analysen er lige så præcis.';
+
+    // Boliga itself can't be queried directly from here - their API only
+    // allows cross-origin requests from boliga.dk, and most other sites
+    // either block automated requests or render their numbers with
+    // JavaScript a plain fetch can't see. What DOES work with zero CORS
+    // issues: checking whether this is one of the sommerhuse this project
+    // already tracks, since data.json sits right next to this page on the
+    // same origin.
+    const idMatch = url.match(/\/bolig\/(\d+)/);
+    if (idMatch) {
+      try {
+        const res = await fetch('data.json', { cache: 'no-store' });
+        const data = await res.json();
+        const listing = data.listings.find(l => l.id === Number(idMatch[1]) && !l.sold_or_removed);
+        if (listing) {
+          document.getElementById('price').value = listing.price;
+          if (document.querySelector('.mode-btn[data-mode="sommerhus"]') && !document.querySelector('.mode-btn[data-mode="sommerhus"]').classList.contains('active')) {
+            document.querySelector('.mode-btn[data-mode="sommerhus"]').click();
+          }
+          note.textContent = `Fundet blandt dine sporede sommerhuse: ${listing.address}, ${listing.postnummer} ${listing.city} - købspris udfyldt (${listing.price.toLocaleString('da-DK')} kr). Resten (leje, rente osv.) skal du stadig taste ind selv.`;
+          return;
+        }
+      } catch (err) {
+        // fall through to the generic message below
+      }
     }
+
+    note.textContent = 'Ikke en af dine sporede sommerhuse, eller ikke et Boliga-link denne side kan genkende. Indtast tallene manuelt herunder - analysen er lige så præcis.';
   });
 
   document.getElementById('analyse-btn').addEventListener('click', () => {
