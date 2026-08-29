@@ -444,3 +444,72 @@ python bbr_enrich.py --all       # every active listing at once - slow
 Once fetched, a listing's BBR data is cached forever in `docs/data.json`
 (a house's wall material doesn't change overnight) and shows up in that
 listing's expandable score panel from then on.
+
+## Phase 5: "Analysér ejendom" - a standalone investment calculator
+
+`docs/analyser.html` (linked from the top of the main page) is a separate,
+general-purpose investment calculator - not tied to your tracked
+sommerhus listings at all. Paste any property link, or just type in the
+numbers, pick a rental type and a strategy, and it works out a full
+leveraged investment analysis: NOI, DSCR, cap rate, cash-on-cash, a
+10-year IRR and equity multiple, an interest-rate stress test, and a
+0-100 investment score.
+
+**This runs entirely in your browser - there's no backend, so there's
+nothing else to build or deploy for it to work.** All the math
+(mortgage amortization, IRR via Newton-Raphson, everything) is plain
+JavaScript in that one file.
+
+**"Prøv at hente" (try to auto-fill from a link) will fail for almost
+any real link, and that's expected, not a bug.** Boliga's API only
+allows cross-origin requests from boliga.dk itself (checked its response
+headers directly), and most other sites either block automated requests
+outright or render their numbers with JavaScript a plain fetch can't
+see. There's no backend here to work around that with a proxy, so manual
+entry is the actual primary way to use this page - the auto-fill attempt
+is a nice-to-have for the rare case it works, not something to depend on.
+
+**Two rental types, because they're taxed completely differently in
+Denmark:**
+
+- **Sommerhus (udlejes via bureau)** reuses the exact same skematisk-
+  metode tax rules as the main site's yield score (bundfradrag,
+  60%-som-kapitalindkomst, bureau commission) - now with a mortgage
+  layered on top, which the main yield score doesn't model (it assumes a
+  cash purchase).
+- **Langtidsudlejning** (a normal monthly-rent investment property) does
+  **not** use that scheme - the §15P bundfradrag rules only apply when
+  you're renting out (part of) a residence you also use privately, not a
+  pure investment property with a paying tenant. That's ordinary
+  erhvervsmæssig udlejning, taxed under different rules entirely,
+  which isn't modelled here. This mode shows pre-tax cash flow instead of
+  guessing at a tax figure that would likely be wrong. The page says this
+  on-screen, not just here.
+
+**Validated against a real example, not just internally consistent.**
+While building this, I was shown a screenshot of a similar tool's output
+for a specific set of inputs (4.3M price, 21,500 kr/month rent, 20% down,
+5% rate). I ran the exact same inputs through this implementation and
+checked every line: rental income, vacancy, maintenance, driftsomkostninger,
+NOI, monthly mortgage payment, DSCR, cap rate, bruttoafkast, cash flow,
+cash-on-cash, and break-even occupancy all matched to the exact krone or
+within rounding. Only the 10-year IRR and equity multiple differed
+slightly (mine came out a bit higher), which is expected - those depend
+on assumptions about how costs and terminal sale price are modelled over
+a decade that a single screenshot can't fully pin down. One thing that
+screenshot's example surfaced and fixed: maintenance reserve for a
+long-term rental is conventionally a percentage of gross rent (that
+example implied 8%), not of purchase price - the sommerhus side keeps the
+percent-of-price convention from `yield_calc.py`, since that project
+already explains why (no separate building-value figure exists to base
+it on), but this page now uses the more standard rent-based convention
+for the long-term-rental mode.
+
+**The 0-100 investment score here is a separate, simpler heuristic from
+the main site's percentile-based score** - there's no natural pool of
+comparable analyses to rank against for a one-off calculator, so it's
+built from fixed rules-of-thumb thresholds for DSCR, cash-on-cash, and
+IRR instead, weighted differently depending on which strategy you pick
+(Cashflow weights cash-on-cash heaviest; Værdistigning weights IRR
+heaviest; Value-add blends the two). It's a sanity-check number, not
+empirically calibrated the way the main score is.

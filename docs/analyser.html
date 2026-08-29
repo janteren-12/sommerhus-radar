@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analysér ejendom &middot; Sommerhus Radar</title>
+<style>
+  :root {
+    --bg: #fafaf8;
+    --card-bg: #ffffff;
+    --text: #14171a;
+    --text-muted: #6b7280;
+    --accent: #0f6b4c;
+    --accent-soft: #e6f2ec;
+    --border-faint: #eeeeec;
+    --warn: #b5551f;
+    --warn-soft: #f7e9e0;
+    --bad: #b3261e;
+    --bad-soft: #fbeae8;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 16px 80px;
+  }
+
+  a.back-link {
+    display: inline-block;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 4px;
+    letter-spacing: -0.02em;
+  }
+
+  .intro {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+
+  .card h2 {
+    font-size: 0.95rem;
+    margin: 0 0 14px;
+  }
+
+  .field {
+    margin-bottom: 12px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .field input, .field select {
+    width: 100%;
+    padding: 9px 10px;
+    border: 1px solid var(--border-faint);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background: var(--bg);
+    color: var(--text);
+    font-family: inherit;
+  }
+
+  .field-row {
+    display: flex;
+    gap: 10px;
+  }
+  .field-row .field { flex: 1; }
+
+  .mode-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .mode-btn {
+    flex: 1;
+    border: none;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .mode-btn.active {
+    background: var(--accent);
+    color: white;
+  }
+
+  .fetch-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .fetch-row input { flex: 1; }
+
+  .fetch-row button {
+    border: none;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.82rem;
+    padding: 0 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .fetch-note {
+    font-size: 0.76rem;
+    color: var(--warn);
+    background: var(--warn-soft);
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    display: none;
+  }
+
+  .fetch-note.show { display: block; }
+
+  details.advanced {
+    margin: 4px 0 14px;
+  }
+
+  details.advanced summary {
+    cursor: pointer;
+    font-size: 0.82rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  details.advanced .field {
+    margin-top: 12px;
+  }
+
+  button.analyse-btn {
+    width: 100%;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  #results { display: none; }
+  #results.show { display: block; }
+
+  .score-banner {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .score-number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .score-number .out-of-100 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  .strategy-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  .strategy-badge.weak { background: var(--warn-soft); color: var(--warn); }
+  .strategy-badge.bad { background: var(--bad-soft); color: var(--bad); }
+
+  .score-verdict {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .metric-tile {
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+
+  .metric-tile .label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+  }
+
+  .metric-tile .value {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+
+  .metric-tile .value.warn { color: var(--warn); }
+  .metric-tile .value.bad { color: var(--bad); }
+  .metric-tile .value.good { color: var(--accent); }
+
+  .breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-size: 0.85rem;
+  }
+
+  .breakdown-row.total {
+    font-weight: 700;
+    border-top: 1px solid var(--border-faint);
+    margin-top: 4px;
+    padding-top: 8px;
+  }
+
+  .stress-table .breakdown-row span:last-child.bad { color: var(--bad); font-weight: 600; }
+  .stress-table .breakdown-row span:last-child.warn { color: var(--warn); font-weight: 600; }
+
+  .chart-wrap {
+    margin-top: 4px;
+  }
+
+  .chart-legend {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  .disclaimer {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    background: var(--accent-soft);
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin-top: 4px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #101314;
+      --card-bg: #1a1f20;
+      --text: #f2f2f0;
+      --text-muted: #9aa0a3;
+      --accent: #3ddc97;
+      --accent-soft: #17332a;
+      --border-faint: #23292a;
+      --warn: #e0925a;
+      --warn-soft: #332319;
+      --bad: #e0685f;
+      --bad-soft: #3a1c19;
+    }
+    .mode-btn.active, .strategy-badge:not(.weak):not(.bad) { color: #0a1a14; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back-link" href="index.html">&larr; Tilbage til sommerhuse</a>
+  <h1>Analysér ejendom</h1>
+  <div class="intro">
+    Indsæt et boliglink, eller indtast tallene selv nedenfor. Beregningen sker
+    i din browser - der er ingen server, så intet bliver gemt eller sendt
+    nogen steder.
+  </div>
+
+  <div class="card">
+    <h2>Ejendommens tal</h2>
+
+    <div class="fetch-row">
+      <input type="text" id="link-input" placeholder="Sæt boliglink ind (valgfrit)">
+      <button id="fetch-btn" type="button">Prøv at hente</button>
+    </div>
+    <div class="fetch-note" id="fetch-note"></div>
+
+    <div class="mode-toggle" id="mode-toggle">
+      <button class="mode-btn active" data-mode="sommerhus" type="button">Sommerhus (udlejes via bureau)</button>
+      <button class="mode-btn" data-mode="langtid" type="button">Langtidsudlejning</button>
+    </div>
+
+    <div class="field">
+      <label>Købspris (kr)</label>
+      <input type="number" id="price" value="2500000">
+    </div>
+
+    <div id="sommerhus-fields">
+      <div class="field-row">
+        <div class="field">
+          <label>Højsæson ugepris (kr)</label>
+          <input type="number" id="high-week-price" value="9000">
+        </div>
+        <div class="field">
+          <label>Lavsæson ugepris (kr)</label>
+          <input type="number" id="low-week-price" value="3000">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Uger udlejet i alt/år</label>
+          <input type="number" id="weeks-rented" value="18">
+        </div>
+        <div class="field">
+          <label>Heraf højsæsonuger</label>
+          <input type="number" id="high-weeks" value="8">
+        </div>
+      </div>
+    </div>
+
+    <div id="langtid-fields" style="display:none;">
+      <div class="field-row">
+        <div class="field">
+          <label>Månedlig leje (kr)</label>
+          <input type="number" id="monthly-rent" value="12000">
+        </div>
+        <div class="field">
+          <label>Forventet tomgang (%)</label>
+          <input type="number" id="vacancy-pct" value="4">
+        </div>
+      </div>
+      <div class="field">
+        <label>Faste udgifter (kr/md - ejendomsskat, forsikring mv.)</label>
+        <input type="number" id="faste-udgifter-md" value="1800">
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Udbetaling (%)</label>
+        <input type="number" id="down-payment-pct" value="20">
+      </div>
+      <div class="field">
+        <label>Rente (% p.a.)</label>
+        <input type="number" id="rate-pct" value="5" step="0.1">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Strategi</label>
+      <select id="strategy">
+        <option value="cashflow">Cashflow</option>
+        <option value="vaerdistigning">Værdistigning</option>
+        <option value="value-add">Value-add</option>
+      </select>
+    </div>
+
+    <details class="advanced">
+      <summary>Avancerede antagelser</summary>
+      <div class="field-row">
+        <div class="field">
+          <label>Lånets løbetid (år)</label>
+          <input type="number" id="loan-term" value="30">
+        </div>
+        <div class="field">
+          <label>Handelsomkostninger (kr)</label>
+          <input type="number" id="handelsomkostninger" value="15000">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Værdistigning (%/år)</label>
+          <input type="number" id="appreciation-pct" value="3" step="0.1">
+        </div>
+        <div class="field">
+          <label>Lejevækst (%/år)</label>
+          <input type="number" id="rent-growth-pct" value="2" step="0.1">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Salgsomkostninger ved exit (%)</label>
+          <input type="number" id="selling-costs-pct" value="2" step="0.1">
+        </div>
+        <div class="field">
+          <label id="vedligehold-label">Vedligehold (% af købspris/år)</label>
+          <input type="number" id="vedligehold-pct" value="1.25" step="0.05">
+        </div>
+      </div>
+      <div id="sommerhus-advanced">
+        <div class="field-row">
+          <div class="field">
+            <label>Provision til bureau (%)</label>
+            <input type="number" id="commission-pct" value="28">
+          </div>
+          <div class="field">
+            <label>Bundfradrag</label>
+            <select id="renting-privately">
+              <option value="false">Via bureau (50.200 kr)</option>
+              <option value="true">Privat udlejning (13.800 kr)</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Grundskyld (kr/år)</label>
+            <input type="number" id="grundskyld" value="5000">
+          </div>
+          <div class="field">
+            <label>Ejendomsværdiskat (kr/år)</label>
+            <input type="number" id="ejendomsvaerdiskat" value="10000">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Forsikring (kr/år)</label>
+            <input type="number" id="forsikring" value="4500">
+          </div>
+          <div class="field">
+            <label>Grundejerforening (kr/år)</label>
+            <input type="number" id="grundejerforening" value="1200">
+          </div>
+        </div>
+        <div class="field">
+          <label>Forbrug, uudlejede perioder (kr/år)</label>
+          <input type="number" id="forbrug" value="8000">
+        </div>
+        <div class="field">
+          <label>Kapitalindkomstsats (%)</label>
+          <input type="number" id="kapitalindkomst-sats" value="40">
+        </div>
+      </div>
+    </details>
+
+    <button class="analyse-btn" id="analyse-btn" type="button">Analysér nu</button>
+  </div>
+
+  <div id="results">
+    <div class="card">
+      <div class="score-banner">
+        <div class="score-number"><span id="score-value">-</span><span class="out-of-100">/100</span></div>
+        <div class="strategy-badge" id="strategy-badge">-</div>
+      </div>
+      <div class="score-verdict" id="score-verdict"></div>
+
+      <div class="metrics-grid" id="metrics-grid"></div>
+    </div>
+
+    <div class="card">
+      <h2>Driftsbudget (år 1)</h2>
+      <div id="drift-budget"></div>
+    </div>
+
+    <div class="card">
+      <h2>Finansiering</h2>
+      <div id="financing"></div>
+    </div>
+
+    <div class="card">
+      <h2>Rentestress-test</h2>
+      <div id="stress-test" class="stress-table"></div>
+    </div>
+
+    <div class="card">
+      <h2>10-årig prognose</h2>
+      <div class="chart-wrap" id="chart-wrap"></div>
+      <div class="chart-legend" id="chart-legend"></div>
+    </div>
+
+    <div class="disclaimer">
+      Dette er en beregning ud fra de tal og antagelser, du selv har indtastet
+      - ikke en vurdering af huset, og ikke rådgivning. Værdistigning,
+      lejevækst og fremtidig rente er antagelser, ikke garantier. For
+      langtidsudlejning vises tallene FØR skat: en investeringsejendom
+      beskattes efter almindelige regler for erhvervsmæssig udlejning, ikke
+      sommerhus-reglernes bundfradrag, og det er ikke modelleret her - tal med
+      en revisor om din konkrete situation. Under skematisk metode betales
+      ejendomsværdiskat for hele året, også i uger huset er udlejet.
+    </div>
+  </div>
+</div>
+
+<script>
+  // ---------- Core financial functions ----------
+
+  function monthlyMortgagePayment(loanAmount, annualRatePct, termYears) {
+    const r = (annualRatePct / 100) / 12;
+    const n = termYears * 12;
+    if (loanAmount <= 0 || n <= 0) return 0;
+    if (r === 0) return loanAmount / n;
+    return loanAmount * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+  }
+
+  function remainingLoanBalance(loanAmount, annualRatePct, termYears, monthsElapsed) {
+    const r = (annualRatePct / 100) / 12;
+    const n = termYears * 12;
+    if (loanAmount <= 0) return 0;
+    const M = monthlyMortgagePayment(loanAmount, annualRatePct, termYears);
+    if (r === 0) return Math.max(0, loanAmount - M * monthsElapsed);
+    const balance = loanAmount * Math.pow(1 + r, monthsElapsed) - M * ((Math.pow(1 + r, monthsElapsed) - 1) / r);
+    return Math.max(0, balance);
+  }
+
+  function irr(cashflows, guess) {
+    let rate = guess == null ? 0.1 : guess;
+    for (let iter = 0; iter < 200; iter++) {
+      let npv = 0, dnpv = 0;
+      for (let t = 0; t < cashflows.length; t++) {
+        npv += cashflows[t] / Math.pow(1 + rate, t);
+        if (t > 0) dnpv += -t * cashflows[t] / Math.pow(1 + rate, t + 1);
+      }
+      if (Math.abs(dnpv) < 1e-12) break;
+      const newRate = rate - npv / dnpv;
+      if (!isFinite(newRate)) return null;
+      if (Math.abs(newRate - rate) < 1e-9) { rate = newRate; break; }
+      rate = newRate;
+    }
+    return isFinite(rate) ? rate : null;
+  }
+
+  function breakEvenRate(loanAmount, termYears, targetAnnualPayment) {
+    // Bisection: find the annual rate where monthly payment*12 == targetAnnualPayment.
+    if (targetAnnualPayment <= 0) return null;
+    let lo = 0, hi = 30;
+    // Not achievable even interest-free (principal alone already exceeds
+    // NOI) - report as unreachable rather than silently converging to 0%.
+    if (monthlyMortgagePayment(loanAmount, lo, termYears) * 12 > targetAnnualPayment) return null;
+    if (monthlyMortgagePayment(loanAmount, hi, termYears) * 12 < targetAnnualPayment) return null; // unreachable within range
+    for (let i = 0; i < 60; i++) {
+      const mid = (lo + hi) / 2;
+      const payment = monthlyMortgagePayment(loanAmount, mid, termYears) * 12;
+      if (payment > targetAnnualPayment) hi = mid; else lo = mid;
+    }
+    return (lo + hi) / 2;
+  }
+
+  // ---------- Reading inputs ----------
+
+  function getInputs() {
+    const mode = document.querySelector('.mode-btn.active').dataset.mode;
+    return {
+      mode,
+      price: Number(document.getElementById('price').value) || 0,
+      downPaymentPct: Number(document.getElementById('down-payment-pct').value) || 0,
+      ratePct: Number(document.getElementById('rate-pct').value) || 0,
+      loanTermYears: Number(document.getElementById('loan-term').value) || 30,
+      handelsomkostninger: Number(document.getElementById('handelsomkostninger').value) || 0,
+      appreciationPct: Number(document.getElementById('appreciation-pct').value) || 0,
+      rentGrowthPct: Number(document.getElementById('rent-growth-pct').value) || 0,
+      sellingCostsPct: Number(document.getElementById('selling-costs-pct').value) || 0,
+      vedligeholdPct: (Number(document.getElementById('vedligehold-pct').value) || 0) / 100,
+      strategy: document.getElementById('strategy').value,
+
+      // sommerhus
+      highWeekPrice: Number(document.getElementById('high-week-price').value) || 0,
+      lowWeekPrice: Number(document.getElementById('low-week-price').value) || 0,
+      weeksRented: Number(document.getElementById('weeks-rented').value) || 0,
+      highWeeks: Number(document.getElementById('high-weeks').value) || 0,
+      commissionPct: Number(document.getElementById('commission-pct').value) || 0,
+      rentingPrivately: document.getElementById('renting-privately').value === 'true',
+      grundskyld: Number(document.getElementById('grundskyld').value) || 0,
+      ejendomsvaerdiskat: Number(document.getElementById('ejendomsvaerdiskat').value) || 0,
+      forsikring: Number(document.getElementById('forsikring').value) || 0,
+      grundejerforening: Number(document.getElementById('grundejerforening').value) || 0,
+      forbrug: Number(document.getElementById('forbrug').value) || 0,
+      kapitalindkomstSats: (Number(document.getElementById('kapitalindkomst-sats').value) || 0) / 100,
+
+      // langtid
+      monthlyRent: Number(document.getElementById('monthly-rent').value) || 0,
+      vacancyPct: Number(document.getElementById('vacancy-pct').value) || 0,
+      fasteUdgifterMd: Number(document.getElementById('faste-udgifter-md').value) || 0,
+    };
+  }
+
+  // ---------- Income model per udlejningstype ----------
+
+  function sommerhusIncome(inp) {
+    const lowWeeks = Math.max(0, inp.weeksRented - inp.highWeeks);
+    const brutto = inp.highWeeks * inp.highWeekPrice + lowWeeks * inp.lowWeekPrice;
+    const efterProvision = brutto * (1 - inp.commissionPct / 100);
+    const driftsomkostninger = inp.grundskyld + inp.ejendomsvaerdiskat + inp.forsikring + inp.grundejerforening + inp.forbrug;
+    const vedligehold = inp.price * inp.vedligeholdPct;
+    const noi = efterProvision - driftsomkostninger - vedligehold;
+    const bundfradrag = inp.rentingPrivately ? 13800 : 50200;
+    const skat = Math.max(0, brutto - bundfradrag) * 0.6 * inp.kapitalindkomstSats;
+    // Average weekly rate used for the break-even-occupancy estimate.
+    const avgWeeklyRate = inp.weeksRented > 0 ? brutto / inp.weeksRented : 0;
+    return { brutto, efterProvision, driftsomkostninger, vedligehold, noi, skat, avgWeeklyRate, maxUnits: 52 };
+  }
+
+  function langtidIncome(inp) {
+    const fullRent = inp.monthlyRent * 12;
+    const tomgang = fullRent * (inp.vacancyPct / 100);
+    const brutto = fullRent - tomgang;
+    const driftsomkostninger = inp.fasteUdgifterMd * 12;
+    // Conventionally a % of gross rent for a long-term rental (wear-and
+    // -tear scales with occupancy, not property value - unlike the
+    // sommerhus case, see the mode-toggle handler above).
+    const vedligehold = fullRent * inp.vedligeholdPct;
+    const noi = brutto - driftsomkostninger - vedligehold;
+    const skat = 0; // not modeled - see disclaimer
+    return { brutto, fullRent, tomgang, efterProvision: brutto, driftsomkostninger, vedligehold, noi, skat, maxUnits: 12 };
+  }
+
+  // ---------- Full analysis ----------
+
+  function runAnalysis(inp) {
+    const income = inp.mode === 'sommerhus' ? sommerhusIncome(inp) : langtidIncome(inp);
+
+    const loanAmount = inp.price * (1 - inp.downPaymentPct / 100);
+    const monthlyPayment = monthlyMortgagePayment(loanAmount, inp.ratePct, inp.loanTermYears);
+    const annualDebtService = monthlyPayment * 12;
+    const cashInvested = inp.price * (inp.downPaymentPct / 100) + inp.handelsomkostninger;
+
+    const preTaxCashFlow = income.noi - annualDebtService;
+    const afterTaxCashFlow = preTaxCashFlow - income.skat;
+
+    const dscr = annualDebtService > 0 ? income.noi / annualDebtService : null;
+    const capRate = inp.price > 0 ? income.noi / inp.price : 0;
+    const bruttoafkast = inp.price > 0 ? (income.fullRent != null ? income.fullRent : income.brutto) / inp.price : 0;
+    const cashOnCash = cashInvested > 0 ? afterTaxCashFlow / cashInvested : 0;
+
+    // Break-even occupancy: how much of the year you'd need to rent out
+    // (at the currently assumed rate) just to cover costs + debt service.
+    const requiredRevenue = income.driftsomkostninger + income.vedligehold + annualDebtService;
+    let breakEvenBelaegningPct = null;
+    if (inp.mode === 'sommerhus' && income.avgWeeklyRate > 0) {
+      const requiredWeeks = requiredRevenue / income.avgWeeklyRate;
+      breakEvenBelaegningPct = (requiredWeeks / income.maxUnits) * 100;
+    } else if (inp.mode === 'langtid' && inp.monthlyRent > 0) {
+      const requiredMonthlyEquivalent = requiredRevenue / 12;
+      breakEvenBelaegningPct = (requiredMonthlyEquivalent / inp.monthlyRent) * 100;
+    }
+
+    const breakEvenRentePct = breakEvenRate(loanAmount, inp.loanTermYears, income.noi);
+
+    // 10-year projection for IRR / equity multiple.
+    const cashflows = [-cashInvested];
+    for (let year = 1; year <= 10; year++) {
+      const growthFactor = Math.pow(1 + inp.rentGrowthPct / 100, year);
+      const grownBrutto = income.brutto * growthFactor;
+      const grownEfterProvision = inp.mode === 'sommerhus' ? grownBrutto * (1 - inp.commissionPct / 100) : grownBrutto;
+      const grownNoi = grownEfterProvision - income.driftsomkostninger - income.vedligehold;
+      let yearSkat = 0;
+      if (inp.mode === 'sommerhus') {
+        const bundfradrag = inp.rentingPrivately ? 13800 : 50200;
+        yearSkat = Math.max(0, grownBrutto - bundfradrag) * 0.6 * inp.kapitalindkomstSats;
+      }
+      let yearCashFlow = grownNoi - annualDebtService - yearSkat;
+
+      if (year === 10) {
+        const terminalValue = inp.price * Math.pow(1 + inp.appreciationPct / 100, 10);
+        const remainingBalance = remainingLoanBalance(loanAmount, inp.ratePct, inp.loanTermYears, 120);
+        const sellingCosts = terminalValue * (inp.sellingCostsPct / 100);
+        const saleProceeds = terminalValue - remainingBalance - sellingCosts;
+        yearCashFlow += saleProceeds;
+      }
+      cashflows.push(yearCashFlow);
+    }
+
+    const irrValue = irr(cashflows);
+    const totalReturned = cashflows.slice(1).reduce((a, b) => a + b, 0);
+    const equityMultiple = cashInvested > 0 ? totalReturned / cashInvested : null;
+
+    // Value/cash-flow series for the chart (property value + cumulative cash flow).
+    const chartYears = [];
+    let cumulativeCash = -cashInvested;
+    for (let year = 0; year <= 10; year++) {
+      const value = inp.price * Math.pow(1 + inp.appreciationPct / 100, year);
+      if (year > 0) cumulativeCash += cashflows[year];
+      chartYears.push({ year, value, cumulativeCash });
+    }
+
+    return {
+      income, loanAmount, monthlyPayment, annualDebtService, cashInvested,
+      preTaxCashFlow, afterTaxCashFlow, dscr, capRate, bruttoafkast, cashOnCash,
+      breakEvenBelaegningPct, breakEvenRentePct, irrValue, equityMultiple,
+      chartYears, cashflows,
+    };
+  }
+
+  // ---------- Investment score (heuristic, not a statistical model) ----------
+
+  function scoreComponent(value, poor, great) {
+    // Linear map value in [poor, great] to [0, 100], clamped.
+    if (value == null || !isFinite(value)) return 50;
+    const t = (value - poor) / (great - poor);
+    return Math.max(0, Math.min(100, t * 100));
+  }
+
+  function computeInvestmentScore(result, strategy) {
+    const dscrScore = scoreComponent(result.dscr, 0.8, 1.4);
+    const cocScore = scoreComponent(result.cashOnCash * 100, -5, 10);
+    const irrScore = scoreComponent(result.irrValue != null ? result.irrValue * 100 : null, 0, 15);
+
+    let weights;
+    if (strategy === 'cashflow') weights = { dscr: 0.30, coc: 0.50, irr: 0.20 };
+    else if (strategy === 'vaerdistigning') weights = { dscr: 0.15, coc: 0.15, irr: 0.70 };
+    else weights = { dscr: 0.20, coc: 0.35, irr: 0.45 }; // value-add: blend
+
+    const score = dscrScore * weights.dscr + cocScore * weights.coc + irrScore * weights.irr;
+    return Math.round(score);
+  }
+
+  // ---------- Formatting ----------
+
+  function fmtKr(n) {
+    if (n == null || !isFinite(n)) return '-';
+    return Math.round(n).toLocaleString('da-DK') + ' kr';
+  }
+  function fmtPct(n, decimals) {
+    if (n == null || !isFinite(n)) return '-';
+    return (n * 100).toFixed(decimals == null ? 2 : decimals) + '%';
+  }
+
+  // ---------- Rendering ----------
+
+  function metricTile(label, value, cls) {
+    return `<div class="metric-tile"><div class="label">${label}</div><div class="value ${cls || ''}">${value}</div></div>`;
+  }
+
+  function renderResults(inp, r) {
+    const score = computeInvestmentScore(r, inp.strategy);
+    document.getElementById('score-value').textContent = score;
+
+    const badge = document.getElementById('strategy-badge');
+    const strategyLabels = { cashflow: 'Cashflow', vaerdistigning: 'Værdistigning', 'value-add': 'Value-add' };
+    let badgeCls = '';
+    let verdictText = '';
+    if (score >= 65) { badgeCls = ''; verdictText = 'Ser solidt ud på dine tal og antagelser.'; }
+    else if (score >= 40) { badgeCls = 'weak'; verdictText = 'Middelmådigt - afkast og gældsdækning bærer ikke handlen alene.'; }
+    else { badgeCls = 'bad'; verdictText = 'Svagt. Spring over eller genforhandl prisen/vilkårene.'; }
+    badge.className = 'strategy-badge ' + badgeCls;
+    badge.textContent = strategyLabels[inp.strategy] + (badgeCls ? ' - ' + (badgeCls === 'bad' ? 'Svag' : 'Middel') : ' - Solid');
+    document.getElementById('score-verdict').textContent = verdictText;
+
+    const dscrCls = r.dscr == null ? '' : (r.dscr >= 1.25 ? 'good' : r.dscr >= 1.0 ? 'warn' : 'bad');
+    const cocCls = r.cashOnCash >= 0.05 ? 'good' : r.cashOnCash >= 0 ? 'warn' : 'bad';
+    const irrCls = r.irrValue == null ? '' : (r.irrValue >= 0.08 ? 'good' : r.irrValue >= 0.03 ? 'warn' : 'bad');
+
+    document.getElementById('metrics-grid').innerHTML = [
+      metricTile('Nettoafkast (cap rate)', fmtPct(r.capRate)),
+      metricTile('Cash flow/md', fmtKr(r.afterTaxCashFlow / 12)),
+      metricTile('Kontantafkast (cash-on-cash)', fmtPct(r.cashOnCash), cocCls),
+      metricTile('DSCR', r.dscr == null ? '-' : r.dscr.toFixed(2), dscrCls),
+      metricTile('Bruttoafkast', fmtPct(r.bruttoafkast)),
+      metricTile('IRR (10 år)', r.irrValue == null ? 'n/a' : fmtPct(r.irrValue), irrCls),
+      metricTile('Equity multiple', r.equityMultiple == null ? '-' : r.equityMultiple.toFixed(2) + 'x'),
+      metricTile('Break-even belægning', r.breakEvenBelaegningPct == null ? '-' : r.breakEvenBelaegningPct.toFixed(0) + '%', r.breakEvenBelaegningPct > 100 ? 'bad' : ''),
+    ].join('');
+
+    document.getElementById('drift-budget').innerHTML = `
+      <div class="breakdown-row"><span>Lejeindtægt</span><span>${fmtKr(inp.mode === 'langtid' ? r.income.fullRent : r.income.brutto)}</span></div>
+      ${inp.mode === 'langtid' ? `<div class="breakdown-row"><span>- Tomgang</span><span>-${fmtKr(r.income.tomgang)}</span></div>` : ''}
+      ${inp.mode === 'sommerhus' ? `<div class="breakdown-row"><span>- Provision til bureau</span><span>-${fmtKr(r.income.brutto - r.income.efterProvision)}</span></div>` : ''}
+      <div class="breakdown-row"><span>- Vedligehold</span><span>-${fmtKr(r.income.vedligehold)}</span></div>
+      <div class="breakdown-row"><span>- Faste udgifter/drift</span><span>-${fmtKr(r.income.driftsomkostninger)}</span></div>
+      <div class="breakdown-row total"><span>= NOI (driftsresultat)</span><span>${fmtKr(r.income.noi)}</span></div>
+      <div class="breakdown-row"><span>- Ydelse (renter + afdrag)</span><span>-${fmtKr(r.annualDebtService)}</span></div>
+      ${r.income.skat > 0 ? `<div class="breakdown-row"><span>- Skat (kapitalindkomst)</span><span>-${fmtKr(r.income.skat)}</span></div>` : ''}
+      <div class="breakdown-row total"><span>= Cash flow (år 1)</span><span>${fmtKr(r.afterTaxCashFlow)}</span></div>
+    `;
+
+    document.getElementById('financing').innerHTML = `
+      <div class="breakdown-row"><span>Købspris</span><span>${fmtKr(inp.price)}</span></div>
+      <div class="breakdown-row"><span>Udbetaling</span><span>${fmtKr(inp.price * inp.downPaymentPct / 100)}</span></div>
+      <div class="breakdown-row"><span>Handelsomkostninger</span><span>${fmtKr(inp.handelsomkostninger)}</span></div>
+      <div class="breakdown-row total"><span>Investeret (kontant)</span><span>${fmtKr(r.cashInvested)}</span></div>
+      <div class="breakdown-row"><span>Lån</span><span>${fmtKr(r.loanAmount)}</span></div>
+      <div class="breakdown-row"><span>Belåningsgrad</span><span>${fmtPct(1 - inp.downPaymentPct / 100, 0)}</span></div>
+      <div class="breakdown-row"><span>Månedlig ydelse</span><span>${fmtKr(r.monthlyPayment)}/md</span></div>
+    `;
+
+    const rate1 = inp.ratePct + 1, rate2 = inp.ratePct + 2;
+    const paymentAt1 = monthlyMortgagePayment(r.loanAmount, rate1, inp.loanTermYears) * 12;
+    const paymentAt2 = monthlyMortgagePayment(r.loanAmount, rate2, inp.loanTermYears) * 12;
+    const cfAt1 = r.income.noi - paymentAt1 - r.income.skat;
+    const cfAt2 = r.income.noi - paymentAt2 - r.income.skat;
+    document.getElementById('stress-test').innerHTML = `
+      <div class="breakdown-row"><span>Cash flow nu (${inp.ratePct.toFixed(1)}%)</span><span class="${r.afterTaxCashFlow < 0 ? 'bad' : ''}">${fmtKr(r.afterTaxCashFlow / 12)}/md</span></div>
+      <div class="breakdown-row"><span>Ved ${rate1.toFixed(1)}%</span><span class="${cfAt1 < 0 ? 'bad' : ''}">${fmtKr(cfAt1 / 12)}/md</span></div>
+      <div class="breakdown-row"><span>Ved ${rate2.toFixed(1)}%</span><span class="${cfAt2 < 0 ? 'bad' : ''}">${fmtKr(cfAt2 / 12)}/md</span></div>
+      <div class="breakdown-row total"><span>Break-even rente</span><span>${r.breakEvenRentePct == null ? 'ikke opnåelig ved nogen realistisk rente' : r.breakEvenRentePct.toFixed(1) + '%'}</span></div>
+      <div class="breakdown-row"><span>DSCR</span><span>${r.dscr == null ? '-' : r.dscr.toFixed(2)}</span></div>
+    `;
+
+    renderChart(r.chartYears, inp);
+
+    document.getElementById('results').classList.add('show');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function renderChart(years, inp) {
+    const width = 640, height = 220, padding = 30;
+    const values = years.map(y => y.value);
+    const cashes = years.map(y => y.cumulativeCash);
+    const allVals = values.concat(cashes);
+    const minV = Math.min(...allVals, 0);
+    const maxV = Math.max(...allVals);
+    const range = maxV - minV || 1;
+
+    function x(i) { return padding + (i / 10) * (width - padding * 2); }
+    function y(v) { return height - padding - ((v - minV) / range) * (height - padding * 2); }
+
+    const valuePath = years.map((yr, i) => `${i === 0 ? 'M' : 'L'}${x(i).toFixed(1)},${y(yr.value).toFixed(1)}`).join(' ');
+    const cashPath = years.map((yr, i) => `${i === 0 ? 'M' : 'L'}${x(i).toFixed(1)},${y(yr.cumulativeCash).toFixed(1)}`).join(' ');
+    const zeroY = y(0).toFixed(1);
+
+    const svg = `
+      <svg viewBox="0 0 ${width} ${height}" style="width:100%;height:auto;">
+        <line x1="${padding}" y1="${zeroY}" x2="${width - padding}" y2="${zeroY}" stroke="var(--border-faint)" stroke-width="1" />
+        <path d="${valuePath}" fill="none" stroke="var(--accent)" stroke-width="2.5" />
+        <path d="${cashPath}" fill="none" stroke="var(--warn)" stroke-width="2.5" stroke-dasharray="4,3" />
+      </svg>
+    `;
+    document.getElementById('chart-wrap').innerHTML = svg;
+    document.getElementById('chart-legend').innerHTML =
+      `<span style="color:var(--accent);font-weight:600;">&mdash;</span> Ejendomsværdi (${inp.appreciationPct}%/år) &nbsp;&nbsp; ` +
+      `<span style="color:var(--warn);font-weight:600;">&#8213;</span> Akkumuleret cash flow (lejevækst ${inp.rentGrowthPct}%/år)`;
+  }
+
+  // ---------- Wiring ----------
+
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const mode = btn.dataset.mode;
+      document.getElementById('sommerhus-fields').style.display = mode === 'sommerhus' ? '' : 'none';
+      document.getElementById('langtid-fields').style.display = mode === 'langtid' ? '' : 'none';
+      document.getElementById('sommerhus-advanced').style.display = mode === 'sommerhus' ? '' : 'none';
+
+      // Maintenance reserve is conventionally a % of purchase price for a
+      // sommerhus (no separate building-value figure exists to base it on
+      // - see yield_calc.py), but a % of gross rent for a long-term rental
+      // (the more standard convention there - wear-and-tear scales with
+      // occupancy, not property value).
+      const vedligeholdInput = document.getElementById('vedligehold-pct');
+      const vedligeholdLabel = document.getElementById('vedligehold-label');
+      if (mode === 'sommerhus') {
+        vedligeholdLabel.textContent = 'Vedligehold (% af købspris/år)';
+        vedligeholdInput.value = '1.25';
+      } else {
+        vedligeholdLabel.textContent = 'Vedligehold (% af brutto lejeindtægt/år)';
+        vedligeholdInput.value = '8';
+      }
+    });
+  });
+
+  document.getElementById('fetch-btn').addEventListener('click', async () => {
+    const url = document.getElementById('link-input').value.trim();
+    const note = document.getElementById('fetch-note');
+    if (!url) return;
+    note.textContent = 'Henter...';
+    note.classList.add('show');
+    try {
+      // Boliga's API only allows cross-origin requests from boliga.dk itself,
+      // so this will fail for essentially any real link - that's expected,
+      // not a bug. Indtast tallene manuelt herunder i stedet.
+      await fetch(url, { mode: 'cors' });
+      note.textContent = 'Hentet - tjek tallene herunder, og ret til hvis nødvendigt.';
+    } catch (err) {
+      note.textContent = 'Kunne ikke hente data automatisk fra dette link (siden blokerer sandsynligvis automatisk hentning, eller viser tallene via JavaScript). Indtast tallene manuelt herunder - analysen er lige så præcis.';
+    }
+  });
+
+  document.getElementById('analyse-btn').addEventListener('click', () => {
+    const inp = getInputs();
+    const result = runAnalysis(inp);
+    renderResults(inp, result);
+  });
+</script>
+</body>
+</html>
