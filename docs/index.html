@@ -595,11 +595,28 @@
 
     let html = "";
 
-    html += "<h4>Delscorer (percentil i den aktuelle pulje)</h4>";
-    html += `<div class="breakdown-row"><span>Mispricing (40%)</span><span>${breakdown.mispricing_percentile}${breakdown.mispricing_available ? "" : " (ingen data)"}</span></div>`;
-    html += `<div class="breakdown-row"><span>Nettoafkast (30%)</span><span>${breakdown.nettoafkast_percentile}${breakdown.nettoafkast_available ? "" : " (ingen data)"}</span></div>`;
-    html += `<div class="breakdown-row"><span>Sælgers motivation (20%)</span><span>${breakdown.motivation_percentile}</span></div>`;
-    html += `<div class="breakdown-row"><span>Kvalitet (10%)</span><span>${breakdown.kvalitet_percentile}</span></div>`;
+    html += "<h4>Sådan bliver scoren regnet ud</h4>";
+    html += `<div class="comp-row" style="margin-bottom:10px;">Hvert af de fire tal nedenfor er en percentil: hvor huset ligger sammenlignet med alle andre huse i puljen lige nu (100 = bedst af alle på det punkt, 50 = midt i feltet, 0 = dårligst). Hver percentil ganges med sin vægt, og de fire resultater lægges sammen til scoren.</div>`;
+
+    const weights = breakdown.weights || { mispricing: 0.40, nettoafkast: 0.30, motivation: 0.20, kvalitet: 0.10 };
+    const scoreRows = [
+      { label: "Mispricing", weight: weights.mispricing, pct: breakdown.mispricing_percentile, available: breakdown.mispricing_available },
+      { label: "Nettoafkast", weight: weights.nettoafkast, pct: breakdown.nettoafkast_percentile, available: breakdown.nettoafkast_available },
+      { label: "Sælgers motivation", weight: weights.motivation, pct: breakdown.motivation_percentile, available: true },
+      { label: "Kvalitet", weight: weights.kvalitet, pct: breakdown.kvalitet_percentile, available: true },
+    ];
+
+    let contributionSum = 0;
+    scoreRows.forEach(row => {
+      const contribution = row.weight * row.pct;
+      contributionSum += contribution;
+      const unavailableNote = row.available ? "" : " (ingen data - sat til 50, hverken op- eller nedvægtet)";
+      html += `<div class="yield-line"><span>${row.label} (vægt ${Math.round(row.weight * 100)}%)</span><span>${row.pct} × ${row.weight.toFixed(2)} = ${contribution.toFixed(1)}</span></div>`;
+      if (unavailableNote) {
+        html += `<div class="comp-row" style="margin:-2px 0 4px;">${row.label}${unavailableNote}</div>`;
+      }
+    });
+    html += `<div class="yield-line total"><span>= Samlet score</span><span>${listing.score}</span></div>`;
 
     if (mis) {
       html += "<h4>Prismodel</h4>";

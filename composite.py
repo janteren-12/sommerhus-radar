@@ -125,6 +125,7 @@ def compute_composite_scores(rankable_listings, mispricing_by_id, yield_by_id, w
 
         scores[listing_id] = {
             "score": round(composite, 1),
+            "weights": weights,
             "mispricing_percentile": round(mispricing_pct_component[listing_id] * 100),
             "nettoafkast_percentile": round(yield_pct_component[listing_id] * 100),
             "motivation_percentile": round(motivation_pct_component[listing_id] * 100),
