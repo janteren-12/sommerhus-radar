@@ -51,6 +51,8 @@ history of what you've seen instead of it just vanishing.
 | `vercel.json`, `.vercelignore` | Tell Vercel this is a static site living in `docs/`, not a Python app. |
 | `sold_cache.py` | Fetches sold-price comparables from Boliga. Run with `python sold_cache.py`. |
 | `bbr_enrich.py` | Adds official building-register (BBR) details to each listing, read off Boliga's own pages. |
+| `docs/analyser.html` | Standalone investment calculator (mortgage, DSCR, IRR, etc.) - not tied to tracked listings. |
+| `api/analyse.py` | Vercel serverless function: fetches a pasted Boliga link server-side for `analyser.html`'s link lookup. Vercel-only, see Phase 5. |
 | `mispricing.py` | Fits the pricing model and predicts each listing's "fair" price. |
 | `coastal_distance.py` | How far a point is from the Danish coastline, in metres. |
 | `yield_calc.py` | The net rental yield calculation, as a standalone function. |
@@ -455,23 +457,34 @@ leveraged investment analysis: NOI, DSCR, cap rate, cash-on-cash, a
 10-year IRR and equity multiple, an interest-rate stress test, and a
 0-100 investment score.
 
-**This runs entirely in your browser - there's no backend, so there's
-nothing else to build or deploy for it to work.** All the math
+**The analysis itself runs entirely in your browser.** All the math
 (mortgage amortization, IRR via Newton-Raphson, everything) is plain
-JavaScript in that one file.
+JavaScript in `analyser.html`, with nothing sent anywhere.
 
-**"Slå op" only works for houses this project already tracks - and that's
-by design, not a limitation to fix later.** Boliga's own API only allows
-cross-origin requests from boliga.dk itself (checked its response headers
-directly), and most other sites either block automated requests outright
-or render their numbers with JavaScript a plain fetch can't see - there's
-no backend here to work around that with a proxy. What genuinely does
-work with zero CORS issues: `analyser.html` and `docs/data.json` are
-served from the same origin, so pasting a link to one of your tracked
-sommerhus listings looks its Boliga id up in data you already have and
-fills in the købspris. Paste any other link (or a Boliga listing outside
-your tracked areas) and it says so plainly rather than pretending to try
-harder - manual entry is the real, primary way to use this page.
+**"Slå op" (the link lookup) is the one place this project has a real
+backend - a single small exception to the "just files, no server"
+design.** A browser can't fetch an arbitrary external site directly -
+Boliga's own API only allows cross-origin requests from boliga.dk itself
+(checked its response headers directly), and most sites either block
+automated requests outright or render their numbers with JavaScript a
+plain fetch can't see. None of that applies to a request from server to
+server, though, so `api/analyse.py` - a small Vercel serverless function,
+the one piece of this project that isn't a static file - fetches the
+pasted Boliga page itself and extracts price, size, rooms, byggeår,
+Ejerudgift, and any BBR fields the page happens to show, the same way
+`bbr_enrich.py` already does for tracked listings. The lookup tries three
+things in order: (1) is this one of your tracked sommerhus listings,
+matched via `docs/data.json` on the same origin - no backend needed for
+that part at all; (2) if not, is it some other boliga.dk listing - fetched
+live through `api/analyse.py`; (3) if it's not a boliga.dk link, or the
+fetch fails, say so plainly and let you type the numbers in - manual entry
+always works regardless.
+
+This is genuinely deployment-specific: the serverless function only runs
+on Vercel. **On GitHub Pages, which serves purely static files with no
+function runtime, link lookup falls back to step (1) only** - your own
+tracked listings still resolve, but a random boliga.dk link won't. Manual
+entry works identically everywhere.
 
 **Two rental types, because they're taxed completely differently in
 Denmark:**

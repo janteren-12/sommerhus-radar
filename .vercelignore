@@ -8,7 +8,6 @@ composite.py
 score.py
 coastal_distance.py
 bbr_enrich.py
-requirements.txt
 areas.yaml
 config.yaml
 rental_sources.yaml

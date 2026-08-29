@@ -311,17 +311,17 @@
   <h1>Analysér ejendom</h1>
   <div class="intro">
     Indtast tallene selv nedenfor, eller sæt et Boliga-link ind - det
-    udfylder kun købsprisen automatisk, og kun hvis huset er et af dem,
-    denne side allerede sporer (resten af nettet kan ikke hentes direkte
-    herfra, se hvorfor nedenfor). Beregningen sker i din browser - der er
-    ingen server, så intet bliver gemt eller sendt nogen steder.
+    udfylder købsprisen automatisk (og lidt mere, hvis det er tilgængeligt).
+    Andre boligsider end Boliga kan ikke hentes automatisk herfra, se
+    hvorfor nedenfor. Selve beregningen sker i din browser - der er ingen
+    server involveret i det, og intet bliver gemt.
   </div>
 
   <div class="card">
     <h2>Ejendommens tal</h2>
 
     <div class="fetch-row">
-      <input type="text" id="link-input" placeholder="Boliga-link til et af dine sporede sommerhuse (valgfrit)">
+      <input type="text" id="link-input" placeholder="Boliga-link (valgfrit)">
       <button id="fetch-btn" type="button">Slå op</button>
     </div>
     <div class="fetch-note" id="fetch-note"></div>
@@ -942,7 +942,36 @@
           return;
         }
       } catch (err) {
-        // fall through to the generic message below
+        // fall through to the live-fetch attempt below
+      }
+    }
+
+    // Not one of the tracked listings - try a live server-side fetch via
+    // this project's own /api/analyse function instead (see api/analyse.py
+    // for why that needs a real backend, unlike everything else here).
+    // Only boliga.dk links are supported there.
+    if (/boliga\.dk/i.test(url)) {
+      try {
+        const res = await fetch('/api/analyse?url=' + encodeURIComponent(url));
+        const result = await res.json();
+        if (result.error) {
+          note.textContent = `${result.error}. Indtast tallene manuelt herunder - analysen er lige så præcis.`;
+          return;
+        }
+        if (result.price) document.getElementById('price').value = result.price;
+        if (document.querySelector('.mode-btn[data-mode="sommerhus"]') && !document.querySelector('.mode-btn[data-mode="sommerhus"]').classList.contains('active')) {
+          document.querySelector('.mode-btn[data-mode="sommerhus"]').click();
+        }
+        const parts = [
+          result.address,
+          result.m2 != null ? `${result.m2} m²` : null,
+          result.byggeaar != null ? `bygget ${result.byggeaar}` : null,
+        ].filter(Boolean);
+        note.textContent = `Hentet fra Boliga: ${parts.join(', ')} - købspris udfyldt (${result.price.toLocaleString('da-DK')} kr). Resten (leje, rente osv.) skal du stadig taste ind selv.`;
+        return;
+      } catch (err) {
+        note.textContent = 'Kunne ikke hente dette link lige nu. Indtast tallene manuelt herunder - analysen er lige så præcis.';
+        return;
       }
     }
 
