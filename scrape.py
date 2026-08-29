@@ -195,6 +195,9 @@ def build_record(listing, area_key, area_label, existing_by_id, now_iso, haandva
         "byggeaar": listing.get("buildYear"),
         "kr_per_m2": listing.get("squaremeterPrice"),
         "dage_paa_markedet": listing.get("daysForSale"),
+        "energimaerke": listing.get("energyClass") if listing.get("energyClass") != "-" else None,
+        "latitude": listing.get("latitude"),
+        "longitude": listing.get("longitude"),
         # How much the asking price has changed since it was first listed,
         # in percent (negative = price cut). Boliga only fills this in once
         # a listing has actually had a price change.
@@ -210,7 +213,30 @@ def build_record(listing, area_key, area_label, existing_by_id, now_iso, haandva
         "link": build_link(listing),
         "first_seen": first_seen,
         "sold_or_removed": False,
+        # Boliga only gives us the cumulative percent change (above), not
+        # how many separate times the price was cut, or whether a listing
+        # was pulled and relisted - so we track both ourselves, run over
+        # run, and carry them forward here.
+        "price_cut_count": count_price_cut(listing, existing),
+        "was_relisted": was_relisted(existing),
     }
+
+
+def count_price_cut(listing, existing):
+    previous_count = existing.get("price_cut_count", 0) if existing else 0
+    if existing and listing.get("price") is not None and existing.get("price") is not None:
+        if listing["price"] < existing["price"]:
+            return previous_count + 1
+    return previous_count
+
+
+def was_relisted(existing):
+    """True if this listing was ever marked sold/removed and has since
+    come back as active - i.e. genuinely pulled and relisted, not just
+    continuously on the market."""
+    if not existing:
+        return False
+    return bool(existing.get("was_relisted")) or bool(existing.get("sold_or_removed"))
 
 
 def compute_area_stats(records):

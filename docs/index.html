@@ -277,6 +277,144 @@
     text-align: center;
   }
 
+  .card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 16px 18px;
+  }
+
+  a.card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .score-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .score-number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+
+  .score-number .out-of-100 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-left: 2px;
+  }
+
+  .score-reason {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .score-disclaimer {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 10px;
+  }
+
+  .no-score-note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .details-toggle {
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 10px 0 0;
+    cursor: pointer;
+    display: block;
+  }
+
+  .details-panel {
+    display: none;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-faint);
+    font-size: 0.82rem;
+  }
+
+  .details-panel.open {
+    display: block;
+  }
+
+  .details-panel h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin: 14px 0 6px;
+  }
+
+  .details-panel h4:first-child {
+    margin-top: 0;
+  }
+
+  .breakdown-row, .comp-row, .yield-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 3px 0;
+    color: var(--text);
+  }
+
+  .comp-row {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+  }
+
+  .yield-line.total {
+    font-weight: 700;
+    border-top: 1px solid var(--border-faint);
+    margin-top: 4px;
+    padding-top: 6px;
+  }
+
+  .full-disclaimer {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    background: var(--accent-soft);
+    padding: 10px 12px;
+    border-radius: 10px;
+    margin-top: 14px;
+  }
+
+  .sort-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .flagged-card {
+    opacity: 0.55;
+  }
+
+  .flagged-card .score-row {
+    display: none;
+  }
+
+  .flagged-note {
+    font-size: 0.78rem;
+    color: var(--warn);
+    font-weight: 600;
+    margin-top: 6px;
+  }
+
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #101314;
@@ -330,6 +468,8 @@
     </div>
   </div>
 
+  <div class="sort-row" id="sort-row"></div>
+
   <section id="new-section" style="display:none;">
     <h2>Nye</h2>
     <div class="cards" id="new-cards"></div>
@@ -338,6 +478,11 @@
   <section>
     <h2>Alle</h2>
     <div class="cards" id="all-cards"></div>
+  </section>
+
+  <section id="flagged-section" style="display:none;">
+    <h2>Udelukket</h2>
+    <div class="cards" id="flagged-cards"></div>
   </section>
 </div>
 
@@ -355,6 +500,7 @@
   let priceDropFilter = null; // null | "any" | 5 | 10 (percent)
   let maxDaysOnMarket = null; // null = no limit
   let haandvaerkerFilter = null; // null | true (show only) | false (hide)
+  let currentSort = "newest"; // newest | score | yield | pricedrop
 
   function formatPrice(kr) {
     if (kr == null) return "–";
@@ -399,9 +545,106 @@
     return tag;
   }
 
+  function buildScoreRow(listing) {
+    const wrap = document.createDocumentFragment();
+
+    if (listing.score == null) {
+      const note = document.createElement("div");
+      note.className = "no-score-note";
+      note.textContent = listing.reason || "Ikke rangeret";
+      wrap.appendChild(note);
+      return wrap;
+    }
+
+    const row = document.createElement("div");
+    row.className = "score-row";
+    const num = document.createElement("div");
+    num.className = "score-number";
+    num.innerHTML = `${Math.round(listing.score)}<span class="out-of-100">/100</span>`;
+    row.appendChild(num);
+    wrap.appendChild(row);
+
+    const reason = document.createElement("div");
+    reason.className = "score-reason";
+    reason.textContent = listing.reason || "";
+    wrap.appendChild(reason);
+
+    return wrap;
+  }
+
+  function buildDetailsPanel(listing) {
+    const panel = document.createElement("div");
+    panel.className = "details-panel";
+    const breakdown = listing.score_breakdown;
+    const mis = listing.mispricing;
+    const yld = listing.nettoafkast;
+
+    let html = "";
+
+    html += "<h4>Delscorer (percentil i den aktuelle pulje)</h4>";
+    html += `<div class="breakdown-row"><span>Mispricing (40%)</span><span>${breakdown.mispricing_percentile}${breakdown.mispricing_available ? "" : " (ingen data)"}</span></div>`;
+    html += `<div class="breakdown-row"><span>Nettoafkast (30%)</span><span>${breakdown.nettoafkast_percentile}${breakdown.nettoafkast_available ? "" : " (ingen data)"}</span></div>`;
+    html += `<div class="breakdown-row"><span>Sælgers motivation (20%)</span><span>${breakdown.motivation_percentile}</span></div>`;
+    html += `<div class="breakdown-row"><span>Kvalitet (10%)</span><span>${breakdown.kvalitet_percentile}</span></div>`;
+
+    if (mis) {
+      html += "<h4>Prismodel</h4>";
+      html += `<div class="breakdown-row"><span>Udbudspris</span><span>${formatPrice(listing.price)}</span></div>`;
+      html += `<div class="breakdown-row"><span>Modelpris</span><span>${formatPrice(mis.modelpris)}</span></div>`;
+      html += `<div class="breakdown-row"><span>Forskel</span><span>${mis.mispricing_pct > 0 ? "+" : ""}${mis.mispricing_pct}%</span></div>`;
+      html += `<div class="breakdown-row"><span>Afstand til kyst</span><span>${formatNumber(mis.distance_to_coast_m)} m</span></div>`;
+      if (mis.pooled_with_area) {
+        html += `<div class="breakdown-row"><span colspan="2">(Slået sammen med resten af området - for få salg i lige netop dette postnummer)</span></div>`;
+      }
+      if (mis.comparables && mis.comparables.length > 0) {
+        html += "<h4>5 nærmeste sammenlignelige salg</h4>";
+        mis.comparables.forEach(c => {
+          const soldDate = c.sold_date ? c.sold_date.slice(0, 10) : "";
+          html += `<div class="comp-row"><span>${c.address || ""} (${c.distance_km} km)</span><span>${formatPrice(c.price)}, ${soldDate}</span></div>`;
+        });
+      }
+    } else {
+      html += "<h4>Prismodel</h4><div class=\"comp-row\">Ikke nok salgsdata for dette område endnu.</div>";
+    }
+
+    if (yld) {
+      html += "<h4>Afkastberegning</h4>";
+      html += `<div class="yield-line"><span>Bruttolejeindtægt</span><span>${formatPrice(Math.round(yld.bruttolejeindtaegt))}</span></div>`;
+      html += `<div class="yield-line"><span>Efter provision</span><span>${formatPrice(Math.round(yld.efter_provision))}</span></div>`;
+      html += `<div class="yield-line"><span>Driftsomkostninger</span><span>-${formatPrice(Math.round(yld.driftsomkostninger))}</span></div>`;
+      html += `<div class="yield-line"><span>Vedligehold</span><span>-${formatPrice(Math.round(yld.vedligehold))}</span></div>`;
+      html += `<div class="yield-line"><span>Skat</span><span>-${formatPrice(Math.round(yld.skat))}</span></div>`;
+      html += `<div class="yield-line total"><span>Nettoafkast</span><span>${yld.nettoafkast_pct}%</span></div>`;
+    } else {
+      html += "<h4>Afkastberegning</h4><div class=\"comp-row\">Udfyld rental_benchmarks.yaml for dette område for at se et afkast.</div>";
+    }
+
+    html += `<div class="full-disclaimer">
+      Scoren er et filter for hvor du bør bruge en lørdag - ikke en facitliste.
+      Et stort negativt afvig fra modelprisen betyder som regel bare, at modellen
+      mangler noget den ikke kan se i Boligas data - stand, udsigt, vejstøj, en
+      uhensigtsmæssig grund - ikke at du har fundet et kup. Tjek altid huset selv.
+    </div>`;
+
+    panel.innerHTML = html;
+    return panel;
+  }
+
   function buildCard(listing) {
+    const card = document.createElement("div");
+    card.className = "card" + (listing.flags ? " flagged-card" : "");
+
+    card.appendChild(buildScoreRow(listing));
+
+    if (listing.flags) {
+      const flagNote = document.createElement("div");
+      flagNote.className = "flagged-note";
+      flagNote.textContent = "Udelukket: " + listing.flags.join(", ");
+      card.appendChild(flagNote);
+    }
+
     const a = document.createElement("a");
-    a.className = "card";
+    a.className = "card-link";
     a.href = listing.link;
     a.target = "_blank";
     a.rel = "noopener noreferrer";
@@ -474,41 +717,78 @@
       a.appendChild(badge);
     }
 
-    return a;
+    card.appendChild(a);
+
+    if (listing.score != null) {
+      const toggle = document.createElement("button");
+      toggle.className = "details-toggle";
+      toggle.type = "button";
+      toggle.textContent = "Se score-detaljer ↓";
+
+      const panel = buildDetailsPanel(listing);
+
+      toggle.addEventListener("click", () => {
+        const isOpen = panel.classList.toggle("open");
+        toggle.textContent = isOpen ? "Skjul score-detaljer ↑" : "Se score-detaljer ↓";
+      });
+
+      card.appendChild(toggle);
+      card.appendChild(panel);
+    }
+
+    return card;
+  }
+
+  function passesSharedFilters(l) {
+    if (l.sold_or_removed) return false;
+    if (activeArea && l.area !== activeArea) return false;
+    if (l.price != null && l.price > maxPrice) return false;
+    if (l.kr_per_m2 != null && l.kr_per_m2 > maxKrPerM2) return false;
+
+    if (priceDropFilter != null) {
+      const drop = l.prisaendring_pct != null ? -l.prisaendring_pct : 0;
+      if (priceDropFilter === "any" && drop <= 0) return false;
+      if (typeof priceDropFilter === "number" && drop < priceDropFilter) return false;
+    }
+
+    if (maxDaysOnMarket != null) {
+      if (l.dage_paa_markedet == null || l.dage_paa_markedet > maxDaysOnMarket) return false;
+    }
+
+    if (haandvaerkerFilter === true && !l.haandvaerkertilbud) return false;
+    if (haandvaerkerFilter === false && l.haandvaerkertilbud) return false;
+
+    return true;
   }
 
   function currentFilteredListings() {
-    return allListings.filter(l => {
-      if (l.sold_or_removed) return false;
-      if (activeArea && l.area !== activeArea) return false;
-      if (l.price != null && l.price > maxPrice) return false;
-      if (l.kr_per_m2 != null && l.kr_per_m2 > maxKrPerM2) return false;
+    return allListings.filter(l => !l.flags && passesSharedFilters(l));
+  }
 
-      if (priceDropFilter != null) {
-        const drop = l.prisaendring_pct != null ? -l.prisaendring_pct : 0;
-        if (priceDropFilter === "any" && drop <= 0) return false;
-        if (typeof priceDropFilter === "number" && drop < priceDropFilter) return false;
-      }
+  function currentFlaggedListings() {
+    return allListings.filter(l => l.flags && passesSharedFilters(l));
+  }
 
-      if (maxDaysOnMarket != null) {
-        if (l.dage_paa_markedet == null || l.dage_paa_markedet > maxDaysOnMarket) return false;
-      }
-
-      if (haandvaerkerFilter === true && !l.haandvaerkertilbud) return false;
-      if (haandvaerkerFilter === false && l.haandvaerkertilbud) return false;
-
-      return true;
-    });
+  function sortListings(list) {
+    const sorted = list.slice();
+    if (currentSort === "score") {
+      sorted.sort((a, b) => (b.score ?? -1) - (a.score ?? -1));
+    } else if (currentSort === "yield") {
+      sorted.sort((a, b) => (b.nettoafkast?.nettoafkast_pct ?? -Infinity) - (a.nettoafkast?.nettoafkast_pct ?? -Infinity));
+    } else if (currentSort === "pricedrop") {
+      const drop = l => (l.prisaendring_pct != null && l.prisaendring_pct < 0) ? -l.prisaendring_pct : 0;
+      sorted.sort((a, b) => drop(b) - drop(a));
+    } else {
+      sorted.sort((a, b) => new Date(b.first_seen) - new Date(a.first_seen));
+    }
+    return sorted;
   }
 
   function render() {
     const filtered = currentFilteredListings();
 
-    const newOnes = filtered.filter(isNew);
-    const rest = filtered
-      .filter(l => !isNew(l))
-      .sort((a, b) => new Date(b.first_seen) - new Date(a.first_seen));
-    newOnes.sort((a, b) => new Date(b.first_seen) - new Date(a.first_seen));
+    const newOnes = sortListings(filtered.filter(isNew));
+    const rest = sortListings(filtered.filter(l => !isNew(l)));
 
     const newSection = document.getElementById("new-section");
     const newCards = document.getElementById("new-cards");
@@ -529,6 +809,17 @@
       allCards.appendChild(empty);
     } else {
       rest.forEach(l => allCards.appendChild(buildCard(l)));
+    }
+
+    const flagged = currentFlaggedListings();
+    const flaggedSection = document.getElementById("flagged-section");
+    const flaggedCards = document.getElementById("flagged-cards");
+    flaggedCards.innerHTML = "";
+    if (flagged.length > 0) {
+      flaggedSection.style.display = "";
+      flagged.forEach(l => flaggedCards.appendChild(buildCard(l)));
+    } else {
+      flaggedSection.style.display = "none";
     }
   }
 
@@ -618,6 +909,15 @@
     });
   }
 
+  function setupSortRow() {
+    setupButtonGroup("sort-row", [
+      { label: "Nyeste", value: "newest" },
+      { label: "Højeste score", value: "score" },
+      { label: "Bedste afkast", value: "yield" },
+      { label: "Størst prisnedslag", value: "pricedrop" },
+    ], value => { currentSort = value; });
+  }
+
   function setupMoreFilters() {
     setupButtonGroup("price-drop-filters", [
       { label: "Alle", value: null },
@@ -658,6 +958,7 @@
       document.getElementById("updated-line").textContent =
         "Sidst opdateret: " + formatTimestamp(data.last_updated);
       buildAreaFilters();
+      setupSortRow();
       setupPriceSlider();
       setupMoreFilters();
       render();

@@ -39,10 +39,18 @@ jobs:
         continue-on-error: true
         run: python rental_scrape.py --force
 
+      - name: Run the deal-scoring engine
+        # Same reasoning: a broken regression or a missing sold_cache.json
+        # (e.g. before its first weekly run has ever happened) shouldn't
+        # stop the raw listings themselves from being published.
+        continue-on-error: true
+        run: python score.py
+
       - name: Commit updated data if it changed
         run: |
           git config user.name "sommerhus-radar bot"
           git config user.email "actions@users.noreply.github.com"
           git add docs/data.json docs/rentals.json
           git diff --cached --quiet && echo "No changes to commit" || git commit -m "Update listings"
+          git pull --rebase
           git push

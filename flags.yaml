@@ -1,0 +1,39 @@
+# Manual veto flags, keyed by Boliga listing id.
+#
+# None of this is in Boliga's data - it's stuff you'd only know from
+# reading the full listing text, looking at a map, or actually visiting.
+# Anything flagged true here drops out of the main ranked list and shows
+# instead in a separate, greyed-out "flagged" section on the website -
+# it's not deleted, just kept out of the ranking so it doesn't crowd out
+# genuinely comparable houses.
+#
+# The flags:
+#   lejet_grund                    - house sits on leased land, not owned
+#   kloakering_paa_vej              - forced public sewer connection is coming,
+#                                      a real (and sometimes large) future cost
+#   strandbeskyttelse                - beach protection line restricts what you
+#                                      can build/change on the property
+#   kystnedbrydning                  - coastal erosion risk at this address
+#   udlejning_forbudt                - local rules block renting the house out,
+#                                      which matters a lot if yield is part of
+#                                      why you're buying
+#   elvarme_daarligt_energimaerke    - you don't need to set this one by hand:
+#                                      the scoring script automatically treats
+#                                      any listing with energy label E, F, or G
+#                                      as flagged, since electric heating with a
+#                                      poor label usually means high running
+#                                      costs. Listed here only so you know it
+#                                      exists and can override it (set it to
+#                                      false) if you've confirmed it's not
+#                                      actually a problem for a specific house.
+#
+# Find a listing's id in the URL Boliga shows for it (the number right after
+# /bolig/), or in the "score breakdown" on its card on the website.
+#
+# Example (remove the # to activate):
+# 2360854:
+#   lejet_grund: false
+#   kloakering_paa_vej: true
+#   strandbeskyttelse: false
+#   kystnedbrydning: false
+#   udlejning_forbudt: false

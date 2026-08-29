@@ -1,2 +1,9 @@
 requests==2.32.3
 PyYAML==6.0.2
+
+# For the deal-scoring engine (sold_cache.py, mispricing.py, coastal_distance.py)
+numpy==2.5.2
+pandas==3.0.5
+statsmodels==0.15.0
+shapely==2.1.2
+pyproj==3.7.2

@@ -1,0 +1,44 @@
+name: Refresh sold-price comparables
+
+on:
+  schedule:
+    # Once a week (Sunday, early morning UTC). Sold prices don't move fast
+    # enough to need refreshing more often than this, and this job is much
+    # heavier than the hourly scrape - fetching sold-price history plus a
+    # backfill request per sold record.
+    - cron: "0 3 * * 0"
+  workflow_dispatch: {} # lets you trigger a run manually from the Actions tab
+
+concurrency:
+  group: sold-cache
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-sold-cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch sold-price comparables
+        run: python sold_cache.py --force
+
+      - name: Commit updated sold_cache.json if it changed
+        run: |
+          git config user.name "sommerhus-radar bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add sold_cache.json
+          git diff --cached --quiet && echo "No changes to commit" || git commit -m "Refresh sold-price comparables"
+          git pull --rebase
+          git push

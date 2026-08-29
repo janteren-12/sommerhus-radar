@@ -21,3 +21,56 @@ exclude_keywords: []
 
 # Politeness settings for the scraper. You shouldn't need to change these.
 seconds_between_requests: 1.5
+
+# Settings for the net-yield (nettoafkast) score. All the tax figures here
+# are the 2026 skematiske-metode rules for renting a sommerhus out through
+# a rental bureau (Novasol, Sol og Strand, etc). If your situation is
+# different - renting privately, or already own the house - some of these
+# need to change. See the README for the full explanation and caveats.
+yield_calculation:
+  # Rental bureau's cut of the booking price. Novasol/Sol og Strand are
+  # typically in the 25-30% range; adjust to what you're actually quoted.
+  commission: 0.28
+
+  # The 2026 skattefri bundfradrag when renting through a bureau. It's
+  # 13.800 kr instead if you rent the house out privately (no bureau).
+  bundfradrag_via_bureau: 50200
+  bundfradrag_privat: 13800
+  # Which of the two bundfradrag figures above to actually use.
+  renting_privately: false
+
+  # Only 60% of the amount above the bundfradrag is taxed at all, and that
+  # 60% is taxed as kapitalindkomst. 0.40 (40%) is a reasonable planning
+  # assumption for capital income tax if you have no other capital income -
+  # your real marginal rate depends on your full tax picture. Check with a
+  # revisor before relying on this.
+  kapitalindkomst_sats: 0.40
+
+  # Yearly running costs (drift), in kr. These are rough starting
+  # estimates for a typical Danish sommerhus - replace them with your own
+  # municipality's rates and real quotes once you have them.
+  grundskyld: 5000            # land tax - depends on your municipality's promillesats
+  ejendomsvaerdiskat: 10000    # property value tax - depends on the public valuation
+  forsikring: 4500             # insurance
+  grundejerforening: 1200      # local landowners'/road association due, if any
+  forbrug: 8000                 # electricity/water/heating baseline, unrented weeks
+
+  # Yearly maintenance reserve, as a percentage of the property's value.
+  # There's no separate "building value" figure available from Boliga (the
+  # public-valuation field it does have is always empty for these
+  # listings - see README), so this is applied to the asking price itself
+  # as the best available stand-in.
+  vedligehold_pct_of_price: 0.0125
+
+  # A flat estimate for one-off buying costs (tinglysningsafgift, advokat,
+  # diverse), added to the purchase price in the yield's denominator.
+  handelsomkostninger_flat: 15000
+
+# How much each part of the deal score counts towards the final 0-100
+# number. Must add up to 1.0. See the README's "Phase 3" section for what
+# each of these actually measures.
+score_weights:
+  mispricing: 0.40
+  nettoafkast: 0.30
+  motivation: 0.20
+  kvalitet: 0.10

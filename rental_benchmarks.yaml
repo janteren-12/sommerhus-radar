@@ -1,0 +1,93 @@
+# Manual rental-price benchmarks, per area, used by the yield score.
+#
+# This is NOT scraped - Novasol/Sol og Strand's real prices are hidden
+# behind JavaScript (same problem as the rentals.html feature), and even
+# if they weren't, one week's asking price on their site isn't the same
+# as what a specific house actually earns. So instead: look up a handful
+# of comparable houses (similar size, similar distance to the beach) for
+# a postnummer in this area on Novasol or Sol og Strand, and fill in what
+# a typical week actually costs a renter.
+#
+# high_season_week_price:  a typical week price in July (kr)
+# low_season_week_price:   a typical week price in, say, March or November (kr)
+# weeks_rented_per_year:   pre-filled with 18, the Danish national average
+#                          for a sommerhus rented through a bureau. Adjust
+#                          it if you have a better estimate for this area
+#                          specifically (better location = more weeks).
+# high_season_weeks:       of those weeks_rented_per_year, how many are
+#                          typically at the high-season price rather than
+#                          the low-season one. Pre-filled with 8 (roughly
+#                          the length of the Danish school summer holiday,
+#                          which is when most high-season bookings happen)
+#                          - a judgement call, adjust if you know better
+#                          for a specific area.
+#
+# Leave the two price fields as `null` until you've looked them up - the
+# yield score simply won't be calculated for an area until both are filled
+# in (rather than guessing and showing you a made-up number).
+
+blaavand:
+  high_season_week_price: null   # look up: Novasol/Sol og Strand, postnr. 6857
+  low_season_week_price: null
+  weeks_rented_per_year: 18
+  high_season_weeks: 8
+
+ringkoebing:
+  high_season_week_price: null   # look up: postnr. 6950 / 6960
+  low_season_week_price: null
+  weeks_rented_per_year: 18
+  high_season_weeks: 8
+
+fanoe:
+  high_season_week_price: null   # look up: postnr. 6720
+  low_season_week_price: null
+  weeks_rented_per_year: 18
+  high_season_weeks: 8
+
+roemoe:
+  high_season_week_price: null   # look up: postnr. 6792
+  low_season_week_price: null
+  weeks_rented_per_year: 18
+  high_season_weeks: 8
+
+jammerbugt:
+  high_season_week_price: null   # look up: postnr. 9490 / 9480 / 9492
+  low_season_week_price: null
+  weeks_rented_per_year: 18
+  high_season_weeks: 8
+
+skagen:
+  high_season_week_price: null   # look up: postnr. 9990 / 9982
+  low_season_week_price: null
+  weeks_rented_per_year: 18
+  high_season_weeks: 8
+
+djursland:
+  high_season_week_price: null   # look up: postnr. 8400 / 8410 / 8500
+  low_season_week_price: null
+  weeks_rented_per_year: 18
+  high_season_weeks: 8
+
+odsherred:
+  high_season_week_price: null   # look up: postnr. 4500 / 4560 / 4573 / 4581 / 4583
+  low_season_week_price: null
+  weeks_rented_per_year: 18
+  high_season_weeks: 8
+
+nordsjaelland:
+  high_season_week_price: null   # look up: postnr. 3210 / 3220 / 3250 / 3360 / 3370
+  low_season_week_price: null
+  weeks_rented_per_year: 18
+  high_season_weeks: 8
+
+falster:
+  high_season_week_price: null   # look up: postnr. 4873 / 4874
+  low_season_week_price: null
+  weeks_rented_per_year: 18
+  high_season_weeks: 8
+
+bornholm:
+  high_season_week_price: null   # look up: postnr. 3700 / 3720 / 3730 / 3740 / 3770
+  low_season_week_price: null
+  weeks_rented_per_year: 18
+  high_season_weeks: 8
