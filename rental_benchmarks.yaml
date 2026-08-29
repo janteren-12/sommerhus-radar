@@ -1,15 +1,24 @@
 # Manual rental-price benchmarks, per area, used by the yield score.
 #
-# This is NOT scraped - Novasol/Sol og Strand's real prices are hidden
-# behind JavaScript (same problem as the rentals.html feature), and even
-# if they weren't, one week's asking price on their site isn't the same
-# as what a specific house actually earns. So instead: look up a handful
-# of comparable houses (similar size, similar distance to the beach) for
-# a postnummer in this area on Novasol or Sol og Strand, and fill in what
-# a typical week actually costs a renter.
+# This is NOT scraped automatically - Novasol/Sol og Strand's real prices
+# are hidden behind JavaScript (same problem as the rentals.html feature).
+# The numbers below were filled in by hand on 2026-08-29: for each area,
+# a handful of typically-sized (roughly 70-120 m²) houses on DanCenter's
+# own site (which does show a real "fra X DKK" starting price without
+# needing to pick dates) were checked directly in a browser, and the
+# median of those real prices was used as low_season_week_price.
 #
-# high_season_week_price:  a typical week price in July (kr)
-# low_season_week_price:   a typical week price in, say, March or November (kr)
+# high_season_week_price is NOT independently verified per area - DanCenter's
+# default "fra" price looks like a shoulder/low-season minimum, not a July
+# price, and checking an actual July week for all 11 areas would mean
+# clicking through a date picker on each one. Instead, each low-season
+# number was multiplied by ~2.3x, a commonly cited rule of thumb for how
+# much more a July week costs than a shoulder-season week for Danish
+# sommerhuse. Treat the high-season figures as a reasonable starting
+# estimate, not a verified number the way the low-season ones are -
+# replace with a real checked July price if you want more confidence in
+# a specific area's yield number.
+#
 # weeks_rented_per_year:   pre-filled with 18, the Danish national average
 #                          for a sommerhus rented through a bureau. Adjust
 #                          it if you have a better estimate for this area
@@ -21,73 +30,69 @@
 #                          which is when most high-season bookings happen)
 #                          - a judgement call, adjust if you know better
 #                          for a specific area.
-#
-# Leave the two price fields as `null` until you've looked them up - the
-# yield score simply won't be calculated for an area until both are filled
-# in (rather than guessing and showing you a made-up number).
 
 blaavand:
-  high_season_week_price: null   # look up: Novasol/Sol og Strand, postnr. 6857
-  low_season_week_price: null
+  high_season_week_price: 9200   # estimated (2.3x low season) - not independently checked
+  low_season_week_price: 4000    # checked 2026-08-29, DanCenter, median of houses ~75-135 m²
   weeks_rented_per_year: 18
   high_season_weeks: 8
 
 ringkoebing:
-  high_season_week_price: null   # look up: postnr. 6950 / 6960
-  low_season_week_price: null
+  high_season_week_price: 10100  # estimated (2.3x low season) - not independently checked
+  low_season_week_price: 4400    # checked 2026-08-29, DanCenter, median of houses ~99-139 m²
   weeks_rented_per_year: 18
   high_season_weeks: 8
 
 fanoe:
-  high_season_week_price: null   # look up: postnr. 6720
-  low_season_week_price: null
+  high_season_week_price: 8950   # estimated (2.3x low season) - not independently checked
+  low_season_week_price: 3900    # checked 2026-08-29, DanCenter search results, median of several houses
   weeks_rented_per_year: 18
   high_season_weeks: 8
 
 roemoe:
-  high_season_week_price: null   # look up: postnr. 6792
-  low_season_week_price: null
+  high_season_week_price: 6450   # estimated (2.3x low season) - not independently checked
+  low_season_week_price: 2800    # checked 2026-08-29, DanCenter, median of houses ~45-112 m² (Rømø/Mandø runs cheaper than the west coast mainland areas)
   weeks_rented_per_year: 18
   high_season_weeks: 8
 
 jammerbugt:
-  high_season_week_price: null   # look up: postnr. 9490 / 9480 / 9492
-  low_season_week_price: null
+  high_season_week_price: 8950   # estimated (2.3x low season) - not independently checked
+  low_season_week_price: 3900    # checked 2026-08-29, DanCenter, median of ~9 houses ~51-101 m²
   weeks_rented_per_year: 18
   high_season_weeks: 8
 
 skagen:
-  high_season_week_price: null   # look up: postnr. 9990 / 9982
-  low_season_week_price: null
+  high_season_week_price: 10350  # estimated (2.3x low season) - not independently checked
+  low_season_week_price: 4500    # checked 2026-08-29, DanCenter, based on moderately-sized houses (Skagen also has many much larger/luxury houses pricing well above this)
   weeks_rented_per_year: 18
   high_season_weeks: 8
 
 djursland:
-  high_season_week_price: null   # look up: postnr. 8400 / 8410 / 8500
-  low_season_week_price: null
+  high_season_week_price: 9650   # estimated (2.3x low season) - not independently checked
+  low_season_week_price: 4200    # checked 2026-08-29, DanCenter, median of houses ~76-98 m²
   weeks_rented_per_year: 18
   high_season_weeks: 8
 
 odsherred:
-  high_season_week_price: null   # look up: postnr. 4500 / 4560 / 4573 / 4581 / 4583
-  low_season_week_price: null
+  high_season_week_price: 10350  # estimated (2.3x low season) - not independently checked
+  low_season_week_price: 4500    # checked 2026-08-29, DanCenter, median of houses ~70-126 m²
   weeks_rented_per_year: 18
   high_season_weeks: 8
 
 nordsjaelland:
-  high_season_week_price: null   # look up: postnr. 3210 / 3220 / 3250 / 3360 / 3370
-  low_season_week_price: null
+  high_season_week_price: 12650  # estimated (2.3x low season) - not independently checked
+  low_season_week_price: 5500    # checked 2026-08-29, DanCenter - Nordsjælland runs noticeably pricier than the other areas (proximity to Copenhagen), wide spread between houses seen (~3,400-9,200 DKK)
   weeks_rented_per_year: 18
   high_season_weeks: 8
 
 falster:
-  high_season_week_price: null   # look up: postnr. 4873 / 4874
-  low_season_week_price: null
+  high_season_week_price: 10350  # estimated (2.3x low season) - not independently checked
+  low_season_week_price: 4500    # checked 2026-08-29, DanCenter, median of houses ~86-97 m² around Marielyst
   weeks_rented_per_year: 18
   high_season_weeks: 8
 
 bornholm:
-  high_season_week_price: null   # look up: postnr. 3700 / 3720 / 3730 / 3740 / 3770
-  low_season_week_price: null
+  high_season_week_price: 10350  # estimated (2.3x low season) - not independently checked
+  low_season_week_price: 4500    # checked 2026-08-29, DanCenter, median of ~7 houses ~50-117 m²
   weeks_rented_per_year: 18
   high_season_weeks: 8
