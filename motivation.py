@@ -13,6 +13,8 @@ overall composite score - see composite.py), then combined with fixed
 weights into one 0-100 number.
 """
 
+from datetime import datetime, timedelta, timezone
+
 MIN_ACTIVE_FOR_POSTNUMMER_STATS = 10
 
 # Internal weights for the four motivation signals. A judgement call -
@@ -42,6 +44,28 @@ def percentile_rank(values, value):
     less = sum(1 for v in sorted_values if v < value)
     less_or_equal = sum(1 for v in sorted_values if v <= value)
     return (less + less_or_equal) / (2 * n)
+
+
+def estimate_originally_listed_month(listing):
+    """Which month a listing was actually first put up for sale.
+
+    Deliberately NOT based on first_seen: that only records when this
+    tool first noticed the listing, which is wrong the moment a new area
+    is added, or for any listing this tool simply hadn't gotten around to
+    yet - a house for sale for a year would wrongly look freshly listed
+    today. Boliga's own dage_paa_markedet (days for sale) counts from the
+    real listing date regardless of when we started watching, so we work
+    backwards from that instead. Falls back to first_seen's month only if
+    dage_paa_markedet is missing.
+    """
+    days_on_market = listing.get("dage_paa_markedet")
+    if days_on_market is not None:
+        estimated_date = datetime.now(timezone.utc) - timedelta(days=days_on_market)
+        return estimated_date.month
+
+    if listing.get("first_seen"):
+        return int(listing["first_seen"][5:7])
+    return None
 
 
 def group_key_for_stats(listing, postnummer_counts):
@@ -89,8 +113,7 @@ def compute_motivation_scores(active_listings):
 
         relisted_signal = 1.0 if l.get("was_relisted") else 0.0
 
-        first_seen_month = int(l["first_seen"][5:7]) if l.get("first_seen") else None
-        off_season_signal = 1.0 if first_seen_month in OFF_SEASON_MONTHS else 0.0
+        off_season_signal = 1.0 if estimate_originally_listed_month(l) in OFF_SEASON_MONTHS else 0.0
 
         raw_score = (
             WEIGHT_LIGGETID * liggetid_pct

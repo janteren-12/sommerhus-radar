@@ -522,9 +522,13 @@
   }
 
   function isNew(listing) {
-    const seen = new Date(listing.first_seen);
-    const hoursAgo = (Date.now() - seen.getTime()) / (1000 * 60 * 60);
-    return hoursAgo <= NEW_WINDOW_HOURS;
+    // Boliga's own "days for sale" figure, not first_seen: first_seen only
+    // says when THIS TOOL first noticed the listing, which is wrong the
+    // moment a new area is added or the tool starts fresh - a house that's
+    // genuinely been for sale for a year would wrongly show as "NY" just
+    // because we only just started watching it. dage_paa_markedet is
+    // Boliga's own count and isn't affected by any of that.
+    return listing.dage_paa_markedet != null && listing.dage_paa_markedet <= 2;
   }
 
   function areaAverageTag(listing) {
@@ -779,7 +783,15 @@
       const drop = l => (l.prisaendring_pct != null && l.prisaendring_pct < 0) ? -l.prisaendring_pct : 0;
       sorted.sort((a, b) => drop(b) - drop(a));
     } else {
-      sorted.sort((a, b) => new Date(b.first_seen) - new Date(a.first_seen));
+      // "Newest" means newest on the market (Boliga's own days-for-sale
+      // count), not newest to this tool's tracking - see isNew() for why
+      // first_seen alone would be misleading here.
+      sorted.sort((a, b) => {
+        const daysA = a.dage_paa_markedet ?? Infinity;
+        const daysB = b.dage_paa_markedet ?? Infinity;
+        if (daysA !== daysB) return daysA - daysB;
+        return new Date(b.first_seen) - new Date(a.first_seen);
+      });
     }
     return sorted;
   }
