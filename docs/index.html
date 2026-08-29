@@ -99,13 +99,22 @@
   .price-filter label {
     font-size: 0.82rem;
     color: var(--text-muted);
-    display: flex;
-    justify-content: space-between;
   }
 
-  .price-filter input[type="range"] {
+  .price-filter input[type="number"] {
     width: 100%;
-    accent-color: var(--accent);
+    padding: 9px 10px;
+    border: 1px solid var(--border-faint);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background: var(--card-bg);
+    color: var(--text);
+    font-family: inherit;
+  }
+
+  .price-filter input[type="number"]:focus {
+    outline: none;
+    border-color: var(--accent);
   }
 
   .more-filters-toggle {
@@ -443,8 +452,8 @@
   <div class="controls">
     <div class="area-filters" id="area-filters"></div>
     <div class="price-filter">
-      <label><span>Maks pris</span><span id="price-value">Ingen grænse</span></label>
-      <input type="range" id="price-slider" min="0" max="10000000" step="100000" value="10000000">
+      <label for="price-input">Maks pris (kr)</label>
+      <input type="number" id="price-input" placeholder="Ingen grænse" step="100000" min="0" inputmode="numeric">
     </div>
 
     <button class="more-filters-toggle" id="more-filters-toggle" type="button">Flere filtre &darr;</button>
@@ -496,7 +505,7 @@
   let allListings = [];
   let areaStats = {};
   let activeArea = null; // null = all areas
-  let maxPrice = 10000000;
+  let maxPrice = Infinity;
   let maxKrPerM2 = 100000;
   let priceDropFilter = null; // null | "any" | 5 | 10 (percent)
   let maxDaysOnMarket = null; // null = no limit
@@ -879,21 +888,12 @@
     render();
   }
 
-  function setupPriceSlider() {
-    const slider = document.getElementById("price-slider");
-    const label = document.getElementById("price-value");
+  function setupPriceInput() {
+    const input = document.getElementById("price-input");
+    maxPrice = Infinity;
 
-    const prices = allListings.map(l => l.price).filter(p => p != null);
-    const highest = prices.length ? Math.max(...prices) : 10000000;
-    const sliderMax = Math.ceil(highest / 100000) * 100000;
-    slider.max = sliderMax;
-    slider.value = sliderMax;
-    maxPrice = sliderMax;
-    label.textContent = "Ingen grænse";
-
-    slider.addEventListener("input", () => {
-      maxPrice = Number(slider.value);
-      label.textContent = (maxPrice >= sliderMax) ? "Ingen grænse" : formatPrice(maxPrice);
+    input.addEventListener("input", () => {
+      maxPrice = input.value === "" ? Infinity : Number(input.value);
       render();
     });
   }
@@ -984,7 +984,7 @@
         "Sidst opdateret: " + formatTimestamp(data.last_updated);
       buildAreaFilters();
       setupSortRow();
-      setupPriceSlider();
+      setupPriceInput();
       setupMoreFilters();
       render();
     } catch (err) {
