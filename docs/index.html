@@ -623,6 +623,18 @@
       html += "<h4>Afkastberegning</h4><div class=\"comp-row\">Udfyld rental_benchmarks.yaml for dette område for at se et afkast.</div>";
     }
 
+    if (listing.bbr_checked) {
+      const bbrEntries = Object.entries(listing.bbr || {});
+      if (bbrEntries.length > 0) {
+        html += "<h4>Bygningsdata (BBR, via Boliga)</h4>";
+        bbrEntries.forEach(([title, value]) => {
+          html += `<div class="breakdown-row"><span>${title}</span><span>${value}</span></div>`;
+        });
+      } else {
+        html += "<h4>Bygningsdata (BBR, via Boliga)</h4><div class=\"comp-row\">Ingen BBR-oplysninger registreret for denne adresse endnu.</div>";
+      }
+    }
+
     html += `<div class="full-disclaimer">
       Scoren er et filter for hvor du bør bruge en lørdag - ikke en facitliste.
       Et stort negativt afvig fra modelprisen betyder som regel bare, at modellen

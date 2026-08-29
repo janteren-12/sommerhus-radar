@@ -2069,7 +2069,12 @@
         "mispricing_available": true,
         "nettoafkast_available": false
       },
-      "reason": "34% over modelpris, 4 dage på markedet"
+      "reason": "34% over modelpris, 4 dage på markedet",
+      "bbr": {
+        "Boligtype": "4",
+        "1. Etage": "8 m²"
+      },
+      "bbr_checked": true
     },
     {
       "id": 2360586,

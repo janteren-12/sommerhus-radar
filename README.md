@@ -50,6 +50,7 @@ history of what you've seen instead of it just vanishing.
 | `requirements.txt` | The Python packages everything needs. |
 | `vercel.json`, `.vercelignore` | Tell Vercel this is a static site living in `docs/`, not a Python app. |
 | `sold_cache.py` | Fetches sold-price comparables from Boliga. Run with `python sold_cache.py`. |
+| `bbr_enrich.py` | Adds official building-register (BBR) details to each listing, read off Boliga's own pages. |
 | `mispricing.py` | Fits the pricing model and predicts each listing's "fair" price. |
 | `coastal_distance.py` | How far a point is from the Danish coastline, in metres. |
 | `yield_calc.py` | The net rental yield calculation, as a standalone function. |
@@ -394,3 +395,52 @@ makes one request at a time. Separately, Boliga's *sold-search* endpoint
 rate limit - 5 requests per ~11 seconds, discovered by watching its
 `X-RateLimit-*` response headers - so that part paces itself accordingly
 and retries with a proper wait if it ever gets rate-limited anyway.
+
+## Phase 4: official building data (BBR)
+
+Each listing's expandable score panel can now also show a few facts
+straight from Denmark's official building register (BBR) - toilet and
+bathroom facilities, exterior wall material, roof material, and
+sometimes a renovation year, alongside byggeår/m² you already had from
+Boliga's normal listing data.
+
+**This is not a real BBR API integration.** Full BBR access goes through
+Datafordeler, which requires registering a service account - and that
+registration itself requires **MitID Erhverv**, Denmark's business digital
+ID. That's not something this project can set up on its own; it needs
+you personally, so it wasn't built. If you register for Datafordeler
+access yourself later and hand this project the API credentials as a
+secret, a proper integration could replace this.
+
+What's built instead: `bbr_enrich.py` reads the same public Boliga page
+your link already points to, and pulls out the same BBR-sourced fields
+Boliga itself renders there (server-rendered HTML, no JavaScript needed
+to read it, and no login for either you or this script). This is real
+official data, just borrowed from Boliga's own page rather than queried
+from BBR directly.
+
+**Coverage genuinely varies per listing.** Some houses show 5-6 fields,
+some show none at all - most often still-under-construction new builds,
+where BBR itself has nothing registered yet since the building doesn't
+physically exist in final form. This isn't a bug; it reflects the real
+state of the register for that address.
+
+**This runs on demand only - never automatically.** Fetching every
+listing's own page just to check for BBR data most of them won't even
+have would add real load for little benefit, so `bbr_enrich.py` isn't
+part of the hourly workflow at all. Instead, run it yourself for a
+specific listing you're actually curious about, or just ask in a Claude
+Code session and it'll be run for you:
+
+```
+python bbr_enrich.py --id 2360854
+python bbr_enrich.py --address "Pumavej 20"
+python bbr_enrich.py --all       # every active listing at once - slow
+                                  # (~1.5s each, so ~40 min for ~1,600
+                                  # listings) - only run this yourself if
+                                  # you actually want BBR data site-wide
+```
+
+Once fetched, a listing's BBR data is cached forever in `docs/data.json`
+(a house's wall material doesn't change overnight) and shows up in that
+listing's expandable score panel from then on.
