@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sommerhus Radar – Jylland</title>
+<title>Sommerhus Radar – Sjælland</title>
 <style>
   :root {
     --bg: #fafaf8;
@@ -519,10 +519,10 @@
 <body>
 <div class="page">
   <header>
-    <h1>Sommerhus Radar – Jylland</h1>
+    <h1>Sommerhus Radar – Sjælland</h1>
     <div class="updated" id="updated-line">Sidst opdateret: —</div>
     <a class="rentals-link" href="index.html">Se alle områder &rarr;</a>
-    <a class="rentals-link" href="sjaelland.html">Se kun Sjælland &rarr;</a>
+    <a class="rentals-link" href="jylland.html">Se kun Jylland &rarr;</a>
     <a class="rentals-link" href="rentals.html">Se udlejningsvirksomheder pr. område &rarr;</a>
     <a class="rentals-link" href="analyser.html">Analysér en ejendom &rarr;</a>
   </header>
@@ -627,10 +627,11 @@
 </div>
 
 <script>
-  // Jylland-only view: same rendering as index.html, just pre-filtered to
-  // the areas that are actually in Jutland - Bornholm, Falster, Odsherred
-  // and Nordsjælland are all Sjælland/islands, not Jylland.
-  const JYLLAND_AREAS = new Set(["blaavand", "ringkoebing", "fanoe", "roemoe", "jammerbugt", "skagen", "djursland"]);
+  // Sjælland-only view: same rendering as index.html, just pre-filtered to
+  // the areas actually on Sjælland. Falster and Bornholm are their own
+  // separate islands (not Sjælland itself), so they're left out here too -
+  // reachable via "Alle områder" instead.
+  const SJAELLAND_AREAS = new Set(["odsherred", "nordsjaelland"]);
 
   const NEW_WINDOW_HOURS = 48;
   // Below this, we don't bother showing an area-average comparison badge -
@@ -1269,7 +1270,7 @@
     try {
       const res = await fetch("data.json", { cache: "no-store" });
       const data = await res.json();
-      allListings = (data.listings || []).filter(l => JYLLAND_AREAS.has(l.area));
+      allListings = (data.listings || []).filter(l => SJAELLAND_AREAS.has(l.area));
       areaStats = data.area_stats || {};
       document.getElementById("updated-line").textContent =
         "Sidst opdateret: " + formatTimestamp(data.last_updated);

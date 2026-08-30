@@ -188,6 +188,21 @@
     background: var(--card-bg);
   }
 
+  /* A second, top-of-table scrollbar synced to the real one below - on a
+     tall table the native horizontal scrollbar only shows up at the very
+     bottom, which means scrolling sideways requires scrolling all the way
+     down first just to find it. */
+  .scroll-top-wrap {
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 16px;
+    margin-bottom: 6px;
+  }
+
+  .scroll-top-inner {
+    height: 1px;
+  }
+
   table.listing-table {
     border-collapse: collapse;
     width: 100%;
@@ -507,6 +522,7 @@
     <h1>Sommerhus Radar</h1>
     <div class="updated" id="updated-line">Sidst opdateret: —</div>
     <a class="rentals-link" href="jylland.html">Se kun Jylland &rarr;</a>
+    <a class="rentals-link" href="sjaelland.html">Se kun Sjælland &rarr;</a>
     <a class="rentals-link" href="rentals.html">Se udlejningsvirksomheder pr. område &rarr;</a>
     <a class="rentals-link" href="analyser.html">Analysér en ejendom &rarr;</a>
   </header>
@@ -544,6 +560,7 @@
 
   <section id="new-section" style="display:none;">
     <h2>Nye</h2>
+    <div class="scroll-top-wrap"><div class="scroll-top-inner"></div></div>
     <div class="table-wrap">
       <table class="listing-table">
         <thead>
@@ -565,6 +582,7 @@
 
   <section>
     <h2>Alle</h2>
+    <div class="scroll-top-wrap"><div class="scroll-top-inner"></div></div>
     <div class="table-wrap">
       <table class="listing-table">
         <thead>
@@ -587,6 +605,7 @@
 
   <section id="flagged-section" style="display:none;">
     <h2>Udelukket</h2>
+    <div class="scroll-top-wrap"><div class="scroll-top-inner"></div></div>
     <div class="table-wrap">
       <table class="listing-table">
         <thead>
@@ -976,6 +995,46 @@
     } else {
       flaggedSection.style.display = "none";
     }
+
+    refreshTopScrollWidths();
+  }
+
+  // A second scrollbar above each table, synced to the table's own
+  // horizontal scroll - see the .scroll-top-wrap CSS comment for why.
+  function setupTopScrollbars() {
+    document.querySelectorAll(".table-wrap").forEach(wrap => {
+      const top = wrap.previousElementSibling;
+      if (!top || !top.classList.contains("scroll-top-wrap")) return;
+      const inner = top.querySelector(".scroll-top-inner");
+      const table = wrap.querySelector("table");
+
+      wrap._syncTopScrollWidth = () => { inner.style.width = table.scrollWidth + "px"; };
+      wrap._syncTopScrollWidth();
+      window.addEventListener("resize", wrap._syncTopScrollWidth);
+
+      let syncing = false;
+      top.addEventListener("scroll", () => {
+        if (syncing) return;
+        syncing = true;
+        wrap.scrollLeft = top.scrollLeft;
+        syncing = false;
+      });
+      wrap.addEventListener("scroll", () => {
+        if (syncing) return;
+        syncing = true;
+        top.scrollLeft = wrap.scrollLeft;
+        syncing = false;
+      });
+    });
+  }
+
+  // Row content (addresses, badges) changes on every render() and can
+  // change how wide the table actually is, so the top scrollbar's inner
+  // spacer needs to be recalculated each time, not just once at startup.
+  function refreshTopScrollWidths() {
+    document.querySelectorAll(".table-wrap").forEach(wrap => {
+      if (wrap._syncTopScrollWidth) wrap._syncTopScrollWidth();
+    });
   }
 
   function buildAreaFilters() {
@@ -1215,6 +1274,7 @@
       setupMoreFilters();
       setupColumnSorting();
       setupColumnFilters();
+      setupTopScrollbars();
       render();
     } catch (err) {
       document.getElementById("updated-line").textContent =
