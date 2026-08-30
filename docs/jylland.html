@@ -566,7 +566,7 @@
         <thead>
           <tr>
             <th data-key="address">Adresse<span class="sort-arrow"></span></th>
-            <th data-key="area">Område<span class="sort-arrow"></span></th>
+            <th data-key="city">By<span class="sort-arrow"></span></th>
             <th class="num" data-key="m2">Areal (m²)<span class="sort-arrow"></span></th>
             <th class="num" data-key="price">Pris (kr.)<span class="sort-arrow"></span></th>
             <th class="num" data-key="krm2">Pris/m²<span class="sort-arrow"></span></th>
@@ -588,7 +588,7 @@
         <thead>
           <tr>
             <th data-key="address">Adresse<span class="sort-arrow"></span></th>
-            <th data-key="area">Område<span class="sort-arrow"></span></th>
+            <th data-key="city">By<span class="sort-arrow"></span></th>
             <th class="num" data-key="m2">Areal (m²)<span class="sort-arrow"></span><button type="button" class="filter-icon" data-filter-key="m2" title="Filtrér areal">▾</button></th>
             <th class="num" data-key="price">Pris (kr.)<span class="sort-arrow"></span></th>
             <th class="num" data-key="krm2">Pris/m²<span class="sort-arrow"></span></th>
@@ -611,7 +611,7 @@
         <thead>
           <tr>
             <th data-key="address">Adresse<span class="sort-arrow"></span></th>
-            <th data-key="area">Område<span class="sort-arrow"></span></th>
+            <th data-key="city">By<span class="sort-arrow"></span></th>
             <th class="num" data-key="m2">Areal (m²)<span class="sort-arrow"></span></th>
             <th class="num" data-key="price">Pris (kr.)<span class="sort-arrow"></span></th>
             <th class="num" data-key="krm2">Pris/m²<span class="sort-arrow"></span></th>
@@ -845,7 +845,7 @@
 
     tr.innerHTML = `
       <td>${listing.address || ""}, ${listing.postnummer || ""} ${listing.city || ""}${badges.join("")}</td>
-      <td>${listing.area_label || ""}</td>
+      <td>${listing.city || ""}</td>
       <td class="num">${formatNumber(listing.m2)}</td>
       <td class="num">${formatPrice(listing.price)}</td>
       <td class="num">${krPerM2Html}</td>
@@ -876,7 +876,7 @@
   function getSortValue(l, key) {
     switch (key) {
       case "address": return `${l.address || ""}, ${l.postnummer || ""} ${l.city || ""}`;
-      case "area": return l.area_label || l.area || "";
+      case "city": return l.city || "";
       case "m2": return l.m2;
       case "price": return l.price;
       case "krm2": return l.kr_per_m2;
