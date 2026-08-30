@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-30T10:24:23.353829+00:00",
+  "last_updated": "2026-08-30T15:17:03.617281+00:00",
   "area_stats": {
     "ringkoebing": {
       "avg_kr_per_m2": 31337,
@@ -180876,5 +180876,5 @@
       "sold_or_removed": true
     }
   ],
-  "scoring_last_updated": "2026-08-30T10:24:23.353829+00:00"
+  "scoring_last_updated": "2026-08-30T15:17:03.617281+00:00"
 }
