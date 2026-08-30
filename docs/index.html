@@ -202,12 +202,122 @@
   }
 
   .listing-table th {
+    position: relative;
     color: var(--text-muted);
     font-weight: 700;
     font-size: 0.66rem;
     text-transform: uppercase;
     letter-spacing: 0.04em;
     border-bottom: 1px solid var(--border-faint);
+  }
+
+  .listing-table th[data-key] {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .listing-table th[data-key]:hover {
+    color: var(--accent);
+  }
+
+  .sort-arrow {
+    display: inline-block;
+    margin-left: 2px;
+  }
+
+  .filter-icon {
+    border: none;
+    background: none;
+    color: var(--text-muted);
+    opacity: 0.55;
+    font-size: 0.62rem;
+    padding: 2px 3px;
+    margin-left: 3px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .filter-icon:hover {
+    opacity: 1;
+    color: var(--accent);
+  }
+
+  .filter-icon.active {
+    opacity: 1;
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .filter-popover {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 6px;
+    z-index: 20;
+    background: var(--card-bg);
+    border: 1px solid var(--border-faint);
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.14);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--text);
+    white-space: normal;
+    min-width: 150px;
+    cursor: default;
+  }
+
+  .filter-popover .popover-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .filter-popover label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .filter-popover input[type="number"] {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid var(--border-faint);
+    border-radius: 6px;
+    font-size: 0.82rem;
+    background: var(--bg);
+    color: var(--text);
+    font-family: inherit;
+  }
+
+  .filter-popover .popover-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 2px;
+  }
+
+  .filter-popover button.apply-btn, .filter-popover button.clear-btn {
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .filter-popover button.apply-btn {
+    background: var(--accent);
+    color: white;
+  }
+
+  .filter-popover button.clear-btn {
+    background: none;
+    color: var(--text-muted);
   }
 
   .listing-table td {
@@ -453,14 +563,14 @@
       <table class="listing-table">
         <thead>
           <tr>
-            <th>Adresse</th>
-            <th>Område</th>
-            <th class="num">Areal (m²)</th>
-            <th class="num">Pris (kr.)</th>
-            <th class="num">Pris/m²</th>
-            <th class="num">Score</th>
-            <th class="num">Afkast %</th>
-            <th class="num">Dage på markedet</th>
+            <th data-key="address">Adresse<span class="sort-arrow"></span></th>
+            <th data-key="area">Område<span class="sort-arrow"></span></th>
+            <th class="num" data-key="m2">Areal (m²)<span class="sort-arrow"></span></th>
+            <th class="num" data-key="price">Pris (kr.)<span class="sort-arrow"></span></th>
+            <th class="num" data-key="krm2">Pris/m²<span class="sort-arrow"></span></th>
+            <th class="num" data-key="score">Score<span class="sort-arrow"></span></th>
+            <th class="num" data-key="yield">Afkast %<span class="sort-arrow"></span></th>
+            <th class="num" data-key="days">Dage på markedet<span class="sort-arrow"></span></th>
           </tr>
         </thead>
         <tbody id="new-rows"></tbody>
@@ -474,14 +584,14 @@
       <table class="listing-table">
         <thead>
           <tr>
-            <th>Adresse</th>
-            <th>Område</th>
-            <th class="num">Areal (m²)</th>
-            <th class="num">Pris (kr.)</th>
-            <th class="num">Pris/m²</th>
-            <th class="num">Score</th>
-            <th class="num">Afkast %</th>
-            <th class="num">Dage på markedet</th>
+            <th data-key="address">Adresse<span class="sort-arrow"></span></th>
+            <th data-key="area">Område<span class="sort-arrow"></span></th>
+            <th class="num" data-key="m2">Areal (m²)<span class="sort-arrow"></span><button type="button" class="filter-icon" data-filter-key="m2" title="Filtrér areal">▾</button></th>
+            <th class="num" data-key="price">Pris (kr.)<span class="sort-arrow"></span></th>
+            <th class="num" data-key="krm2">Pris/m²<span class="sort-arrow"></span></th>
+            <th class="num" data-key="score">Score<span class="sort-arrow"></span><button type="button" class="filter-icon" data-filter-key="score" title="Filtrér score">▾</button></th>
+            <th class="num" data-key="yield">Afkast %<span class="sort-arrow"></span><button type="button" class="filter-icon" data-filter-key="yield" title="Filtrér afkast">▾</button></th>
+            <th class="num" data-key="days">Dage på markedet<span class="sort-arrow"></span></th>
           </tr>
         </thead>
         <tbody id="all-rows"></tbody>
@@ -496,14 +606,14 @@
       <table class="listing-table">
         <thead>
           <tr>
-            <th>Adresse</th>
-            <th>Område</th>
-            <th class="num">Areal (m²)</th>
-            <th class="num">Pris (kr.)</th>
-            <th class="num">Pris/m²</th>
-            <th class="num">Score</th>
-            <th class="num">Afkast %</th>
-            <th class="num">Dage på markedet</th>
+            <th data-key="address">Adresse<span class="sort-arrow"></span></th>
+            <th data-key="area">Område<span class="sort-arrow"></span></th>
+            <th class="num" data-key="m2">Areal (m²)<span class="sort-arrow"></span></th>
+            <th class="num" data-key="price">Pris (kr.)<span class="sort-arrow"></span></th>
+            <th class="num" data-key="krm2">Pris/m²<span class="sort-arrow"></span></th>
+            <th class="num" data-key="score">Score<span class="sort-arrow"></span></th>
+            <th class="num" data-key="yield">Afkast %<span class="sort-arrow"></span></th>
+            <th class="num" data-key="days">Dage på markedet<span class="sort-arrow"></span></th>
           </tr>
         </thead>
         <tbody id="flagged-rows"></tbody>
@@ -528,6 +638,8 @@
   let maxDaysOnMarket = null; // null = no limit
   let haandvaerkerFilter = null; // null | true (show only) | false (hide)
   let currentSort = "newest"; // newest | score | yield | pricedrop
+  let columnSort = null; // { key, dir: "asc"|"desc" } - set by clicking a column header, overrides currentSort
+  let columnFilters = {}; // { [key]: { min, max } } - set via the header filter icons (Areal, Score, Afkast %)
 
   function formatPrice(kr) {
     if (kr == null) return "–";
@@ -745,11 +857,52 @@
     return tr;
   }
 
+  // Shared by both sorting (which column value to compare) and the header
+  // filter popovers (which value to check against min/max) - keeps both
+  // features reading the same field per column key.
+  function getSortValue(l, key) {
+    switch (key) {
+      case "address": return `${l.address || ""}, ${l.postnummer || ""} ${l.city || ""}`;
+      case "area": return l.area_label || l.area || "";
+      case "m2": return l.m2;
+      case "price": return l.price;
+      case "krm2": return l.kr_per_m2;
+      case "score": return l.score;
+      case "yield": return l.nettoafkast ? l.nettoafkast.nettoafkast_pct : null;
+      case "days": return l.dage_paa_markedet;
+      default: return null;
+    }
+  }
+
+  // Missing values always sort to the bottom regardless of direction -
+  // otherwise "ascending" would put every house with an unknown score
+  // or yield at the very top, which reads as broken rather than sorted.
+  function compareValues(av, bv, dir) {
+    const aMissing = av == null;
+    const bMissing = bv == null;
+    if (aMissing && bMissing) return 0;
+    if (aMissing) return 1;
+    if (bMissing) return -1;
+    const cmp = typeof av === "string" ? av.localeCompare(bv, "da") : av - bv;
+    return dir === "asc" ? cmp : -cmp;
+  }
+
+  function passesColumnFilters(l) {
+    for (const key in columnFilters) {
+      const range = columnFilters[key];
+      const val = getSortValue(l, key);
+      if (range.min != null && (val == null || val < range.min)) return false;
+      if (range.max != null && (val == null || val > range.max)) return false;
+    }
+    return true;
+  }
+
   function passesSharedFilters(l) {
     if (l.sold_or_removed) return false;
     if (activeArea && l.area !== activeArea) return false;
     if (l.price != null && l.price > maxPrice) return false;
     if (l.kr_per_m2 != null && l.kr_per_m2 > maxKrPerM2) return false;
+    if (!passesColumnFilters(l)) return false;
 
     if (priceDropFilter != null) {
       const drop = l.prisaendring_pct != null ? -l.prisaendring_pct : 0;
@@ -777,6 +930,10 @@
 
   function sortListings(list) {
     const sorted = list.slice();
+    if (columnSort) {
+      sorted.sort((a, b) => compareValues(getSortValue(a, columnSort.key), getSortValue(b, columnSort.key), columnSort.dir));
+      return sorted;
+    }
     if (currentSort === "score") {
       sorted.sort((a, b) => (b.score ?? -1) - (a.score ?? -1));
     } else if (currentSort === "yield") {
@@ -915,7 +1072,110 @@
       { label: "Højeste score", value: "score" },
       { label: "Bedste afkast", value: "yield" },
       { label: "Størst prisnedslag", value: "pricedrop" },
-    ], value => { currentSort = value; });
+    ], value => {
+      currentSort = value;
+      columnSort = null; // a preset button overrides any column-header sort
+      updateHeaderArrows();
+    });
+  }
+
+  // Excel-style: click a column header to sort by it, click again to flip
+  // direction. Works across all three tables (Nye/Alle/Udelukket) since
+  // they share the same data-key headers and the same global sort state.
+  function updateHeaderArrows() {
+    document.querySelectorAll(".sort-arrow").forEach(arrowEl => {
+      const th = arrowEl.closest("th");
+      const key = th.dataset.key;
+      if (columnSort && columnSort.key === key) {
+        arrowEl.textContent = columnSort.dir === "asc" ? " ▲" : " ▼";
+      } else {
+        arrowEl.textContent = "";
+      }
+    });
+  }
+
+  function setupColumnSorting() {
+    document.querySelectorAll("th[data-key]").forEach(th => {
+      th.addEventListener("click", (e) => {
+        if (e.target.closest(".filter-icon") || e.target.closest(".filter-popover")) return;
+        const key = th.dataset.key;
+        if (columnSort && columnSort.key === key) {
+          columnSort = { key, dir: columnSort.dir === "asc" ? "desc" : "asc" };
+        } else {
+          columnSort = { key, dir: "asc" };
+        }
+        document.querySelectorAll("#sort-row .area-btn").forEach(b => b.classList.remove("active"));
+        updateHeaderArrows();
+        render();
+      });
+    });
+  }
+
+  // Excel-style number filter popovers on the Areal/Score/Afkast headers -
+  // the other numeric columns (Pris, Pris/m², Dage på markedet) already
+  // have a dedicated control elsewhere (the price box or "Flere filtre"),
+  // so a second, overlapping filter for those would just be confusing.
+  function closeAllFilterPopovers() {
+    document.querySelectorAll(".filter-popover").forEach(p => p.remove());
+  }
+
+  function updateFilterIconStates() {
+    document.querySelectorAll(".filter-icon").forEach(btn => {
+      const key = btn.dataset.filterKey;
+      btn.classList.toggle("active", !!columnFilters[key]);
+    });
+  }
+
+  function openFilterPopover(key, anchorBtn) {
+    const current = columnFilters[key] || {};
+    const popover = document.createElement("div");
+    popover.className = "filter-popover";
+    popover.innerHTML = `
+      <div class="popover-row"><label>Min</label><input type="number" class="pf-min" value="${current.min ?? ""}"></div>
+      <div class="popover-row"><label>Maks</label><input type="number" class="pf-max" value="${current.max ?? ""}"></div>
+      <div class="popover-actions">
+        <button type="button" class="clear-btn">Nulstil</button>
+        <button type="button" class="apply-btn">Anvend</button>
+      </div>
+    `;
+    anchorBtn.closest("th").appendChild(popover);
+    popover.addEventListener("click", e => e.stopPropagation());
+
+    popover.querySelector(".apply-btn").addEventListener("click", () => {
+      const minVal = popover.querySelector(".pf-min").value;
+      const maxVal = popover.querySelector(".pf-max").value;
+      if (minVal === "" && maxVal === "") {
+        delete columnFilters[key];
+      } else {
+        columnFilters[key] = {
+          min: minVal === "" ? null : Number(minVal),
+          max: maxVal === "" ? null : Number(maxVal),
+        };
+      }
+      updateFilterIconStates();
+      closeAllFilterPopovers();
+      render();
+    });
+
+    popover.querySelector(".clear-btn").addEventListener("click", () => {
+      delete columnFilters[key];
+      updateFilterIconStates();
+      closeAllFilterPopovers();
+      render();
+    });
+  }
+
+  function setupColumnFilters() {
+    document.querySelectorAll(".filter-icon").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const key = btn.dataset.filterKey;
+        const alreadyOpenForThisButton = btn.closest("th").querySelector(".filter-popover");
+        closeAllFilterPopovers();
+        if (!alreadyOpenForThisButton) openFilterPopover(key, btn);
+      });
+    });
+    document.addEventListener("click", closeAllFilterPopovers);
   }
 
   function setupMoreFilters() {
@@ -961,6 +1221,8 @@
       setupSortRow();
       setupPriceInput();
       setupMoreFilters();
+      setupColumnSorting();
+      setupColumnFilters();
       render();
     } catch (err) {
       document.getElementById("updated-line").textContent =
