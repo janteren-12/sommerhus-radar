@@ -272,52 +272,36 @@
     cursor: default;
   }
 
-  .filter-popover .popover-row {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .filter-popover label {
-    font-size: 0.7rem;
-    color: var(--text-muted);
-  }
-
   .filter-popover input[type="number"] {
     width: 100%;
-    padding: 6px 8px;
-    border: 1px solid var(--border-faint);
+    padding: 8px 10px;
+    border: none;
     border-radius: 6px;
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     background: var(--bg);
     color: var(--text);
     font-family: inherit;
   }
 
-  .filter-popover .popover-actions {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    margin-top: 2px;
-  }
-
-  .filter-popover button.apply-btn, .filter-popover button.clear-btn {
-    border: none;
-    border-radius: 6px;
-    padding: 6px 10px;
-    font-size: 0.76rem;
-    font-weight: 600;
-    cursor: pointer;
-  }
-
-  .filter-popover button.apply-btn {
-    background: var(--accent);
-    color: white;
+  .filter-popover input[type="number"]::placeholder {
+    color: var(--text-muted);
   }
 
   .filter-popover button.clear-btn {
-    background: none;
-    color: var(--text-muted);
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .filter-popover button.clear-btn:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
   }
 
   .listing-table td {
@@ -709,6 +693,17 @@
       html += `<div class="no-score-note">${listing.reason || "Ikke rangeret"}</div>`;
     }
 
+    // Shown first, right under the score, because this is the fastest way
+    // to sanity-check the model's price estimate against real sales - the
+    // whole point of a "hvor bør jeg bruge en lørdag" filter.
+    if (mis && mis.comparables && mis.comparables.length > 0) {
+      html += "<h4>5 nærmeste sammenlignelige salg</h4>";
+      mis.comparables.forEach(c => {
+        const soldDate = c.sold_date ? c.sold_date.slice(0, 10) : "";
+        html += `<div class="comp-row"><span>${c.address || ""} (${c.distance_km} km)</span><span>${formatPrice(c.price)}, ${soldDate}</span></div>`;
+      });
+    }
+
     const gridFields = [
       ["Grundareal", listing.grund_m2 != null ? `${formatNumber(listing.grund_m2)} m²` : ""],
       ["Byggeår", listing.byggeaar || ""],
@@ -759,13 +754,6 @@
       html += `<div class="breakdown-row"><span>Afstand til kyst</span><span>${formatNumber(mis.distance_to_coast_m)} m</span></div>`;
       if (mis.pooled_with_area) {
         html += `<div class="breakdown-row"><span colspan="2">(Slået sammen med resten af området - for få salg i lige netop dette postnummer)</span></div>`;
-      }
-      if (mis.comparables && mis.comparables.length > 0) {
-        html += "<h4>5 nærmeste sammenlignelige salg</h4>";
-        mis.comparables.forEach(c => {
-          const soldDate = c.sold_date ? c.sold_date.slice(0, 10) : "";
-          html += `<div class="comp-row"><span>${c.address || ""} (${c.distance_km} km)</span><span>${formatPrice(c.price)}, ${soldDate}</span></div>`;
-        });
       }
     } else {
       html += "<h4>Prismodel</h4><div class=\"comp-row\">Ikke nok salgsdata for dette område endnu.</div>";
@@ -1131,19 +1119,20 @@
     const popover = document.createElement("div");
     popover.className = "filter-popover";
     popover.innerHTML = `
-      <div class="popover-row"><label>Min</label><input type="number" class="pf-min" value="${current.min ?? ""}"></div>
-      <div class="popover-row"><label>Maks</label><input type="number" class="pf-max" value="${current.max ?? ""}"></div>
-      <div class="popover-actions">
-        <button type="button" class="clear-btn">Nulstil</button>
-        <button type="button" class="apply-btn">Anvend</button>
-      </div>
+      <input type="number" class="pf-min" placeholder="Min" value="${current.min ?? ""}">
+      <input type="number" class="pf-max" placeholder="Max" value="${current.max ?? ""}">
+      <button type="button" class="clear-btn">Ryd</button>
     `;
     anchorBtn.closest("th").appendChild(popover);
     popover.addEventListener("click", e => e.stopPropagation());
 
-    popover.querySelector(".apply-btn").addEventListener("click", () => {
-      const minVal = popover.querySelector(".pf-min").value;
-      const maxVal = popover.querySelector(".pf-max").value;
+    const minInput = popover.querySelector(".pf-min");
+    const maxInput = popover.querySelector(".pf-max");
+
+    // Applies as you type - no separate "apply" step.
+    const applyFromInputs = () => {
+      const minVal = minInput.value;
+      const maxVal = maxInput.value;
       if (minVal === "" && maxVal === "") {
         delete columnFilters[key];
       } else {
@@ -1153,14 +1142,16 @@
         };
       }
       updateFilterIconStates();
-      closeAllFilterPopovers();
       render();
-    });
+    };
+    minInput.addEventListener("input", applyFromInputs);
+    maxInput.addEventListener("input", applyFromInputs);
 
     popover.querySelector(".clear-btn").addEventListener("click", () => {
+      minInput.value = "";
+      maxInput.value = "";
       delete columnFilters[key];
       updateFilterIconStates();
-      closeAllFilterPopovers();
       render();
     });
   }
