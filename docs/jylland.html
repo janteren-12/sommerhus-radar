@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sommerhus Radar</title>
+<title>Sommerhus Radar – Jylland</title>
 <style>
   :root {
     --bg: #fafaf8;
@@ -504,9 +504,9 @@
 <body>
 <div class="page">
   <header>
-    <h1>Sommerhus Radar</h1>
+    <h1>Sommerhus Radar – Jylland</h1>
     <div class="updated" id="updated-line">Sidst opdateret: —</div>
-    <a class="rentals-link" href="jylland.html">Se kun Jylland &rarr;</a>
+    <a class="rentals-link" href="index.html">Se alle områder (inkl. Sjælland og Bornholm) &rarr;</a>
     <a class="rentals-link" href="rentals.html">Se udlejningsvirksomheder pr. område &rarr;</a>
     <a class="rentals-link" href="analyser.html">Analysér en ejendom &rarr;</a>
   </header>
@@ -608,6 +608,11 @@
 </div>
 
 <script>
+  // Jylland-only view: same rendering as index.html, just pre-filtered to
+  // the areas that are actually in Jutland - Bornholm, Falster, Odsherred
+  // and Nordsjælland are all Sjælland/islands, not Jylland.
+  const JYLLAND_AREAS = new Set(["blaavand", "ringkoebing", "fanoe", "roemoe", "jammerbugt", "skagen", "djursland"]);
+
   const NEW_WINDOW_HOURS = 48;
   // Below this, we don't bother showing an area-average comparison badge -
   // it's not a meaningful enough difference to call out.
@@ -1205,7 +1210,7 @@
     try {
       const res = await fetch("data.json", { cache: "no-store" });
       const data = await res.json();
-      allListings = data.listings || [];
+      allListings = (data.listings || []).filter(l => JYLLAND_AREAS.has(l.area));
       areaStats = data.area_stats || {};
       document.getElementById("updated-line").textContent =
         "Sidst opdateret: " + formatTimestamp(data.last_updated);
