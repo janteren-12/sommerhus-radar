@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-01T01:09:31.205946+00:00",
+  "last_updated": "2026-09-01T07:35:09.740594+00:00",
   "company_labels": {
     "dancenter": "DanCenter",
     "novasol": "Novasol",
@@ -193,7 +193,7 @@
       "companies": {
         "dancenter": {
           "present": true,
-          "count": 188,
+          "count": 189,
           "url": "https://www.dancenter.dk/sommerhus/ostjylland/djursland-mols/"
         },
         "novasol": {
