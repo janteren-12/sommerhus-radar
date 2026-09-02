@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-02T13:28:49.288729+00:00",
+  "last_updated": "2026-09-02T17:48:20.998974+00:00",
   "company_labels": {
     "dancenter": "DanCenter",
     "novasol": "Novasol",
@@ -42,7 +42,7 @@
       "area_label": "Ringkøbing",
       "companies": {
         "dancenter": {
-          "present": false,
+          "present": true,
           "count": null,
           "url": "https://www.dancenter.dk/sommerhus/vestjylland/ringkobing-fjord/"
         },
