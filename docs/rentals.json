@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-03T03:51:45.062756+00:00",
+  "last_updated": "2026-09-03T08:48:47.729204+00:00",
   "company_labels": {
     "dancenter": "DanCenter",
     "novasol": "Novasol",
@@ -13,7 +13,7 @@
       "companies": {
         "dancenter": {
           "present": true,
-          "count": null,
+          "count": 66,
           "url": "https://www.dancenter.dk/sommerhus/vestjylland-syd/sydlige-vestkyst/blavand/"
         },
         "novasol": {
@@ -43,7 +43,7 @@
       "companies": {
         "dancenter": {
           "present": true,
-          "count": null,
+          "count": 185,
           "url": "https://www.dancenter.dk/sommerhus/vestjylland/ringkobing-fjord/"
         },
         "novasol": {
@@ -73,7 +73,7 @@
       "companies": {
         "dancenter": {
           "present": true,
-          "count": null,
+          "count": 64,
           "url": "https://www.dancenter.dk/sommerhus/vestjylland-syd/fano/"
         },
         "novasol": {
@@ -103,7 +103,7 @@
       "companies": {
         "dancenter": {
           "present": true,
-          "count": null,
+          "count": 140,
           "url": "https://www.dancenter.dk/sommerhus/vestjylland-syd/romo-mando/"
         },
         "novasol": {
@@ -133,7 +133,7 @@
       "companies": {
         "dancenter": {
           "present": true,
-          "count": null,
+          "count": 531,
           "url": "https://www.dancenter.dk/sommerhus/nordjylland/jammerbugten/"
         },
         "novasol": {
@@ -163,7 +163,7 @@
       "companies": {
         "dancenter": {
           "present": true,
-          "count": null,
+          "count": 223,
           "url": "https://www.dancenter.dk/sommerhus/nordjylland/skagen-omraadet/"
         },
         "novasol": {
@@ -193,7 +193,7 @@
       "companies": {
         "dancenter": {
           "present": true,
-          "count": null,
+          "count": 189,
           "url": "https://www.dancenter.dk/sommerhus/ostjylland/djursland-mols/"
         },
         "novasol": {
@@ -223,7 +223,7 @@
       "companies": {
         "dancenter": {
           "present": true,
-          "count": null,
+          "count": 171,
           "url": "https://www.dancenter.dk/sommerhus/sjaelland/nordvestsjaelland/"
         },
         "novasol": {
@@ -253,7 +253,7 @@
       "companies": {
         "dancenter": {
           "present": true,
-          "count": null,
+          "count": 296,
           "url": "https://www.dancenter.dk/sommerhus/sjaelland/nordsjaelland-ostsjaelland/"
         },
         "novasol": {
@@ -283,7 +283,7 @@
       "companies": {
         "dancenter": {
           "present": true,
-          "count": null,
+          "count": 250,
           "url": "https://www.dancenter.dk/sommerhus/falster/"
         },
         "novasol": {
@@ -313,7 +313,7 @@
       "companies": {
         "dancenter": {
           "present": true,
-          "count": null,
+          "count": 229,
           "url": "https://www.dancenter.dk/sommerhus/bornholm/"
         },
         "novasol": {
