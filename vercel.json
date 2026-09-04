@@ -1,4 +1,9 @@
 {
   "framework": null,
-  "outputDirectory": "docs"
+  "outputDirectory": "docs",
+  "functions": {
+    "api/deep_analyse.py": {
+      "maxDuration": 300
+    }
+  }
 }
