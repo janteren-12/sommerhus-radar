@@ -106,6 +106,71 @@
     margin-bottom: 5px;
   }
 
+  .group-label {
+    display: block;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .link-btn {
+    background: none;
+    border: none;
+    color: var(--link);
+    font-family: "Archivo", sans-serif;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    padding: 2px 0;
+    cursor: pointer;
+  }
+
+  .link-btn:hover { color: var(--accent); }
+
+  .reno-item-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .reno-item-row input[type="text"] {
+    flex: 1.5;
+    padding: 8px 10px;
+    border: 1px solid var(--border-faint);
+    border-radius: 1px;
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 0.88rem;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .reno-item-row input[type="number"] {
+    flex: 1;
+    padding: 8px 10px;
+    border: 1px solid var(--border-faint);
+    border-radius: 1px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.88rem;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .reno-item-row .remove-btn {
+    background: none;
+    border: none;
+    color: var(--warn);
+    font-size: 1.1rem;
+    line-height: 1;
+    padding: 6px 4px;
+    cursor: pointer;
+  }
+
   .field input, .field select {
     width: 100%;
     padding: 9px 10px;
@@ -269,6 +334,16 @@
     font-size: 0.85rem;
     color: var(--text-muted);
     margin-bottom: 16px;
+  }
+
+  #brrr-metrics.metrics-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 520px) {
+    #brrr-metrics.metrics-grid {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   .metrics-grid {
@@ -600,6 +675,41 @@
     </details>
 
     <button class="analyse-btn" id="analyse-btn" type="button">Analysér nu</button>
+  </div>
+
+  <div class="card">
+    <h2>Istandsættelse &amp; value-add (BRRR)</h2>
+    <div class="intro" style="margin-bottom:14px;">
+      Regn renovering om til værdiskabelse, refinansiering og
+      kontantafkast - som ved en klassisk BRRR (Buy, Rehab, Rent,
+      Refinance). Genbruger rente, lånets løbetid og udbetaling fra
+      "Ejendommens tal" ovenfor.
+    </div>
+
+    <div class="group-label">Istandsættelse</div>
+    <div id="reno-items"></div>
+    <button type="button" class="link-btn" id="add-reno-item">+ Tilføj post</button>
+
+    <div class="breakdown-row total" style="margin-top:10px;">
+      <span>Renovering i alt</span><span id="reno-total">0 kr</span>
+    </div>
+
+    <div class="field" style="margin-top:16px;">
+      <label>Vurdering efter renovering (ARV)</label>
+      <input type="number" id="arv">
+    </div>
+    <div class="field">
+      <label>Leje efter renovering (kr/md)</label>
+      <input type="number" id="leje-efter-reno" value="12000">
+    </div>
+    <div class="field">
+      <label>Belåning ved refinansiering (%)</label>
+      <input type="number" id="refi-ltv-pct" value="80">
+    </div>
+
+    <div class="group-label" style="margin-top:20px;">Efter renovering</div>
+    <div class="metrics-grid" id="brrr-metrics"></div>
+    <div class="disclaimer" id="brrr-note"></div>
   </div>
 
   <div class="card">
@@ -1128,6 +1238,132 @@
     const result = runAnalysis(inp);
     renderResults(inp, result);
   });
+
+  // ---------- Istandsættelse & value-add (BRRR) ----------
+  // Buy, Rehab, Rent, Refinance: renovate a property up to a higher
+  // appraised value (ARV), then refinance against that new value to pull
+  // some or all of the original capital back out for the next deal.
+  // Reuses this page's rate/loan-term/down-payment fields rather than
+  // asking for them a second time.
+
+  let renoItems = [
+    { name: 'Køkken', cost: 0 },
+    { name: 'Bad', cost: 0 },
+    { name: 'Maling & gulv', cost: 0 },
+  ];
+
+  function renoTotal() {
+    return renoItems.reduce((sum, item) => sum + (Number(item.cost) || 0), 0);
+  }
+
+  function renderRenoItems() {
+    const container = document.getElementById('reno-items');
+    container.innerHTML = '';
+    renoItems.forEach((item, i) => {
+      const row = document.createElement('div');
+      row.className = 'reno-item-row';
+      row.innerHTML = `
+        <input type="text" class="reno-name" data-i="${i}" value="${item.name}" placeholder="Post">
+        <input type="number" class="reno-cost" data-i="${i}" value="${item.cost}" placeholder="kr">
+        <button type="button" class="remove-btn" data-i="${i}" aria-label="Fjern post" title="Fjern post">&times;</button>
+      `;
+      container.appendChild(row);
+    });
+  }
+
+  function computeBRRR() {
+    const price = Number(document.getElementById('price').value) || 0;
+    const downPaymentPct = Number(document.getElementById('down-payment-pct').value) || 0;
+    const ratePct = Number(document.getElementById('rate-pct').value) || 0;
+    const loanTermYears = Number(document.getElementById('loan-term').value) || 30;
+    const fasteUdgifterMd = Number(document.getElementById('faste-udgifter-md').value) || 0;
+
+    const reno = renoTotal();
+    const arv = Number(document.getElementById('arv').value) || 0;
+    const lejeEfterReno = Number(document.getElementById('leje-efter-reno').value) || 0;
+    const refiLtvPct = Number(document.getElementById('refi-ltv-pct').value) || 0;
+
+    const originalLoan = price * (1 - downPaymentPct / 100);
+    const totalInvested = price * (downPaymentPct / 100) + reno;
+    const refiLoan = arv * (refiLtvPct / 100);
+    const cashExtracted = Math.max(0, refiLoan - originalLoan);
+    const valueCreated = arv - price - reno;
+    const tiedCapital = Math.max(0, totalInvested - cashExtracted);
+    const capitalRecycledPct = totalInvested > 0 ? cashExtracted / totalInvested : 0;
+    const newPayment = monthlyMortgagePayment(refiLoan, ratePct, loanTermYears);
+
+    // Post-reno operating estimate, consistent with the langtid model used
+    // above: rent minus fixed monthly costs minus a maintenance reserve
+    // (8% of gross rent/year, this page's langtid default).
+    const annualRent = lejeEfterReno * 12;
+    const noi = annualRent - (fasteUdgifterMd * 12) - (annualRent * 0.08);
+    const cashFlowMonthly = (noi - newPayment * 12) / 12;
+    const cashOnCashBase = tiedCapital > 0 ? tiedCapital : totalInvested;
+    const cashOnCash = cashOnCashBase > 0 ? (cashFlowMonthly * 12) / cashOnCashBase : null;
+
+    return {
+      reno, arv, refiLoan, cashExtracted, valueCreated, tiedCapital,
+      capitalRecycledPct, newPayment, cashFlowMonthly, cashOnCash, totalInvested,
+    };
+  }
+
+  function renderBRRR() {
+    document.getElementById('reno-total').textContent = fmtKr(renoTotal());
+
+    const b = computeBRRR();
+    const cashFlowCls = b.cashFlowMonthly >= 0 ? 'good' : 'bad';
+    const cocCls = b.cashOnCash == null ? '' : (b.cashOnCash >= 0.05 ? 'good' : b.cashOnCash >= 0 ? 'warn' : 'bad');
+
+    document.getElementById('brrr-metrics').innerHTML = [
+      metricTile('Værdiskabelse', fmtKr(b.valueCreated), b.valueCreated > 0 ? 'good' : ''),
+      metricTile('Nyt lån (refi)', fmtKr(b.refiLoan)),
+      metricTile('Udtrukket kapital', fmtKr(b.cashExtracted), b.cashExtracted > 0 ? 'good' : ''),
+      metricTile('Bundet kapital', fmtKr(b.tiedCapital)),
+      metricTile('Kapital genbrugt', fmtPct(b.capitalRecycledPct, 0)),
+      metricTile('Cash-on-cash', b.cashOnCash == null ? 'n/a' : fmtPct(b.cashOnCash), cocCls),
+      metricTile('Cash flow/md', fmtKr(b.cashFlowMonthly), cashFlowCls),
+      metricTile('Ny ydelse', fmtKr(b.newPayment) + '/md'),
+      metricTile('Samlet investeret', fmtKr(b.totalInvested)),
+    ].join('');
+
+    const note = document.getElementById('brrr-note');
+    if (b.cashExtracted > 0) {
+      note.textContent = `I har trukket ${fmtKr(b.cashExtracted)} ud ved refinansiering (${fmtPct(b.capitalRecycledPct, 0)} af kapitalen genbrugt til næste bolig). Bundet kapital efter refi: ${fmtKr(b.tiedCapital)}.`;
+    } else {
+      note.textContent = 'Sådan læser du det: BRRR handler om at renovere så meget værdi frem, at du kan låne penge ud igen ved at refinansiere - og genbruge kapitalen til næste bolig. Endnu ingen kapital udtrukket her - hæv ARV eller renovér mere målrettet for at frigøre penge.';
+    }
+  }
+
+  document.getElementById('reno-items').addEventListener('input', (e) => {
+    const i = Number(e.target.dataset.i);
+    if (e.target.classList.contains('reno-name')) renoItems[i].name = e.target.value;
+    if (e.target.classList.contains('reno-cost')) renoItems[i].cost = Number(e.target.value) || 0;
+    renderBRRR();
+  });
+
+  document.getElementById('reno-items').addEventListener('click', (e) => {
+    if (!e.target.classList.contains('remove-btn')) return;
+    renoItems.splice(Number(e.target.dataset.i), 1);
+    renderRenoItems();
+    renderBRRR();
+  });
+
+  document.getElementById('add-reno-item').addEventListener('click', () => {
+    renoItems.push({ name: '', cost: 0 });
+    renderRenoItems();
+    renderBRRR();
+    const inputs = document.querySelectorAll('#reno-items .reno-name');
+    if (inputs.length) inputs[inputs.length - 1].focus();
+  });
+
+  ['arv', 'leje-efter-reno', 'refi-ltv-pct', 'price', 'down-payment-pct', 'rate-pct', 'loan-term', 'faste-udgifter-md'].forEach(id => {
+    document.getElementById(id).addEventListener('input', renderBRRR);
+  });
+
+  // ARV defaults to the current purchase price until the user overrides it.
+  document.getElementById('arv').value = document.getElementById('price').value;
+  renderRenoItems();
+  renderBRRR();
 
   // ---------- AI deep analysis (web-research via Claude) ----------
   // This is the one feature on this site that costs real money per click -
