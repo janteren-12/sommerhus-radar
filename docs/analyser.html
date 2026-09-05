@@ -276,6 +276,55 @@
     margin-top: 12px;
   }
 
+  .faq-item {
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-faint);
+  }
+
+  .faq-item:last-of-type {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .faq-item summary {
+    cursor: pointer;
+    font-family: "Newsreader", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--text);
+  }
+
+  .faq-item .faq-num {
+    font-family: "JetBrains Mono", monospace;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--accent);
+    margin-right: 8px;
+  }
+
+  .faq-item .faq-formula {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 10px 0 8px;
+  }
+
+  .faq-item .faq-body {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  .faq-item .faq-source {
+    font-size: 0.76rem;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
   button.analyse-btn {
     width: 100%;
     background: var(--accent);
@@ -516,6 +565,100 @@
     Andre boligsider end Boliga kan ikke hentes automatisk herfra, se
     hvorfor nedenfor. Selve beregningen sker i din browser - der er ingen
     server involveret i det, og intet bliver gemt.
+  </div>
+
+  <div class="card">
+    <h2>FAQ &middot; Fire måder at tjene penge på et sommerhus</h2>
+    <div class="intro" style="margin-bottom:4px;">
+      "Strategi"-valget i regnestykket nedenfor og BRRR-kortet dækker
+      tilsammen alle fire. Hvilken der giver mening afhænger af din
+      kapital, din tidshorisont og huset selv - ikke af hvilken der
+      lyder mest attraktiv.
+    </div>
+
+    <details class="faq-item" open>
+      <summary><span class="faq-num">01</span>Cashflow-model</summary>
+      <div class="faq-formula">Månedlig leje − ydelse − udgifter = indtægt</div>
+      <div class="faq-body">
+        Grundmodellen - og standarden i regnestykket ovenfor, når du
+        vælger strategien "Cashflow". Lejen fra bureauet (eller lejeren,
+        ved langtidsudlejning) kommer ind, ydelse og driftsomkostninger
+        går ud, og det, der er tilbage, er din månedlige indtægt.
+      </div>
+      <div class="faq-body">
+        Passer bedst i områder med lavere kvadratmeterpris og solidt
+        udlejningspotentiale - vestkystområder som Rømø, Blåvand og
+        Jammerbugt giver typisk et højere bruttoafkast end Nordsjælland,
+        jf. "Bruttoafkast" i regnestykket.
+      </div>
+      <div class="faq-source">Baggrund: standardanalyse af boligudlejning, jf. Brandon Turner, "The Book on Rental Property Investing" (BiggerPockets, 2015).</div>
+    </details>
+
+    <details class="faq-item">
+      <summary><span class="faq-num">02</span>BRRRR-model</summary>
+      <div class="faq-formula">Køb &middot; Renovér &middot; Udlej &middot; Refinansiér &middot; Gentag</div>
+      <div class="faq-body">
+        Modellen der genbruger din kapital - se BRRR-kortet nedenfor.
+        Køb et nedslidt eller underprisset sommerhus, sæt det i stand,
+        udlej det, og refinansiér til den nye, højere vurdering (ARV)
+        for at trække det meste af din oprindelige udbetaling ud igen
+        til næste hus.
+      </div>
+      <div class="faq-body">
+        Virker kun hvis renoveringen reelt løfter vurderingen mærkbart -
+        ikke bare pynter. 75-80 % af ARV er en typisk belåningsgrad ved
+        omlægning i Danmark; se "Belåning ved refinansiering" i
+        BRRR-kortet.
+      </div>
+      <div class="faq-source">Baggrund: David Greene, "Buy, Rehab, Rent, Refinance, Repeat" (BiggerPockets Publishing, 2019).</div>
+    </details>
+
+    <details class="faq-item">
+      <summary><span class="faq-num">03</span>Værdistigningsmodel</summary>
+      <div class="faq-formula">Afkastet kommer fra prisstigning over tid, ikke den månedlige leje</div>
+      <div class="faq-body">
+        I eftertragtede områder tæt på kysten eller København - dele af
+        Nordsjælland, Skagen - presses bruttoafkastet ofte ned under
+        2-3 %, og et belånt sommerhus kører let negativt på cash flow
+        (se "Cash flow/md" ovenfor). Her ligger gevinsten i stedet i
+        salgsprisen om 5-10 år.
+      </div>
+      <div class="faq-body">
+        Vælg strategien "Værdistigning" for at vægte IRR og equity
+        multiple højere end den månedlige likviditet. Feltet
+        "Værdistigning (%/år)" er en antagelse du selv sætter - ikke en
+        garanti - og bør bygge på faktiske historiske tal for området
+        (Boligsiden, Danmarks Statistik), ikke gættes højt for at få
+        regnestykket til at se godt ud.
+      </div>
+      <div class="faq-source">Datakilde for reelle historiske stigningstakter: Danmarks Statistik (boligejendomspriser).</div>
+    </details>
+
+    <details class="faq-item">
+      <summary><span class="faq-num">04</span>Value-add-model</summary>
+      <div class="faq-formula">Fremtvunget værdiskabelse gennem renovering eller bedre udnyttelse</div>
+      <div class="faq-body">
+        Adskiller sig fra BRRRR ved, at du ikke nødvendigvis
+        refinansierer - du skaber værdi gennem et konkret greb: sæt
+        huset i stand for at kunne tage en højere lejepris, gør et
+        anneks færdigt, eller ret op på noget der har holdt prisen nede
+        (dårligt energimærke, forældet el).
+      </div>
+      <div class="faq-body">
+        Afkastet kommer fra dit arbejde og din vurdering af huset, ikke
+        fra markedet i sig selv - derfor er mispricing-scoren og
+        "Sælgers motivation" på forsiden ofte mere relevante her end den
+        generelle markedstrend.
+      </div>
+      <div class="faq-source">Baggrund: playbook for fremtvunget værdistigning fra erhvervsejendomme, tilpasset boliger, jf. Ken McElroy, "The ABCs of Real Estate Investing".</div>
+    </details>
+
+    <div class="disclaimer" style="margin-top:14px;">
+      Ikke investeringsrådgivning. Vælg den strategi der passer din
+      situation og din horisont, og tjek altid husets konkrete tal i
+      regnestykkerne ovenfor - ingen af de fire modeller er automatisk
+      den rigtige.
+    </div>
   </div>
 
   <div class="card">
