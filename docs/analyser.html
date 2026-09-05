@@ -325,6 +325,82 @@
     margin-top: 4px;
   }
 
+  .faq-list {
+    margin: 0 0 8px;
+    padding-left: 20px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .faq-list li {
+    margin-bottom: 6px;
+  }
+
+  .faq-table-wrap {
+    overflow-x: auto;
+    margin: 10px 0 14px;
+    border: 1px solid var(--border-faint);
+  }
+
+  table.faq-table {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+
+  .faq-table th, .faq-table td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border-faint);
+    vertical-align: top;
+  }
+
+  .faq-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .faq-table th {
+    font-family: "Archivo", sans-serif;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .faq-table td.faq-name {
+    font-weight: 500;
+  }
+
+  .faq-sources {
+    margin-top: 12px;
+  }
+
+  .faq-sources summary {
+    cursor: pointer;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    color: var(--link);
+  }
+
+  .faq-sources ul {
+    margin: 10px 0 0;
+    padding-left: 18px;
+    font-size: 0.76rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+  }
+
+  .faq-sources a {
+    color: var(--link);
+    word-break: break-all;
+  }
+
   button.analyse-btn {
     width: 100%;
     background: var(--accent);
@@ -789,6 +865,171 @@
       og lovgivning selv, eller med en rådgiver - de ændrer sig, og
       undtagelserne er ofte kommune- eller sagsspecifikke.
     </div>
+  </div>
+
+  <div class="card">
+    <h2>FAQ &middot; Renovering og forbedringer af et sommerhus</h2>
+    <div class="intro" style="margin-bottom:4px;">
+      Forbedringer betaler sig, når de forlænger sæsonen eller hæver
+      kapaciteten - ikke når de kun hæver æstetikken. Priserne nedenfor
+      er vejledende og skal altid holdes op mod husets egne tal og
+      beliggenhed.
+    </div>
+
+    <details class="faq-item" name="reno-faq">
+      <summary><span class="faq-num">01</span>Hvilke forbedringer giver det bedste afkast?</summary>
+      <div class="faq-table-wrap">
+        <table class="faq-table">
+          <thead>
+            <tr><th>Forbedring</th><th>Indikativ pris</th><th>Effekt</th><th>Tilbagebetaling</th><th>Note</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="faq-name">Vildmarksbad / udendørs spa</td><td class="mono">25.000-60.000 kr.</td><td>+15.000-25.000 kr./år</td><td class="mono">1-2 år</td><td>Bedste kr.-for-kr.-investering</td></tr>
+            <tr><td class="faq-name">Sauna</td><td class="mono">30.000-80.000 kr.</td><td>Trækker uger i forår og efterår</td><td class="mono">2-4 år</td><td>Virker bedst kombineret med spa</td></tr>
+            <tr><td class="faq-name">Ekstra sovepladser (anneks, hems, værelse)</td><td class="mono">100.000-400.000 kr.</td><td>Ugeprisen skalerer med sovepladser; 10+ åbner gruppesegmentet</td><td class="mono">4-8 år</td><td>Tjek bebyggelsesprocenten først</td></tr>
+            <tr><td class="faq-name">Aktivitetsrum (billard, bordtennis)</td><td class="mono">50.000-150.000 kr.</td><td>Op til +50 % lejeindtægt; flere uger</td><td class="mono">2-5 år</td><td>Gør huset vejruafhængigt</td></tr>
+            <tr><td class="faq-name">Ekstra badeværelse</td><td class="mono">80.000-150.000 kr.</td><td>Nødvendigt over ca. 8 sovepladser</td><td class="mono">5-8 år</td><td>Defensiv investering</td></tr>
+            <tr><td class="faq-name">Varmepumpe (luft-luft eller luft-vand)</td><td class="mono">12.000-150.000 kr.</td><td>3-4 kWh varme pr. kWh el; besparelse fra ca. 7.000 kr./år</td><td class="mono">2-7 år</td><td>Registrér elopvarmning i BBR</td></tr>
+            <tr><td class="faq-name">Isolering, vinduer, fugtstyret affugter</td><td class="mono">50.000-250.000 kr.</td><td>Forudsætning for vinterudlejning</td><td class="mono">8-15 år</td><td>Betaler sig sjældent alene</td></tr>
+            <tr><td class="faq-name">Pool, udendørs</td><td class="mono">250.000-500.000 kr.</td><td>Mod 40-50 ugers belægning sammen med wellness</td><td class="mono">5-10 år</td><td>Billigere end indendørs, kortere sæson</td></tr>
+            <tr><td class="faq-name">Pool, indendørs</td><td class="mono">700.000 kr.+</td><td>Største løft i ugepris og international efterspørgsel</td><td class="mono">8-15 år</td><td>Høj drift, kun i store huse</td></tr>
+            <tr><td class="faq-name">Solceller</td><td class="mono">60.000-120.000 kr.</td><td>Dækker drift af pool, spa og varmepumpe</td><td class="mono">7-12 år</td><td>Ren omkostningsside</td></tr>
+            <tr><td class="faq-name">Filter-forbedringer: hundevenlig, hurtigt wifi, opvaskemaskine, ladestander</td><td class="mono">0-25.000 kr.</td><td>Gør huset synligt i bureauernes søgefiltre</td><td class="mono">Under 1 år</td><td>Højeste afkast pr. krone</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <details class="faq-item" name="reno-faq">
+      <summary><span class="faq-num">02</span>Hvad betaler sig sjældent?</summary>
+      <ul class="faq-list">
+        <li>Køkken- og badrenovering ud over pænt og funktionelt: hæver anmeldelser, ikke ugeprisen</li>
+        <li>Personlig eller stilspecifik indretning: smalner målgruppen</li>
+        <li>Wellness uden driftsplan: spa og pool kræver serviceaftale, ellers æder nedetid gevinsten</li>
+        <li>Alt der ikke kan søges på som et filter hos bureauet, og som lejeren derfor aldrig opdager</li>
+      </ul>
+    </details>
+
+    <details class="faq-item" name="reno-faq">
+      <summary><span class="faq-num">03</span>Hvad kan du gøre ved grunden og udearealerne?</summary>
+      <div class="faq-table-wrap">
+        <table class="faq-table">
+          <thead><tr><th>Forbedring</th><th>Pris</th><th>Hvorfor</th></tr></thead>
+          <tbody>
+            <tr><td class="faq-name">Overdækket terrasse eller udestue</td><td class="mono">40.000-150.000 kr.</td><td>Gør huset vejruafhængigt for få penge</td></tr>
+            <tr><td class="faq-name">Læhegn, hæk, skærmvægge</td><td class="mono">10.000-40.000 kr.</td><td>Privatliv er en topfaktor i anmeldelser</td></tr>
+            <tr><td class="faq-name">Udsigtsrydning og beskæring</td><td class="mono">5.000-30.000 kr.</td><td>Havudsigt er direkte prisdriver. Tjek servitutter og fredningslinjer</td></tr>
+            <tr><td class="faq-name">Parkering til 2-3 biler samt trailer eller båd</td><td class="mono">15.000-50.000 kr.</td><td>Åbner gruppe- og flerfamiliesegmentet</td></tr>
+            <tr><td class="faq-name">Bålsted, udekøkken, udebruser, hundegård</td><td class="mono">5.000-40.000 kr.</td><td>Billige features med høj synlighed i annoncen</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <details class="faq-item" name="reno-faq">
+      <summary><span class="faq-num">04</span>Hvilke tekniske forbedringer reducerer nedetid og skader?</summary>
+      <div class="faq-table-wrap">
+        <table class="faq-table">
+          <thead><tr><th>Forbedring</th><th>Pris</th><th>Hvorfor</th></tr></thead>
+          <tbody>
+            <tr><td class="faq-name">Smartlås og nøglefri adgang</td><td class="mono">3.000-8.000 kr.</td><td>Muliggør selvbetjent udlejning</td></tr>
+            <tr><td class="faq-name">Fjernstyret varme og temperaturovervågning</td><td class="mono">2.000-10.000 kr.</td><td>Varmt ved ankomst, koldt derimellem</td></tr>
+            <tr><td class="faq-name">Vandalarm, fugtsensor, frostsikring</td><td class="mono">2.000-8.000 kr.</td><td>Vandskade er den hyppigste store skade i tomme huse</td></tr>
+            <tr><td class="faq-name">Slidstærkt inventar (gulve, sofa, senge)</td><td class="mono">Varierer</td><td>Udlejningshuse slides 5-10 gange hurtigere end privatbrug</td></tr>
+            <tr><td class="faq-name">Robust wifi og mobildækning</td><td class="mono">3.000-10.000 kr.</td><td>Forudsætning for hjemmearbejdssegmentet uden for højsæson</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <details class="faq-item" name="reno-faq">
+      <summary><span class="faq-num">05</span>Hvad må du overhovedet bygge?</summary>
+      <ul class="faq-list">
+        <li>Bebyggelsesprocent i sommerhusområder er typisk 15 %. Anneks, udestue, carport, skure og overdækninger tæller med, dog med fradrag for de første 50 m² sekundær bebyggelse</li>
+        <li>Sekundær bebyggelse må ikke bruges til beboelse. Et anneks du kan sove i kræver som regel byggetilladelse</li>
+        <li>Skur placeres som udgangspunkt mindst 2,5 meter fra skel. I zonen 2,5-5,0 meter gælder skærpede krav efter BR18 § 183: maks. 2,5 meter højt, ingen vinduer eller døre mod skel, maks. 12 meter langs skel</li>
+        <li>Lokalplan, byplanvedtægt, tinglyste servitutter og grundejerforeningens vedtægter kan begrænse yderligere. Tjek Plandata.dk og Tinglysning.dk før du projekterer</li>
+        <li>Forsikringen skal orienteres. En standard fritidshusforsikring dækker ikke nødvendigvis udlejning, spa eller pool</li>
+      </ul>
+    </details>
+
+    <details class="faq-item" name="reno-faq">
+      <summary><span class="faq-num">06</span>Håndværkerfradrag og servicefradrag i 2026</summary>
+      <div class="faq-table-wrap">
+        <table class="faq-table">
+          <thead><tr><th>Ordning</th><th>Beløb pr. person 2026</th><th>Hvad dækker den</th></tr></thead>
+          <tbody>
+            <tr><td class="faq-name">Håndværkerfradrag (grønt)</td><td class="mono">9.000 kr.</td><td>Isolering af tag, loft, ydervægge og gulv, udskiftning af vinduer og terrassedøre, installation af luft-til-vand-varmepumpe og jordvarme, klimatilpasning som dræn og højvandslukke</td></tr>
+            <tr><td class="faq-name">Servicefradrag</td><td class="mono">18.300 kr.</td><td>Rengøring, havearbejde, vinduespudsning, fliserens, træfældning, reparation af hårde hvidevarer</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="faq-list">
+        <li>Fradraget gælder kun arbejdsløn, ikke materialer</li>
+        <li>Skatteværdien er ca. 26 %. 9.000 kr. i arbejdsløn giver ca. 2.340 kr. i sparet skat</li>
+        <li>Loftet er samlet for alle dine boliger. Du får ikke et ekstra fradrag, fordi du har sommerhus</li>
+        <li>Almindelig renovering som maling, fliselægning og nyt køkken er ikke omfattet efter genindførelsen i 2025. Heller ikke nybyggeri</li>
+        <li>Vigtigt: har fritidsboligen været udlejet i året, bortfalder servicefradraget. Håndværkerfradraget kan stadig bruges</li>
+        <li>Arbejdet skal betales digitalt og senest 1. marts året efter</li>
+        <li>Indberettes i TastSelv på skat.dk, felt 460 (håndværk) og 461 (service)</li>
+      </ul>
+      <div class="faq-body">
+        Skal huset udlejes, betyder tabet af servicefradraget i praksis
+        lidt, fordi bundfradraget på 50.200 kr. ved bureauudlejning er
+        langt større. Regn på begge dele samlet, ikke hver for sig.
+      </div>
+    </details>
+
+    <details class="faq-item" name="reno-faq">
+      <summary><span class="faq-num">07</span>Hvad kan du forbedre uden at bygge noget?</summary>
+      <ul class="faq-list">
+        <li>Ret fejl i BBR om areal, bygninger og opvarmningsform. Fejl kan blokere et salg, ramme forsikringsdækningen og give forkert ejendomsskat</li>
+        <li>Registrér elopvarmning i BBR og få reduceret elafgift på forbrug over 4.000 kWh</li>
+        <li>Professionelle fotos og dronefoto hæver konverteringen på en uændret ejendom. Den billigste forbedring der findes</li>
+        <li>Tjek servitutter og lokalplan før alt andet. De afgør hvad huset er værd for næste køber</li>
+        <li>Dokumentér udført vedligehold på tag, sokkel, kloak og nedsivningsanlæg. Det er de poster en køber prisfastsætter hårdest</li>
+      </ul>
+    </details>
+
+    <details class="faq-item" name="reno-faq">
+      <summary><span class="faq-num">08</span>Hvordan hænger forbedringer sammen med de fire indtjeningsmodeller?</summary>
+      <div class="faq-body">
+        Wellness, aktivitetsrum og ekstra sovepladser hører til
+        cashflow- og value-add-modellen, fordi de betaler sig gennem
+        drift. Byggeret, anneks og udnyttet bebyggelsesprocent hører til
+        BRRRR- og værdistigningsmodellen, fordi gevinsten realiseres ved
+        refinansiering eller salg. Energiforbedringer hører primært til
+        omkostningssiden i regnestykket ovenfor og ikke til nogen af de
+        fire kort.
+      </div>
+    </details>
+
+    <div class="disclaimer" style="margin-top:14px;">
+      Ikke investeringsrådgivning eller skatterådgivning. Priser og
+      tilbagebetalingstider er vejledende og varierer med beliggenhed,
+      husstørrelse og udlejningsniveau. Satser for 2026 kan ændre sig -
+      tjek altid gældende regler hos Skattestyrelsen og hos din kommune,
+      inden du går i gang.
+    </div>
+
+    <details class="faq-sources">
+      <summary>Kilder</summary>
+      <ul>
+        <li><a href="https://www.danskrevision.dk/nyheder/skat-ved-udlejning-af-sommerhuse-og-ferieboliger-2026" target="_blank" rel="noopener noreferrer">Bundfradrag og 40 %-reglen 2026 - Dansk Revision</a></li>
+        <li><a href="https://info.skat.dk/data.aspx?oid=2048576" target="_blank" rel="noopener noreferrer">Skattestyrelsen om udlejning af fritidsbolig</a></li>
+        <li><a href="https://www.bdo.dk/da-dk/faglig-info/depechen/depechen-artikler-2026/skat-ved-sommerhusudlejning-i-2026" target="_blank" rel="noopener noreferrer">Bundfradrag vs. regnskabsmetode - BDO 2026</a></li>
+        <li><a href="https://www.bolius.dk/haandvaerkerfradrag-og-servicefradrag-alt-du-skal-vide" target="_blank" rel="noopener noreferrer">Håndværkerfradrag og servicefradrag, satser - Bolius</a></li>
+        <li><a href="https://www.haandvaerkernoeglen.dk/brug-din-lokale-haandvaerker-fra-din-kommuneby/servicefradrag-2026/" target="_blank" rel="noopener noreferrer">Udlejning fjerner servicefradraget</a></li>
+        <li><a href="https://kvaligo.dk/blog/haandvaerkerfradrag" target="_blank" rel="noopener noreferrer">Grønt håndværkerfradrag, omfang og genindførelse</a></li>
+        <li><a href="https://www.greenmatch.dk/blog/2014/03/varmepumpe-til-sommerhus" target="_blank" rel="noopener noreferrer">Varmepumpe i sommerhus, besparelse</a></li>
+        <li><a href="https://sparenergi.dk/privat/spar-energi-i-dit-sommerhus" target="_blank" rel="noopener noreferrer">Reduceret elafgift og energitiltag</a></li>
+        <li><a href="https://gf-strandhoejgaard.dk/byggeregler-paa-sommerhusgrunden/" target="_blank" rel="noopener noreferrer">Bebyggelsesprocent og sekundær bebyggelse</a></li>
+        <li><a href="https://kartotega.dk/guides/skur-paa-sommerhus-regler" target="_blank" rel="noopener noreferrer">Skur, skel og 50 m²-grænsen (BR18)</a></li>
+        <li><a href="https://nybyggethus.dk/sommerhus/udlejning-af-sommerhus/" target="_blank" rel="noopener noreferrer">Wellness og belægning 40-50 uger</a></li>
+        <li><a href="https://nybyggethus.dk/sommerhus/kan-udlejning-betale-sommerhuset/" target="_blank" rel="noopener noreferrer">Driftsregnskab og vildmarksbad-økonomi</a></li>
+        <li><a href="https://planet-huse.dk/sommerhus-inspiration/gode-raad/hvad-kan-man-tjene-paa-udlejning/" target="_blank" rel="noopener noreferrer">Aktivitetsrum og lejeindtægt</a></li>
+      </ul>
+    </details>
   </div>
 
   <div class="card">
