@@ -101,6 +101,22 @@
     border-top: 1px solid var(--border-faint);
     text-decoration: none;
     color: inherit;
+    transition: padding-left 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  a.company-row {
+    cursor: pointer;
+  }
+
+  a.company-row:hover {
+    padding-left: 8px;
+    box-shadow: inset 2px 0 0 0 var(--accent);
+  }
+
+  a.company-row .company-name::after {
+    content: " ↗";
+    font-size: 0.8em;
+    color: var(--text-muted);
   }
 
   .company-row:first-of-type {
@@ -159,6 +175,10 @@
       --no: #5a6660;
       --unknown: #c39a44;
     }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .company-row { transition: none; }
   }
 </style>
 </head>
