@@ -4,27 +4,38 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sommerhus Radar – Jylland</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&family=Archivo:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
+  /* Matrikelbogen - the site as a Danish land-surveyor's field book:
+     ink/paper/brass instead of gradients, hairlines instead of shadows.
+     See the creative-direction deck for the full rationale. */
   :root {
-    --bg: #fafaf8;
-    --card-bg: #ffffff;
-    --text: #14171a;
-    --text-muted: #6b7280;
-    --accent: #0f6b4c;
-    --accent-soft: #e6f2ec;
-    --border-faint: #eeeeec;
-    --warn: #b5551f;
-    --warn-soft: #f7e9e0;
+    --bg: #edefe7;
+    --card-bg: #e2e4d9;
+    --text: #12211d;
+    --text-muted: #3c4a44;
+    --accent: #a9822e;
+    --accent-soft: #ece1c5;
+    --border-faint: #c9cbbd;
+    --warn: #9b4a34;
+    --warn-soft: #ecdcd4;
+    --link: #2e5c55;
   }
 
   * { box-sizing: border-box; }
 
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-family: "Newsreader", Georgia, serif;
     background: var(--bg);
     color: var(--text);
     -webkit-font-smoothing: antialiased;
+  }
+
+  .mono {
+    font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
   }
 
   .page {
@@ -38,23 +49,29 @@
   }
 
   h1 {
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin: 0 0 4px;
-    letter-spacing: -0.02em;
+    font-family: "Newsreader", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.9rem;
+    margin: 0 0 6px;
+    letter-spacing: -0.005em;
   }
 
   .updated {
-    font-size: 0.82rem;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.76rem;
     color: var(--text-muted);
   }
 
   a.rentals-link {
     display: block;
     margin-top: 6px;
-    font-size: 0.82rem;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.76rem;
     font-weight: 600;
-    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--link);
     text-decoration: none;
   }
 
@@ -70,24 +87,31 @@
   }
 
   .area-btn {
-    border: none;
-    background: var(--accent-soft);
-    color: var(--accent);
-    font-size: 0.85rem;
+    border: 1px solid var(--border-faint);
+    border-bottom: 2px solid var(--border-faint);
+    background: none;
+    color: var(--text-muted);
+    font-family: "Archivo", sans-serif;
+    font-size: 0.72rem;
     font-weight: 600;
-    padding: 8px 14px;
-    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 8px 13px;
+    border-radius: 2px;
     cursor: pointer;
-    transition: background 0.15s ease, color 0.15s ease;
+    transition: color 0.3s ease, border-color 0.3s ease;
   }
 
   .area-btn:hover {
-    background: #d9ece2;
+    color: var(--text);
+    border-color: var(--accent);
   }
 
   .area-btn.active {
-    background: var(--accent);
-    color: white;
+    background: none;
+    color: var(--text);
+    border-color: var(--border-faint);
+    border-bottom-color: var(--accent);
   }
 
   .price-filter {
@@ -98,7 +122,11 @@
   }
 
   .price-filter label {
-    font-size: 0.82rem;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
     color: var(--text-muted);
   }
 
@@ -106,11 +134,11 @@
     width: 100%;
     padding: 9px 10px;
     border: 1px solid var(--border-faint);
-    border-radius: 8px;
-    font-size: 0.9rem;
+    border-radius: 2px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.88rem;
     background: var(--card-bg);
     color: var(--text);
-    font-family: inherit;
   }
 
   .price-filter input[type="number"]:focus {
@@ -121,8 +149,11 @@
   .more-filters-toggle {
     background: none;
     border: none;
-    color: var(--accent);
-    font-size: 0.82rem;
+    color: var(--link);
+    font-family: "Archivo", sans-serif;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     font-weight: 600;
     padding: 10px 0 0;
     cursor: pointer;
@@ -142,7 +173,11 @@
   }
 
   .filter-group label {
-    font-size: 0.82rem;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
     color: var(--text-muted);
     display: block;
     margin-bottom: 8px;
@@ -155,12 +190,15 @@
   }
 
   section h2 {
-    font-size: 0.95rem;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.1em;
     color: var(--text-muted);
-    font-weight: 700;
+    font-weight: 600;
     margin: 32px 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-faint);
   }
 
   section:first-of-type h2 {
@@ -184,7 +222,7 @@
   .table-wrap {
     overflow-x: auto;
     border: 1px solid var(--border-faint);
-    border-radius: 12px;
+    border-radius: 0;
     background: var(--card-bg);
   }
 
@@ -211,18 +249,24 @@
 
   .listing-table th, .listing-table td {
     text-align: left;
-    padding: 11px 14px;
-    font-size: 0.82rem;
+    padding: 13px 14px;
+    font-size: 0.85rem;
     white-space: nowrap;
+  }
+
+  .listing-table td.num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.82rem;
   }
 
   .listing-table th {
     position: relative;
     color: var(--text-muted);
-    font-weight: 700;
-    font-size: 0.66rem;
+    font-family: "Archivo", sans-serif;
+    font-weight: 600;
+    font-size: 0.64rem;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.08em;
     border-bottom: 1px solid var(--border-faint);
   }
 
@@ -249,7 +293,7 @@
     padding: 2px 3px;
     margin-left: 3px;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 1px;
   }
 
   .filter-icon:hover {
@@ -271,9 +315,9 @@
     z-index: 20;
     background: var(--card-bg);
     border: 1px solid var(--border-faint);
-    border-radius: 10px;
+    border-radius: 0;
     padding: 12px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.14);
+    box-shadow: 2px 3px 0 rgba(18,33,29,0.08);
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -290,12 +334,12 @@
   .filter-popover input[type="number"] {
     width: 100%;
     padding: 8px 10px;
-    border: none;
-    border-radius: 6px;
-    font-size: 0.85rem;
+    border: 1px solid var(--border-faint);
+    border-radius: 1px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.82rem;
     background: var(--bg);
     color: var(--text);
-    font-family: inherit;
   }
 
   .filter-popover input[type="number"]::placeholder {
@@ -304,10 +348,13 @@
 
   .filter-popover button.clear-btn {
     width: 100%;
-    border: none;
-    border-radius: 6px;
+    font-family: "Archivo", sans-serif;
+    border: 1px solid var(--border-faint);
+    border-radius: 1px;
     padding: 8px 10px;
-    font-size: 0.82rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     font-weight: 600;
     cursor: pointer;
     background: var(--bg);
@@ -330,10 +377,13 @@
 
   .listing-table tbody tr.listing-row {
     cursor: pointer;
+    box-shadow: inset 0 -1px 0 0 transparent;
+    transition: background-color 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s cubic-bezier(0.22,1,0.36,1);
   }
 
   .listing-table tbody tr.listing-row:hover {
-    background: var(--accent-soft);
+    background: var(--bg);
+    box-shadow: inset 0 -2px 0 0 var(--accent);
   }
 
   .listing-table tbody tr.flagged-row {
@@ -346,32 +396,37 @@
 
   .badge {
     display: inline-block;
-    padding: 2px 8px;
-    border-radius: 999px;
-    font-size: 0.64rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
+    font-family: "Archivo", sans-serif;
+    padding: 1px 6px;
+    border-radius: 1px;
+    font-size: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     margin-left: 6px;
     vertical-align: 1px;
     white-space: nowrap;
+    border: 1px solid currentColor;
   }
 
-  .badge.ny { background: var(--accent); color: white; }
-  .badge.fald { background: var(--warn-soft); color: var(--warn); }
-  .badge.haandvaerker { background: var(--warn-soft); color: var(--warn); }
-  .badge.udelukket { background: #e6e6e3; color: var(--text-muted); }
+  .badge.ny { background: none; color: var(--accent); }
+  .badge.fald { background: none; color: var(--warn); }
+  .badge.haandvaerker { background: none; color: var(--warn); }
+  .badge.udelukket { background: none; color: var(--text-muted); }
 
   .area-avg-tag {
     display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 700;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.68rem;
+    font-weight: 600;
     margin-left: 6px;
-    padding: 1px 7px;
-    border-radius: 999px;
+    padding: 1px 6px;
+    border-radius: 1px;
+    border: 1px solid currentColor;
   }
 
-  .area-avg-tag.good { color: var(--accent); background: var(--accent-soft); }
-  .area-avg-tag.high { color: var(--warn); background: var(--warn-soft); }
+  .area-avg-tag.good { color: var(--link); }
+  .area-avg-tag.high { color: var(--warn); }
 
   .detail-row td {
     background: var(--bg);
@@ -393,15 +448,16 @@
   }
 
   .detail-summary .score-number {
-    font-size: 1.6rem;
-    font-weight: 800;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1.5rem;
+    font-weight: 600;
     color: var(--accent);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
   }
 
   .detail-summary .score-number .out-of-100 {
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-size: 0.82rem;
+    font-weight: 500;
     color: var(--text-muted);
     margin-left: 2px;
   }
@@ -427,21 +483,24 @@
   }
 
   .detail-field .label {
-    font-size: 0.66rem;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.62rem;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     color: var(--text-muted);
   }
 
   .detail-field .value {
+    font-family: "JetBrains Mono", monospace;
     font-size: 0.85rem;
     margin-top: 2px;
   }
 
   .detail h4 {
-    font-size: 0.72rem;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.66rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     color: var(--text-muted);
     margin: 16px 0 6px;
   }
@@ -456,6 +515,8 @@
     gap: 10px;
     padding: 3px 0;
     color: var(--text);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.82rem;
   }
 
   .comp-row {
@@ -474,14 +535,18 @@
     font-size: 0.76rem;
     color: var(--text-muted);
     line-height: 1.5;
-    background: var(--accent-soft);
-    padding: 10px 12px;
-    border-radius: 10px;
+    background: none;
+    border-left: 2px solid var(--accent);
+    padding: 8px 0 8px 14px;
+    border-radius: 0;
     margin-top: 14px;
   }
 
   .flagged-note {
-    font-size: 0.8rem;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     color: var(--warn);
     font-weight: 600;
     margin-bottom: 14px;
@@ -490,29 +555,38 @@
   .broker-link {
     display: inline-block;
     margin-top: 16px;
-    padding: 9px 16px;
-    background: var(--accent);
-    color: white;
+    padding: 10px 18px;
+    background: none;
+    border: 1px solid var(--accent);
+    color: var(--accent);
     text-decoration: none;
-    border-radius: 8px;
-    font-size: 0.85rem;
+    border-radius: 0;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     font-weight: 600;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .broker-link:hover {
+    background: var(--accent);
+    color: var(--bg);
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #101314;
-      --card-bg: #1a1f20;
-      --text: #f2f2f0;
-      --text-muted: #9aa0a3;
-      --accent: #3ddc97;
-      --accent-soft: #17332a;
-      --border-faint: #23292a;
-      --warn: #e0925a;
-      --warn-soft: #332319;
+      --bg: #0f1c18;
+      --card-bg: #16241f;
+      --text: #e7e9dd;
+      --text-muted: #aab3a6;
+      --accent: #c39a44;
+      --accent-soft: #2a2314;
+      --border-faint: #2a3a33;
+      --warn: #c06246;
+      --warn-soft: #2e1a14;
+      --link: #6fada0;
     }
-    .area-btn.active { color: #0a1a14; }
-    .badge.ny { color: #0a1a14; }
   }
 </style>
 </head>

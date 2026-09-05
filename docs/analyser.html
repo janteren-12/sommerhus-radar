@@ -4,31 +4,38 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Analysér ejendom &middot; Sommerhus Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&family=Archivo:wght@500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
 <style>
+  /* Matrikelbogen palette - see index.html for the full rationale. */
   :root {
-    --bg: #fafaf8;
-    --card-bg: #ffffff;
-    --text: #14171a;
-    --text-muted: #6b7280;
-    --accent: #0f6b4c;
-    --accent-soft: #e6f2ec;
-    --border-faint: #eeeeec;
-    --warn: #b5551f;
-    --warn-soft: #f7e9e0;
-    --bad: #b3261e;
-    --bad-soft: #fbeae8;
+    --bg: #edefe7;
+    --card-bg: #e2e4d9;
+    --text: #12211d;
+    --text-muted: #3c4a44;
+    --accent: #a9822e;
+    --accent-soft: #ece1c5;
+    --border-faint: #c9cbbd;
+    --warn: #9b4a34;
+    --warn-soft: #ecdcd4;
+    --bad: #6f2a1c;
+    --bad-soft: #e6cec5;
+    --link: #2e5c55;
   }
 
   * { box-sizing: border-box; }
 
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-family: "Newsreader", Georgia, serif;
     background: var(--bg);
     color: var(--text);
     -webkit-font-smoothing: antialiased;
   }
+
+  .mono { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; }
 
   .page {
     max-width: 720px;
@@ -38,18 +45,23 @@
 
   a.back-link {
     display: inline-block;
-    color: var(--accent);
+    color: var(--link);
     text-decoration: none;
-    font-size: 0.85rem;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.72rem;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     margin-bottom: 14px;
   }
 
   h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin: 0 0 4px;
-    letter-spacing: -0.02em;
+    font-family: "Newsreader", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.7rem;
+    margin: 0 0 6px;
+    letter-spacing: -0.005em;
   }
 
   .intro {
@@ -61,14 +73,22 @@
 
   .card {
     background: var(--card-bg);
-    border-radius: 16px;
+    border: 1px solid var(--border-faint);
+    border-radius: 0;
     padding: 18px 20px;
     margin-bottom: 14px;
   }
 
   .card h2 {
-    font-size: 0.95rem;
-    margin: 0 0 14px;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin: 0 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-faint);
   }
 
   .field {
@@ -77,21 +97,27 @@
 
   .field label {
     display: block;
-    font-size: 0.78rem;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
     color: var(--text-muted);
-    margin-bottom: 4px;
+    margin-bottom: 5px;
   }
 
   .field input, .field select {
     width: 100%;
     padding: 9px 10px;
     border: 1px solid var(--border-faint);
-    border-radius: 8px;
-    font-size: 0.9rem;
+    border-radius: 1px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.88rem;
     background: var(--bg);
     color: var(--text);
-    font-family: inherit;
   }
+
+  .field select { font-family: "Newsreader", Georgia, serif; }
 
   .field-row {
     display: flex;
@@ -107,19 +133,25 @@
 
   .mode-btn {
     flex: 1;
-    border: none;
-    background: var(--accent-soft);
-    color: var(--accent);
-    font-size: 0.82rem;
+    border: 1px solid var(--border-faint);
+    border-bottom: 2px solid var(--border-faint);
+    background: none;
+    color: var(--text-muted);
+    font-family: "Archivo", sans-serif;
+    font-size: 0.72rem;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 1px;
     cursor: pointer;
+    transition: color 0.3s ease, border-color 0.3s ease;
   }
 
   .mode-btn.active {
-    background: var(--accent);
-    color: white;
+    background: none;
+    color: var(--text);
+    border-bottom-color: var(--accent);
   }
 
   .fetch-row {
@@ -128,26 +160,33 @@
     margin-bottom: 6px;
   }
 
-  .fetch-row input { flex: 1; }
+  .fetch-row input { flex: 1; font-family: "JetBrains Mono", monospace; }
 
   .fetch-row button {
-    border: none;
-    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    background: none;
     color: var(--accent);
+    font-family: "Archivo", sans-serif;
     font-weight: 600;
-    font-size: 0.82rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     padding: 0 14px;
-    border-radius: 8px;
+    border-radius: 1px;
     cursor: pointer;
     white-space: nowrap;
+    transition: background 0.3s ease, color 0.3s ease;
   }
+
+  .fetch-row button:hover { background: var(--accent); color: var(--bg); }
 
   .fetch-note {
     font-size: 0.76rem;
     color: var(--warn);
-    background: var(--warn-soft);
-    padding: 8px 10px;
-    border-radius: 8px;
+    background: none;
+    border-left: 2px solid var(--warn);
+    padding: 6px 0 6px 10px;
+    border-radius: 0;
     margin-bottom: 14px;
     display: none;
   }
@@ -160,8 +199,11 @@
 
   details.advanced summary {
     cursor: pointer;
-    font-size: 0.82rem;
-    color: var(--accent);
+    font-family: "Archivo", sans-serif;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--link);
     font-weight: 600;
   }
 
@@ -172,12 +214,15 @@
   button.analyse-btn {
     width: 100%;
     background: var(--accent);
-    color: white;
-    border: none;
+    color: var(--bg);
+    border: 1px solid var(--accent);
     padding: 13px;
-    border-radius: 10px;
-    font-size: 0.95rem;
-    font-weight: 700;
+    border-radius: 1px;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     cursor: pointer;
   }
 
@@ -192,28 +237,33 @@
   }
 
   .score-number {
-    font-size: 2.2rem;
-    font-weight: 800;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 2rem;
+    font-weight: 600;
     color: var(--accent);
   }
 
   .score-number .out-of-100 {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 500;
     color: var(--text-muted);
   }
 
   .strategy-badge {
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 999px;
-    background: var(--accent-soft);
+    font-family: "Archivo", sans-serif;
+    font-size: 0.64rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 4px 9px;
+    border-radius: 1px;
+    background: none;
+    border: 1px solid var(--accent);
     color: var(--accent);
   }
 
-  .strategy-badge.weak { background: var(--warn-soft); color: var(--warn); }
-  .strategy-badge.bad { background: var(--bad-soft); color: var(--bad); }
+  .strategy-badge.weak { border-color: var(--warn); color: var(--warn); }
+  .strategy-badge.bad { border-color: var(--bad); color: var(--bad); }
 
   .score-verdict {
     font-size: 0.85rem;
@@ -224,38 +274,44 @@
   .metrics-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 1px;
+    background: var(--border-faint);
+    border: 1px solid var(--border-faint);
     margin-bottom: 16px;
   }
 
   .metric-tile {
-    background: var(--bg);
-    border-radius: 10px;
-    padding: 10px 12px;
+    background: var(--card-bg);
+    border-radius: 0;
+    padding: 12px 14px;
   }
 
   .metric-tile .label {
-    font-size: 0.68rem;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.62rem;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
+    font-weight: 600;
     color: var(--text-muted);
   }
 
   .metric-tile .value {
-    font-size: 1.15rem;
-    font-weight: 700;
-    margin-top: 2px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 3px;
   }
 
   .metric-tile .value.warn { color: var(--warn); }
   .metric-tile .value.bad { color: var(--bad); }
-  .metric-tile .value.good { color: var(--accent); }
+  .metric-tile .value.good { color: var(--link); }
 
   .breakdown-row {
     display: flex;
     justify-content: space-between;
     padding: 4px 0;
-    font-size: 0.85rem;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.82rem;
   }
 
   .breakdown-row.total {
@@ -282,9 +338,10 @@
     font-size: 0.76rem;
     color: var(--text-muted);
     line-height: 1.5;
-    background: var(--accent-soft);
-    padding: 12px 14px;
-    border-radius: 10px;
+    background: none;
+    border-left: 2px solid var(--accent);
+    padding: 8px 0 8px 14px;
+    border-radius: 0;
     margin-top: 4px;
   }
 
@@ -309,7 +366,10 @@
   .ai-result.show { display: block; }
 
   .ai-result h1, .ai-result h2, .ai-result h3 {
-    font-size: 0.95rem;
+    font-family: "Newsreader", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.05rem;
     margin: 18px 0 8px;
   }
 
@@ -331,36 +391,43 @@
   }
 
   .ai-result th {
+    font-family: "Archivo", sans-serif;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     color: var(--text-muted);
-    font-weight: 700;
+    font-weight: 600;
   }
+
+  .ai-result td { font-family: "JetBrains Mono", monospace; font-size: 0.8rem; }
 
   .ai-result ul, .ai-result ol {
     padding-left: 20px;
   }
 
   .ai-result code {
+    font-family: "JetBrains Mono", monospace;
     background: var(--bg);
     padding: 1px 5px;
-    border-radius: 4px;
+    border-radius: 1px;
     font-size: 0.85em;
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #101314;
-      --card-bg: #1a1f20;
-      --text: #f2f2f0;
-      --text-muted: #9aa0a3;
-      --accent: #3ddc97;
-      --accent-soft: #17332a;
-      --border-faint: #23292a;
-      --warn: #e0925a;
-      --warn-soft: #332319;
-      --bad: #e0685f;
-      --bad-soft: #3a1c19;
+      --bg: #0f1c18;
+      --card-bg: #16241f;
+      --text: #e7e9dd;
+      --text-muted: #aab3a6;
+      --accent: #c39a44;
+      --accent-soft: #2a2314;
+      --border-faint: #2a3a33;
+      --warn: #c06246;
+      --warn-soft: #2e1a14;
+      --bad: #d97a5f;
+      --bad-soft: #331d15;
+      --link: #6fada0;
     }
-    .mode-btn.active, .strategy-badge:not(.weak):not(.bad) { color: #0a1a14; }
   }
 </style>
 </head>

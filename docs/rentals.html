@@ -4,24 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Udlejning &middot; Sommerhus Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&family=Archivo:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
+  /* Matrikelbogen palette - see index.html for the full rationale. */
   :root {
-    --bg: #fafaf8;
-    --card-bg: #ffffff;
-    --text: #14171a;
-    --text-muted: #6b7280;
-    --accent: #0f6b4c;
-    --accent-soft: #e6f2ec;
-    --yes: #0f6b4c;
-    --no: #b8bcc0;
-    --unknown: #c7a44a;
+    --bg: #edefe7;
+    --card-bg: #e2e4d9;
+    --text: #12211d;
+    --text-muted: #3c4a44;
+    --accent: #a9822e;
+    --accent-soft: #ece1c5;
+    --border-faint: #c9cbbd;
+    --yes: #2e5c55;
+    --no: #8b9086;
+    --unknown: #a9822e;
   }
 
   * { box-sizing: border-box; }
 
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-family: "Newsreader", Georgia, serif;
     background: var(--bg);
     color: var(--text);
     -webkit-font-smoothing: antialiased;
@@ -35,22 +40,28 @@
 
   a.back-link {
     display: inline-block;
-    color: var(--accent);
+    color: var(--yes);
     text-decoration: none;
-    font-size: 0.85rem;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.72rem;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     margin-bottom: 14px;
   }
 
   h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin: 0 0 4px;
-    letter-spacing: -0.02em;
+    font-family: "Newsreader", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.7rem;
+    margin: 0 0 6px;
+    letter-spacing: -0.005em;
   }
 
   .updated {
-    font-size: 0.82rem;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.76rem;
     color: var(--text-muted);
     margin-bottom: 10px;
   }
@@ -64,23 +75,30 @@
 
   .area-card {
     background: var(--card-bg);
-    border-radius: 16px;
+    border: 1px solid var(--border-faint);
+    border-radius: 0;
     padding: 18px 20px;
     margin-bottom: 12px;
   }
 
   .area-name {
-    font-size: 1.05rem;
-    font-weight: 700;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    color: var(--text-muted);
     margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-faint);
   }
 
   .company-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 0;
-    border-top: 1px solid rgba(0,0,0,0.05);
+    padding: 9px 0;
+    border-top: 1px solid var(--border-faint);
     text-decoration: none;
     color: inherit;
   }
@@ -90,20 +108,21 @@
   }
 
   .company-name {
-    font-size: 0.92rem;
+    font-size: 0.95rem;
   }
 
   .status {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.82rem;
-    font-weight: 600;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.78rem;
+    font-weight: 500;
   }
 
   .dot {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     flex-shrink: 0;
   }
@@ -121,24 +140,25 @@
     color: var(--text-muted);
     line-height: 1.5;
     margin-top: 24px;
-    padding: 14px 16px;
-    background: var(--accent-soft);
-    border-radius: 12px;
+    padding: 8px 0 8px 14px;
+    background: none;
+    border-left: 2px solid var(--accent);
+    border-radius: 0;
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #101314;
-      --card-bg: #1a1f20;
-      --text: #f2f2f0;
-      --text-muted: #9aa0a3;
-      --accent: #3ddc97;
-      --accent-soft: #17332a;
-      --yes: #3ddc97;
-      --no: #4b5254;
-      --unknown: #d9b95c;
+      --bg: #0f1c18;
+      --card-bg: #16241f;
+      --text: #e7e9dd;
+      --text-muted: #aab3a6;
+      --accent: #c39a44;
+      --accent-soft: #2a2314;
+      --border-faint: #2a3a33;
+      --yes: #6fada0;
+      --no: #5a6660;
+      --unknown: #c39a44;
     }
-    .company-row { border-top-color: rgba(255,255,255,0.07); }
   }
 </style>
 </head>
