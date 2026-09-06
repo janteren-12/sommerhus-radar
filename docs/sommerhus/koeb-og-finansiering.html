@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Køb og finansiering af sommerhus &middot; Sommerhus Radar</title>
+<meta name="description" content="Finansiering, brugsret, det skattefri salg, handelsomkostninger og de fysiske tjek der er særlige for sommerhuse - det du skal have styr på, før du skriver under.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&family=Archivo:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Matrikelbogen palette - genbrugt fra analyser.html, ingen nye tokens. */
+  :root {
+    --bg: #edefe7;
+    --card-bg: #e2e4d9;
+    --text: #12211d;
+    --text-muted: #3c4a44;
+    --accent: #a9822e;
+    --accent-soft: #ece1c5;
+    --border-faint: #c9cbbd;
+    --warn: #9b4a34;
+    --link: #2e5c55;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: "Newsreader", Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .mono { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 16px 80px;
+  }
+
+  a.back-link {
+    display: inline-block;
+    color: var(--link);
+    text-decoration: none;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-family: "Newsreader", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.7rem;
+    margin: 0 0 8px;
+    letter-spacing: -0.005em;
+  }
+
+  .intro {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  a.model-link {
+    display: inline-block;
+    color: var(--link);
+    text-decoration: none;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-faint);
+    border-radius: 0;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+
+  .card h2 {
+    font-family: "Archivo", sans-serif;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin: 0 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-faint);
+  }
+
+  .toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin-bottom: 18px;
+  }
+
+  .toc a {
+    font-family: "Archivo", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--link);
+    text-decoration: none;
+  }
+
+  .toc a:hover { color: var(--accent); }
+
+  .faq-item {
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-faint);
+    scroll-margin-top: 16px;
+  }
+
+  .faq-item:last-of-type {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .faq-item summary {
+    cursor: pointer;
+    font-family: "Newsreader", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--text);
+  }
+
+  .faq-item .faq-num {
+    font-family: "JetBrains Mono", monospace;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--accent);
+    margin-right: 8px;
+  }
+
+  .faq-item .faq-body {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-top: 10px;
+    margin-bottom: 8px;
+  }
+
+  .faq-item .faq-body a { color: var(--link); }
+
+  .faq-list {
+    margin: 10px 0 8px;
+    padding-left: 20px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .faq-list li { margin-bottom: 6px; }
+
+  .faq-table-wrap {
+    overflow-x: auto;
+    margin: 10px 0 14px;
+    border: 1px solid var(--border-faint);
+  }
+
+  table.faq-table {
+    width: 100%;
+    min-width: 460px;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+
+  .faq-table th, .faq-table td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border-faint);
+    vertical-align: top;
+  }
+
+  .faq-table tr:last-child td { border-bottom: none; }
+
+  .faq-table th {
+    font-family: "Archivo", sans-serif;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .faq-table td.faq-name { font-weight: 500; }
+
+  .disclaimer {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    background: none;
+    border-left: 2px solid var(--accent);
+    padding: 8px 0 8px 14px;
+    margin-top: 14px;
+  }
+
+  .faq-sources { margin-top: 12px; }
+
+  .faq-sources summary {
+    cursor: pointer;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    color: var(--link);
+  }
+
+  .faq-sources ul {
+    margin: 10px 0 0;
+    padding-left: 18px;
+    font-size: 0.76rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+  }
+
+  .faq-sources a { color: var(--link); word-break: break-all; }
+
+  a.final-link {
+    display: block;
+    margin-top: 16px;
+    font-family: "Newsreader", Georgia, serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--link);
+    text-decoration: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1c18;
+      --card-bg: #16241f;
+      --text: #e7e9dd;
+      --text-muted: #aab3a6;
+      --accent: #c39a44;
+      --accent-soft: #2a2314;
+      --border-faint: #2a3a33;
+      --warn: #c06246;
+      --link: #6fada0;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="back-link" href="../analyser.html">&larr; Tilbage til Analysér ejendom</a>
+  <h1>Køb og finansiering af sommerhus</h1>
+  <div class="intro">
+    Forsiden viser hvordan et sommerhus tjener penge. Denne side viser
+    hvad du skal have styr på, før du skriver under. Tallene er
+    vejledende og skal altid holdes op mod det konkrete hus.
+  </div>
+  <a class="model-link" href="../analyser.html#faq-indtjening">Tilbage til de fire indtjeningsmodeller &rarr;</a>
+
+  <div class="card">
+    <h2>Før du køber</h2>
+
+    <div class="toc">
+      <a href="#kf-01">01</a>
+      <a href="#kf-02">02</a>
+      <a href="#kf-03">03</a>
+      <a href="#kf-04">04</a>
+      <a href="#kf-05">05</a>
+      <a href="#kf-06">06</a>
+      <a href="#kf-07">07</a>
+    </div>
+
+    <details class="faq-item" id="kf-01" name="koeb-faq" open>
+      <summary><span class="faq-num">01</span>Finansiering er et andet produkt end et huslån</summary>
+      <div class="faq-table-wrap">
+        <table class="faq-table">
+          <thead><tr><th>Forhold</th><th>Sommerhus</th><th>Helårsbolig</th></tr></thead>
+          <tbody>
+            <tr><td class="faq-name">Maks. realkreditbelåning</td><td class="mono">75 % (hævet fra 60 % i 2017)</td><td class="mono">80 %</td></tr>
+            <tr><td class="faq-name">Minimumsudbetaling</td><td class="mono">5 % af købesummen</td><td class="mono">5 %</td></tr>
+            <tr><td class="faq-name">Resten</td><td>Banklån, typisk 20 %, eller friværdi i helårsboligen</td><td>Samme</td></tr>
+            <tr><td class="faq-name">Afdragsfrihed</td><td>Typisk kun op til 60 % belåning</td><td class="mono">Op til 80 %</td></tr>
+            <tr><td class="faq-name">Bidragssats</td><td>Højere. Totalkredit tog 1,15 % i intervallet 40-60 %, mod 0,85 % for ejerbolig</td><td>Lavere</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="faq-body">
+        Over ca. 30 % belåning er et sommerhuslån dyrere end et boliglån
+        ved samme rente. Banker vil ofte have mere end lovens 5 % ved
+        ældre huse eller huse med renoveringsbehov. Der findes kun fire
+        realkreditinstitutter i Danmark, men forskellen kan løbe op i
+        tusindvis af kroner om året på et lån på 2 mio. kr. Indhent
+        tilbud fra mere end ét.
+      </div>
+    </details>
+
+    <details class="faq-item" id="kf-02" name="koeb-faq">
+      <summary><span class="faq-num">02</span>Brugsretten er begrænset af loven, ikke af sælger</summary>
+      <div class="faq-table-wrap">
+        <table class="faq-table">
+          <thead><tr><th>Regel</th><th>Indhold</th></tr></thead>
+          <tbody>
+            <tr><td class="faq-name">Fri benyttelse</td><td>1. marts til 31. oktober</td></tr>
+            <tr><td class="faq-name">Vinter</td><td>Kun kortvarige ophold. Du må ikke framelde din helårsbolig og bo der fast</td></tr>
+            <tr><td class="faq-name">Pensionistreglen</td><td>Ret til helårsbeboelse efter 1 års ejerskab, planloven § 41. Retten er personlig og følger ikke ejendommen ved salg</td></tr>
+            <tr><td class="faq-name">Udlejning</td><td>Maks. 2 fritidsboliger privat, ellers er det erhvervsmæssig udlejning</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <details class="faq-item" id="kf-03" name="koeb-faq">
+      <summary><span class="faq-num">03</span>Det skattefri salg er ikke automatisk</summary>
+      <div class="faq-body">
+        Sommerhusreglen i ejendomsavancebeskatningslovens § 8, stk. 2
+        gør gevinsten skattefri, men kun hvis begge betingelser er
+        opfyldt:
+      </div>
+      <ul class="faq-list">
+        <li>Du eller din husstand har rent faktisk brugt huset privat i en del af eller hele ejertiden</li>
+        <li>Grunden er under 1.400 m², eller den kan ikke udstykkes, eller en udstykning vil forringe resten væsentligt</li>
+      </ul>
+      <div class="faq-body">
+        Et hus købt rent som udlejningsinvestering og aldrig brugt
+        privat falder uden for reglen, og gevinsten er skattepligtig.
+        Kun fysiske personer er omfattet - et selskab er aldrig. Køber
+        I gennem et fælles selskab, mister I det skattefri salg, og køb
+        af sommerhus i selskabsform kræver som udgangspunkt tilladelse
+        efter sommerhusloven.
+      </div>
+    </details>
+
+    <details class="faq-item" id="kf-04" name="koeb-faq">
+      <summary><span class="faq-num">04</span>Handelsomkostninger og papirarbejde</summary>
+      <div class="faq-table-wrap">
+        <table class="faq-table">
+          <thead><tr><th>Post</th><th>Beløb</th></tr></thead>
+          <tbody>
+            <tr><td class="faq-name">Tinglysning af skøde</td><td class="mono">1.850 kr. + 0,6 % af købesummen</td></tr>
+            <tr><td class="faq-name">Tinglysning af pantebrev</td><td class="mono">1.825 kr. + 1,45 % af lånet</td></tr>
+            <tr><td class="faq-name">Advokat eller køberrådgiver</td><td class="mono">6.000-12.000 kr.</td></tr>
+            <tr><td class="faq-name">Ejerskifteforsikring</td><td>Kræver tilstandsrapport og elinstallationsrapport. Forlang begge - sommerhuse handles ofte uden, og så står du svagt ved skjulte skader</td></tr>
+            <tr><td class="faq-name">Fortrydelsesret</td><td>6 hverdage, koster 0,5 % af købesummen</td></tr>
+            <tr><td class="faq-name">Samejeoverenskomst og testamente</td><td>Juridisk nødvendigt ved køb med søskende, forældre eller ugift partner</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <details class="faq-item" id="kf-05" name="koeb-faq">
+      <summary><span class="faq-num">05</span>De fysiske tjek der er særlige for fritidshuse</summary>
+      <ul class="faq-list">
+        <li>Fundament og fugt. Mange ældre huse står på punktfundament eller en let plade uden fugtspærre. Fugt og skimmel er den hyppigste dyre overraskelse</li>
+        <li>Kloak og nedsivningsanlæg. Ældre anlæg lever ofte ikke op til kravene. Kommunen kan påbyde en opgradering til 40.000-100.000 kr.</li>
+        <li>Vandforsyning. Fælles vandværk eller egen brønd. En brønd ændrer både drift og långivers appetit</li>
+        <li>Vinterklargøring. Isolering, frostsikring og dræn afgør om vinterudlejning overhovedet er mulig</li>
+        <li>Stormflod og oversvømmelse. Tjek kyst- og oversvømmelseskort før du byder. Det påvirker både præmie og videresalg</li>
+        <li>Strandbeskyttelseslinje på 300 meter og klitfredning. Indenfor kan du reelt ikke bygge noget, og byggeret- og BRRRR-modellen falder væk</li>
+      </ul>
+    </details>
+
+    <details class="faq-item" id="kf-06" name="koeb-faq">
+      <summary><span class="faq-num">06</span>Løbende omkostninger der glemmes i regnestykket</summary>
+      <div class="faq-body">
+        Grundejerforening og vejfond, vedligehold af private
+        fællesveje, renovation, skorstensfejer, forsikring (højere ved
+        udlejning - husk at oplyse det), vand- og kloakbidrag,
+        elabonnement i tomme måneder, og vedligehold på ca. 1 % af
+        husets værdi om året. Grundskylden varierer meget mellem
+        kommuner og er værd at sammenligne, før du snævrer
+        søgeområdet ind.
+      </div>
+    </details>
+
+    <details class="faq-item" id="kf-07" name="koeb-faq">
+      <summary><span class="faq-num">07</span>De tre ting der oftest vælter en handel efter underskrift</summary>
+      <ul class="faq-list">
+        <li>Et nedsivningsanlæg der ikke lever op til kravene</li>
+        <li>En grund inden for strandbeskyttelseslinjen</li>
+        <li>En bankvurdering under købsprisen, så de 75 % beregnes af et lavere tal end forudsat</li>
+      </ul>
+    </details>
+
+    <a class="final-link" href="../analyser.html#faq-renovering">Har du købt huset? Se hvilke forbedringer der betaler sig &rarr;</a>
+
+    <div class="disclaimer">
+      Ikke investeringsrådgivning, skatterådgivning eller juridisk
+      rådgivning. Priser og satser er vejledende og kan ændre sig -
+      tjek altid gældende regler hos Skattestyrelsen, dit
+      realkreditinstitut og din kommune, inden du handler.
+    </div>
+
+    <details class="faq-sources">
+      <summary>Kilder</summary>
+      <ul>
+        <li><a href="https://nybyggethus.dk/sommerhus/finansiering-af-sommerhus/" target="_blank" rel="noopener noreferrer">Finansiering og belåningsgrænser</a></li>
+        <li><a href="https://taenk.dk/privatoekonomi/banker-og-kreditforeninger/hvis-du-skal-laane-penge-til-et-sommerhus" target="_blank" rel="noopener noreferrer">Bidragssatser sommerhus vs. ejerbolig</a></li>
+        <li><a href="https://www.skoedecentret.dk/boligkob/koeb-af-sommerhus/" target="_blank" rel="noopener noreferrer">Købsomkostninger og tinglysning</a></li>
+        <li><a href="https://tax.dk/skat/salg_sommerhus.htm" target="_blank" rel="noopener noreferrer">Sommerhusreglen, betingelser og praksis</a></li>
+        <li><a href="https://info.skat.dk/data.aspx?oid=1948724" target="_blank" rel="noopener noreferrer">Juridisk vejledning C.H.2.1.15.2</a></li>
+        <li><a href="https://danskelove.dk/planloven/41" target="_blank" rel="noopener noreferrer">Pensionistreglen, planloven § 41</a></li>
+        <li><a href="https://planinfo.erhvervsstyrelsen.dk/pensionisters-mulighed-helaarsbeboelse-i-sommerhuse-i-sommerhusomraader" target="_blank" rel="noopener noreferrer">Planinfo om helårsbeboelse</a></li>
+      </ul>
+    </details>
+  </div>
+</div>
+</body>
+</html>
