@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-11T08:52:31.042021+00:00",
+  "last_updated": "2026-09-11T13:26:49.478371+00:00",
   "company_labels": {
     "dancenter": "DanCenter",
     "novasol": "Novasol",
@@ -22,7 +22,7 @@
           "url": "https://www.novasol.dk/danmark/vestjylland/blavand"
         },
         "sologstrand": {
-          "present": true,
+          "present": false,
           "count": null,
           "url": "https://www.sologstrand.dk/regioner/jyllands-vestkyst/blavand"
         },
@@ -52,7 +52,7 @@
           "url": "https://www.novasol.dk/danmark/vestjylland/ringkoebing"
         },
         "sologstrand": {
-          "present": true,
+          "present": false,
           "count": null,
           "url": "https://www.sologstrand.dk/regioner/jyllands-vestkyst/sondervig-houvig/ringkobing"
         },
@@ -82,7 +82,7 @@
           "url": "https://www.novasol.dk/danmark/fanoe"
         },
         "sologstrand": {
-          "present": true,
+          "present": false,
           "count": null,
           "url": "https://www.sologstrand.dk/regioner/jyllands-vestkyst/fano"
         },
@@ -112,7 +112,7 @@
           "url": "https://www.novasol.dk/danmark/roemoe"
         },
         "sologstrand": {
-          "present": true,
+          "present": false,
           "count": null,
           "url": "https://www.sologstrand.dk/regioner/jyllands-vestkyst/romo"
         },
@@ -142,7 +142,7 @@
           "url": "https://www.novasol.dk/danmark/jammerbugten"
         },
         "sologstrand": {
-          "present": true,
+          "present": false,
           "count": null,
           "url": "https://www.sologstrand.dk/regioner/nordvestjylland/blokhus"
         },
@@ -172,7 +172,7 @@
           "url": "https://www.novasol.dk/danmark/nordjylland/skagen"
         },
         "sologstrand": {
-          "present": true,
+          "present": false,
           "count": null,
           "url": "https://www.sologstrand.dk/regioner/nordvestjylland/skagen"
         },
@@ -202,7 +202,7 @@
           "url": "https://www.novasol.dk/danmark/djursland"
         },
         "sologstrand": {
-          "present": true,
+          "present": false,
           "count": null,
           "url": "https://www.sologstrand.dk/regioner/djursland-og-mols"
         },
@@ -232,7 +232,7 @@
           "url": "https://www.novasol.dk/danmark/odsherred"
         },
         "sologstrand": {
-          "present": true,
+          "present": false,
           "count": null,
           "url": "https://www.sologstrand.dk/regioner/sjaelland/nordvest-sjaelland/rorvig"
         },
@@ -262,7 +262,7 @@
           "url": "https://www.novasol.dk/danmark/nordsjaelland"
         },
         "sologstrand": {
-          "present": true,
+          "present": false,
           "count": null,
           "url": "https://www.sologstrand.dk/regioner/sjaelland/nordost-sjaelland/hornbaek"
         },
@@ -292,7 +292,7 @@
           "url": "https://www.novasol.dk/danmark/falster"
         },
         "sologstrand": {
-          "present": true,
+          "present": false,
           "count": null,
           "url": "https://www.sologstrand.dk/regioner/lolland-falster-og-mon/falster"
         },
@@ -322,7 +322,7 @@
           "url": "https://www.novasol.dk/danmark/bornholm"
         },
         "sologstrand": {
-          "present": true,
+          "present": false,
           "count": null,
           "url": "https://www.sologstrand.dk/regioner/bornholm"
         },
