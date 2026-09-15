@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-15T04:18:19.610887+00:00",
+  "last_updated": "2026-09-15T09:54:27.427580+00:00",
   "company_labels": {
     "dancenter": "DanCenter",
     "novasol": "Novasol",
@@ -27,7 +27,7 @@
           "url": "https://www.sologstrand.dk/regioner/jyllands-vestkyst/blavand"
         },
         "feriepartner": {
-          "present": null,
+          "present": true,
           "count": null,
           "url": "https://www.feriepartner.dk/danmark/vestjylland/blaavand/"
         },
@@ -57,7 +57,7 @@
           "url": "https://www.sologstrand.dk/regioner/jyllands-vestkyst/sondervig-houvig/ringkobing"
         },
         "feriepartner": {
-          "present": null,
+          "present": true,
           "count": null,
           "url": "https://www.feriepartner.dk/danmark/vestjylland/hvide-sande/"
         },
@@ -87,7 +87,7 @@
           "url": "https://www.sologstrand.dk/regioner/jyllands-vestkyst/fano"
         },
         "feriepartner": {
-          "present": null,
+          "present": true,
           "count": null,
           "url": "https://www.feriepartner.dk/danmark/vestjylland/fanoe/"
         },
@@ -117,7 +117,7 @@
           "url": "https://www.sologstrand.dk/regioner/jyllands-vestkyst/romo"
         },
         "feriepartner": {
-          "present": null,
+          "present": true,
           "count": null,
           "url": "https://www.feriepartner.dk/danmark/vestjylland/roemoe/"
         },
@@ -147,7 +147,7 @@
           "url": "https://www.sologstrand.dk/regioner/nordvestjylland/blokhus"
         },
         "feriepartner": {
-          "present": null,
+          "present": true,
           "count": null,
           "url": "https://www.feriepartner.dk/danmark/nordjylland/jammerbugten/"
         },
@@ -177,7 +177,7 @@
           "url": "https://www.sologstrand.dk/regioner/nordvestjylland/skagen"
         },
         "feriepartner": {
-          "present": null,
+          "present": true,
           "count": null,
           "url": "https://www.feriepartner.dk/danmark/nordjylland/skagen/"
         },
@@ -207,7 +207,7 @@
           "url": "https://www.sologstrand.dk/regioner/djursland-og-mols"
         },
         "feriepartner": {
-          "present": null,
+          "present": true,
           "count": null,
           "url": "https://www.feriepartner.dk/danmark/oestjylland/djursland/"
         },
