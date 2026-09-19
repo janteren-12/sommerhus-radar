@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-19T20:20:58.560372+00:00",
+  "last_updated": "2026-09-19T22:48:08.701505+00:00",
   "area_stats": {
     "nordsjaelland": {
       "avg_kr_per_m2": 61253,
@@ -125482,7 +125482,7 @@
       "grund_m2": 1520,
       "byggeaar": 1983,
       "kr_per_m2": 29230.0,
-      "dage_paa_markedet": 238,
+      "dage_paa_markedet": 239,
       "energimaerke": "C",
       "latitude": 55.88823,
       "longitude": 11.53518,
@@ -125565,7 +125565,7 @@
         "kvalitet_percentile": 65,
         "motivation_detail": {
           "score": 56.4,
-          "liggetid_dage": 238,
+          "liggetid_dage": 239,
           "liggetid_percentile": 95,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
@@ -125576,7 +125576,7 @@
         "mispricing_available": true,
         "nettoafkast_available": true
       },
-      "reason": "17% under modelpris, 238 dage på markedet, -0.1% afkast"
+      "reason": "17% under modelpris, 239 dage på markedet, -0.1% afkast"
     },
     {
       "id": 2292075,
@@ -204474,5 +204474,5 @@
       "sold_or_removed": true
     }
   ],
-  "scoring_last_updated": "2026-09-19T20:20:58.560372+00:00"
+  "scoring_last_updated": "2026-09-19T22:48:08.701505+00:00"
 }
