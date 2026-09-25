@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-25T18:22:46.113495+00:00",
+  "last_updated": "2026-09-25T22:07:30.384381+00:00",
   "area_stats": {
     "jammerbugt": {
       "avg_kr_per_m2": 31400,
@@ -123260,7 +123260,7 @@
       "grund_m2": 1520,
       "byggeaar": 1983,
       "kr_per_m2": 29230.0,
-      "dage_paa_markedet": 244,
+      "dage_paa_markedet": 245,
       "energimaerke": "C",
       "latitude": 55.88823,
       "longitude": 11.53518,
@@ -123343,7 +123343,7 @@
         "kvalitet_percentile": 65,
         "motivation_detail": {
           "score": 71.9,
-          "liggetid_dage": 244,
+          "liggetid_dage": 245,
           "liggetid_percentile": 95,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
@@ -123354,7 +123354,7 @@
         "mispricing_available": true,
         "nettoafkast_available": true
       },
-      "reason": "16% under modelpris, 244 dage på markedet, -0.1% afkast"
+      "reason": "16% under modelpris, 245 dage på markedet, -0.1% afkast"
     },
     {
       "id": 2292075,
@@ -209337,5 +209337,5 @@
       "sold_or_removed": true
     }
   ],
-  "scoring_last_updated": "2026-09-25T18:22:46.113495+00:00"
+  "scoring_last_updated": "2026-09-25T22:07:30.384381+00:00"
 }
