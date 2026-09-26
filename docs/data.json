@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-26T19:43:29.315647+00:00",
+  "last_updated": "2026-09-26T22:34:12.750721+00:00",
   "area_stats": {
     "falster": {
       "avg_kr_per_m2": 23105,
@@ -123151,7 +123151,7 @@
       "grund_m2": 1520,
       "byggeaar": 1983,
       "kr_per_m2": 29230.0,
-      "dage_paa_markedet": 245,
+      "dage_paa_markedet": 246,
       "energimaerke": "C",
       "latitude": 55.88823,
       "longitude": 11.53518,
@@ -123234,7 +123234,7 @@
         "kvalitet_percentile": 65,
         "motivation_detail": {
           "score": 71.8,
-          "liggetid_dage": 245,
+          "liggetid_dage": 246,
           "liggetid_percentile": 95,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
@@ -123245,7 +123245,7 @@
         "mispricing_available": true,
         "nettoafkast_available": true
       },
-      "reason": "16% under modelpris, 245 dage på markedet, -0.1% afkast"
+      "reason": "16% under modelpris, 246 dage på markedet, -0.1% afkast"
     },
     {
       "id": 2292075,
@@ -210754,5 +210754,5 @@
       "sold_or_removed": true
     }
   ],
-  "scoring_last_updated": "2026-09-26T19:43:29.315647+00:00"
+  "scoring_last_updated": "2026-09-26T22:34:12.750721+00:00"
 }
