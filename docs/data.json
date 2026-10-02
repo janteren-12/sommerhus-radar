@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-02T01:27:52.902601+00:00",
+  "last_updated": "2026-10-02T08:13:28.495429+00:00",
   "area_stats": {
     "ringkoebing": {
       "avg_kr_per_m2": 32347,
@@ -3071,9 +3071,9 @@
         "nettoafkast": 0.005380278884462152,
         "nettoafkast_pct": 0.54
       },
-      "score": 24.7,
+      "score": 24.6,
       "score_breakdown": {
-        "score": 24.7,
+        "score": 24.6,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -3085,7 +3085,7 @@
         "motivation_percentile": 1,
         "kvalitet_percentile": 29,
         "motivation_detail": {
-          "score": 16.9,
+          "score": 16.7,
           "liggetid_dage": 2,
           "liggetid_percentile": 3,
           "prisnedslag_pct": 0,
@@ -4638,7 +4638,7 @@
       "grund_m2": 1190,
       "byggeaar": 1935,
       "kr_per_m2": 133.0,
-      "dage_paa_markedet": 2,
+      "dage_paa_markedet": 3,
       "energimaerke": null,
       "latitude": 55.94188,
       "longitude": 11.67049,
@@ -4720,9 +4720,9 @@
         "motivation_percentile": 1,
         "kvalitet_percentile": 28,
         "motivation_detail": {
-          "score": 16.9,
-          "liggetid_dage": 2,
-          "liggetid_percentile": 3,
+          "score": 17.0,
+          "liggetid_dage": 3,
+          "liggetid_percentile": 4,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -4732,7 +4732,7 @@
         "mispricing_available": true,
         "nettoafkast_available": true
       },
-      "reason": "39% under modelpris, 2 dage på markedet, 2.3% afkast"
+      "reason": "39% under modelpris, 3 dage på markedet, 2.3% afkast"
     },
     {
       "id": 2372003,
@@ -5251,9 +5251,9 @@
         "nettoafkast": -0.005543969610636277,
         "nettoafkast_pct": -0.55
       },
-      "score": 16.4,
+      "score": 16.5,
       "score_breakdown": {
-        "score": 16.4,
+        "score": 16.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -217122,5 +217122,5 @@
       "sold_or_removed": true
     }
   ],
-  "scoring_last_updated": "2026-10-02T01:27:52.902601+00:00"
+  "scoring_last_updated": "2026-10-02T08:13:28.495429+00:00"
 }
