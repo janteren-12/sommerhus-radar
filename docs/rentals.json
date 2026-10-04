@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-04T12:05:44.373436+00:00",
+  "last_updated": "2026-10-04T17:23:55.430154+00:00",
   "company_labels": {
     "dancenter": "DanCenter",
     "novasol": "Novasol",
@@ -222,7 +222,7 @@
       "area_label": "Odsherred",
       "companies": {
         "dancenter": {
-          "present": true,
+          "present": false,
           "count": null,
           "url": "https://www.dancenter.dk/sommerhus/sjaelland/nordvestsjaelland/"
         },
