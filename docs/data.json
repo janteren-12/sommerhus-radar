@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-07T01:18:49.847803+00:00",
+  "last_updated": "2026-10-07T08:23:05.993075+00:00",
   "area_stats": {
     "djursland": {
       "avg_kr_per_m2": 28643,
@@ -7294,7 +7294,7 @@
         "motivation_percentile": 1,
         "kvalitet_percentile": 29,
         "motivation_detail": {
-          "score": 17.0,
+          "score": 16.8,
           "liggetid_dage": 7,
           "liggetid_percentile": 5,
           "prisnedslag_pct": 0,
@@ -8738,7 +8738,7 @@
       "grund_m2": 1190,
       "byggeaar": 1935,
       "kr_per_m2": 133.0,
-      "dage_paa_markedet": 7,
+      "dage_paa_markedet": 8,
       "energimaerke": null,
       "latitude": 55.94188,
       "longitude": 11.67049,
@@ -8820,9 +8820,9 @@
         "motivation_percentile": 1,
         "kvalitet_percentile": 28,
         "motivation_detail": {
-          "score": 17.0,
-          "liggetid_dage": 7,
-          "liggetid_percentile": 5,
+          "score": 17.1,
+          "liggetid_dage": 8,
+          "liggetid_percentile": 6,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -8832,7 +8832,7 @@
         "mispricing_available": true,
         "nettoafkast_available": true
       },
-      "reason": "39% under modelpris, 7 dage på markedet, 2.3% afkast"
+      "reason": "39% under modelpris, 8 dage på markedet, 2.3% afkast"
     },
     {
       "id": 2372003,
@@ -221289,5 +221289,5 @@
       "sold_or_removed": true
     }
   ],
-  "scoring_last_updated": "2026-10-07T01:18:49.847803+00:00"
+  "scoring_last_updated": "2026-10-07T08:23:05.993075+00:00"
 }
