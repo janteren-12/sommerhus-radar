@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-13T15:47:27.390666+00:00",
+  "last_updated": "2026-10-13T21:07:09.323142+00:00",
   "company_labels": {
     "dancenter": "DanCenter",
     "novasol": "Novasol",
@@ -107,7 +107,7 @@
           "url": "https://www.dancenter.dk/sommerhus/vestjylland-syd/romo-mando/"
         },
         "novasol": {
-          "present": null,
+          "present": true,
           "count": null,
           "url": "https://www.novasol.dk/danmark/roemoe"
         },
@@ -137,7 +137,7 @@
           "url": "https://www.dancenter.dk/sommerhus/nordjylland/jammerbugten/"
         },
         "novasol": {
-          "present": null,
+          "present": true,
           "count": null,
           "url": "https://www.novasol.dk/danmark/jammerbugten"
         },
