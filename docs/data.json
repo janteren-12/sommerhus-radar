@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-14T01:00:58.200729+00:00",
+  "last_updated": "2026-10-14T07:19:50.999225+00:00",
   "area_stats": {
     "djursland": {
       "avg_kr_per_m2": 28206,
@@ -15195,9 +15195,9 @@
         "nettoafkast": 0.005380278884462152,
         "nettoafkast_pct": 0.54
       },
-      "score": 24.3,
+      "score": 24.2,
       "score_breakdown": {
-        "score": 24.3,
+        "score": 24.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -15209,7 +15209,7 @@
         "motivation_percentile": 1,
         "kvalitet_percentile": 29,
         "motivation_detail": {
-          "score": 18.7,
+          "score": 18.5,
           "liggetid_dage": 14,
           "liggetid_percentile": 11,
           "prisnedslag_pct": 0,
@@ -15304,9 +15304,9 @@
         "nettoafkast": -0.002548891352549889,
         "nettoafkast_pct": -0.25
       },
-      "score": 37.3,
+      "score": 37.2,
       "score_breakdown": {
-        "score": 37.3,
+        "score": 37.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -16326,7 +16326,7 @@
       "grund_m2": 1190,
       "byggeaar": 1935,
       "kr_per_m2": 133.0,
-      "dage_paa_markedet": 14,
+      "dage_paa_markedet": 15,
       "energimaerke": null,
       "latitude": 55.94188,
       "longitude": 11.67049,
@@ -16405,11 +16405,11 @@
         },
         "mispricing_percentile": 97,
         "nettoafkast_percentile": 95,
-        "motivation_percentile": 1,
+        "motivation_percentile": 2,
         "kvalitet_percentile": 28,
         "motivation_detail": {
-          "score": 18.7,
-          "liggetid_dage": 14,
+          "score": 18.8,
+          "liggetid_dage": 15,
           "liggetid_percentile": 11,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
@@ -16420,7 +16420,7 @@
         "mispricing_available": true,
         "nettoafkast_available": true
       },
-      "reason": "40% under modelpris, 14 dage på markedet, 2.3% afkast"
+      "reason": "40% under modelpris, 15 dage på markedet, 2.3% afkast"
     },
     {
       "id": 2372003,
@@ -229904,5 +229904,5 @@
       "sold_or_removed": true
     }
   ],
-  "scoring_last_updated": "2026-10-14T01:00:58.200729+00:00"
+  "scoring_last_updated": "2026-10-14T07:19:50.999225+00:00"
 }
