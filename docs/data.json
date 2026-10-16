@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-16T01:04:39.426056+00:00",
+  "last_updated": "2026-10-16T06:54:11.630675+00:00",
   "area_stats": {
     "blaavand": {
       "avg_kr_per_m2": 30985,
@@ -16953,9 +16953,9 @@
         "motivation_percentile": 1,
         "kvalitet_percentile": 29,
         "motivation_detail": {
-          "score": 18.7,
+          "score": 18.6,
           "liggetid_dage": 16,
-          "liggetid_percentile": 12,
+          "liggetid_percentile": 11,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -18070,7 +18070,7 @@
       "grund_m2": 1190,
       "byggeaar": 1935,
       "kr_per_m2": 133.0,
-      "dage_paa_markedet": 16,
+      "dage_paa_markedet": 17,
       "energimaerke": null,
       "latitude": 55.94188,
       "longitude": 11.67049,
@@ -18152,8 +18152,8 @@
         "motivation_percentile": 1,
         "kvalitet_percentile": 28,
         "motivation_detail": {
-          "score": 18.7,
-          "liggetid_dage": 16,
+          "score": 18.8,
+          "liggetid_dage": 17,
           "liggetid_percentile": 12,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
@@ -18164,7 +18164,7 @@
         "mispricing_available": true,
         "nettoafkast_available": true
       },
-      "reason": "40% under modelpris, 16 dage på markedet, 2.3% afkast"
+      "reason": "40% under modelpris, 17 dage på markedet, 2.3% afkast"
     },
     {
       "id": 2372003,
@@ -231975,5 +231975,5 @@
       "sold_or_removed": true
     }
   ],
-  "scoring_last_updated": "2026-10-16T01:04:39.426056+00:00"
+  "scoring_last_updated": "2026-10-16T06:54:11.630675+00:00"
 }
