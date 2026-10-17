@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-17T03:48:24.772277+00:00",
+  "last_updated": "2026-10-17T08:25:21.582026+00:00",
   "area_stats": {
     "odsherred": {
       "avg_kr_per_m2": 40781,
@@ -17389,9 +17389,9 @@
         "motivation_percentile": 1,
         "kvalitet_percentile": 29,
         "motivation_detail": {
-          "score": 18.9,
+          "score": 18.8,
           "liggetid_dage": 17,
-          "liggetid_percentile": 13,
+          "liggetid_percentile": 12,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -18506,7 +18506,7 @@
       "grund_m2": 1190,
       "byggeaar": 1935,
       "kr_per_m2": 133.0,
-      "dage_paa_markedet": 17,
+      "dage_paa_markedet": 18,
       "energimaerke": null,
       "latitude": 55.94188,
       "longitude": 11.67049,
@@ -18588,8 +18588,8 @@
         "motivation_percentile": 1,
         "kvalitet_percentile": 28,
         "motivation_detail": {
-          "score": 18.9,
-          "liggetid_dage": 17,
+          "score": 19.1,
+          "liggetid_dage": 18,
           "liggetid_percentile": 13,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
@@ -18600,7 +18600,7 @@
         "mispricing_available": true,
         "nettoafkast_available": true
       },
-      "reason": "40% under modelpris, 17 dage på markedet, 2.3% afkast"
+      "reason": "40% under modelpris, 18 dage på markedet, 2.3% afkast"
     },
     {
       "id": 2371736,
@@ -232826,5 +232826,5 @@
       "sold_or_removed": true
     }
   ],
-  "scoring_last_updated": "2026-10-17T03:48:24.772277+00:00"
+  "scoring_last_updated": "2026-10-17T08:25:21.582026+00:00"
 }
