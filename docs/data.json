@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-10-23T04:09:16.096671+00:00",
+  "last_updated": "2026-10-23T09:50:05.565753+00:00",
   "area_stats": {
+    "nordsjaelland": {
+      "avg_kr_per_m2": 57918,
+      "listing_count": 233
+    },
     "blaavand": {
       "avg_kr_per_m2": 31886,
       "listing_count": 138
-    },
-    "nordsjaelland": {
-      "avg_kr_per_m2": 57964,
-      "listing_count": 232
     },
     "jammerbugt": {
       "avg_kr_per_m2": 31224,
@@ -47,6 +47,115 @@
     }
   },
   "listings": [
+    {
+      "id": 2378775,
+      "haandvaerkertilbud": false,
+      "address": "Mælkevejen 2",
+      "postnummer": 3210,
+      "city": "Vejby",
+      "area": "nordsjaelland",
+      "area_label": "Nordsjælland",
+      "price": 2695000,
+      "m2": 57,
+      "grund_m2": 1183,
+      "byggeaar": 1973,
+      "kr_per_m2": 47280.0,
+      "dage_paa_markedet": 0,
+      "energimaerke": null,
+      "latitude": 56.07798,
+      "longitude": 12.13282,
+      "prisaendring_pct": null,
+      "prisaendring_kr": null,
+      "udbetaling": 135000,
+      "ejerudgift_md": 2630,
+      "link": "https://www.boliga.dk/bolig/2378775/maelkevejen-2-3210-vejby",
+      "first_seen": "2026-10-23T09:50:05.565753+00:00",
+      "sold_or_removed": false,
+      "price_cut_count": 0,
+      "was_relisted": false,
+      "mispricing": {
+        "distance_to_coast_m": 866,
+        "modelpris": 2601911,
+        "mispricing_pct": 3.6,
+        "pooled_with_area": false,
+        "comparables": [
+          {
+            "address": "Mælkevejen 2",
+            "sold_date": "2025-05-21T22:00:00.000Z",
+            "price": 1750000,
+            "size": 57,
+            "distance_km": 0.0
+          },
+          {
+            "address": "Orionvej 6",
+            "sold_date": "2025-12-27T23:00:00.000Z",
+            "price": 2900000,
+            "size": 100,
+            "distance_km": 0.1
+          },
+          {
+            "address": "Avlegårdsvej 2",
+            "sold_date": "2025-03-28T23:00:00.000Z",
+            "price": 1975000,
+            "size": 50,
+            "distance_km": 0.1
+          },
+          {
+            "address": "Heliosvej 5",
+            "sold_date": "2025-07-04T22:00:00.000Z",
+            "price": 1948000,
+            "size": 49,
+            "distance_km": 0.1
+          },
+          {
+            "address": "Heliosvej 7",
+            "sold_date": "2025-10-11T22:00:00.000Z",
+            "price": 1725000,
+            "size": 56,
+            "distance_km": 0.1
+          }
+        ]
+      },
+      "nettoafkast": {
+        "bruttolejeindtaegt": 156200,
+        "efter_provision": 112464.0,
+        "driftsomkostninger": 28700,
+        "vedligehold": 33687.5,
+        "skat": 25440.0,
+        "nettoresultat": 24636.5,
+        "handelsomkostninger": 15000,
+        "koebspris_plus_handelsomkostninger": 2710000,
+        "nettoafkast": 0.009090959409594096,
+        "nettoafkast_pct": 0.91
+      },
+      "score": 55.2,
+      "score_breakdown": {
+        "score": 55.2,
+        "weights": {
+          "mispricing": 0.4,
+          "nettoafkast": 0.3,
+          "motivation": 0.2,
+          "kvalitet": 0.1
+        },
+        "mispricing_percentile": 69,
+        "nettoafkast_percentile": 75,
+        "motivation_percentile": 4,
+        "kvalitet_percentile": 43,
+        "motivation_detail": {
+          "score": 24.1,
+          "liggetid_dage": 0,
+          "liggetid_percentile": 1,
+          "prisnedslag_pct": 0,
+          "price_cut_count": 0,
+          "was_relisted": false,
+          "off_season_listing": true,
+          "compared_against": "postnummer: 3210"
+        },
+        "mispricing_available": true,
+        "nettoafkast_available": true
+      },
+      "reason": "4% over modelpris, 0 dage på markedet, 0.9% afkast"
+    },
     {
       "id": 2378706,
       "haandvaerkertilbud": false,
@@ -1000,9 +1109,9 @@
         "nettoafkast": 0.0025374538745387455,
         "nettoafkast_pct": 0.25
       },
-      "score": 49.1,
+      "score": 49.0,
       "score_breakdown": {
-        "score": 49.1,
+        "score": 49.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -1763,9 +1872,9 @@
         "nettoafkast": 0.011975375375375375,
         "nettoafkast_pct": 1.2
       },
-      "score": 50.6,
+      "score": 50.5,
       "score_breakdown": {
-        "score": 50.6,
+        "score": 50.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -1872,9 +1981,9 @@
         "nettoafkast": -0.003259297052154195,
         "nettoafkast_pct": -0.33
       },
-      "score": 18.8,
+      "score": 18.7,
       "score_breakdown": {
-        "score": 18.8,
+        "score": 18.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -1882,7 +1991,7 @@
           "kvalitet": 0.1
         },
         "mispricing_percentile": 13,
-        "nettoafkast_percentile": 21,
+        "nettoafkast_percentile": 20,
         "motivation_percentile": 8,
         "kvalitet_percentile": 59,
         "motivation_detail": {
@@ -2090,9 +2199,9 @@
         "nettoafkast": 0.0058831993228946255,
         "nettoafkast_pct": 0.59
       },
-      "score": 54.9,
+      "score": 54.8,
       "score_breakdown": {
-        "score": 54.9,
+        "score": 54.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -2199,9 +2308,9 @@
         "nettoafkast": 0.0021062724014336916,
         "nettoafkast_pct": 0.21
       },
-      "score": 22.5,
+      "score": 22.4,
       "score_breakdown": {
-        "score": 22.5,
+        "score": 22.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -2308,9 +2417,9 @@
         "nettoafkast": 0.004658797653958944,
         "nettoafkast_pct": 0.47
       },
-      "score": 57.0,
+      "score": 57.1,
       "score_breakdown": {
-        "score": 57.0,
+        "score": 57.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -2322,9 +2431,9 @@
         "motivation_percentile": 4,
         "kvalitet_percentile": 47,
         "motivation_detail": {
-          "score": 24.0,
+          "score": 24.5,
           "liggetid_dage": 2,
-          "liggetid_percentile": 1,
+          "liggetid_percentile": 2,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -2526,9 +2635,9 @@
         "nettoafkast": 0.00017249134948096886,
         "nettoafkast_pct": 0.02
       },
-      "score": 41.9,
+      "score": 41.8,
       "score_breakdown": {
-        "score": 41.9,
+        "score": 41.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -3683,9 +3792,9 @@
         "nettoafkast": 0.006476532769556026,
         "nettoafkast_pct": 0.65
       },
-      "score": 60.9,
+      "score": 60.8,
       "score_breakdown": {
-        "score": 60.9,
+        "score": 60.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -3792,9 +3901,9 @@
         "nettoafkast": -0.002523614663256607,
         "nettoafkast_pct": -0.25
       },
-      "score": 21.0,
+      "score": 20.9,
       "score_breakdown": {
-        "score": 21.0,
+        "score": 20.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -3901,9 +4010,9 @@
         "nettoafkast": 0.0026466374850775964,
         "nettoafkast_pct": 0.26
       },
-      "score": 50.8,
+      "score": 50.7,
       "score_breakdown": {
-        "score": 50.8,
+        "score": 50.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -4020,7 +4129,7 @@
           "kvalitet": 0.1
         },
         "mispricing_percentile": 23,
-        "nettoafkast_percentile": 21,
+        "nettoafkast_percentile": 20,
         "motivation_percentile": 12,
         "kvalitet_percentile": 65,
         "motivation_detail": {
@@ -4882,9 +4991,9 @@
         "nettoafkast": 0.0028573490813648293,
         "nettoafkast_pct": 0.29
       },
-      "score": 50.8,
+      "score": 50.9,
       "score_breakdown": {
-        "score": 50.8,
+        "score": 50.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -4893,12 +5002,12 @@
         },
         "mispricing_percentile": 75,
         "nettoafkast_percentile": 54,
-        "motivation_percentile": 4,
+        "motivation_percentile": 5,
         "kvalitet_percentile": 38,
         "motivation_detail": {
-          "score": 24.4,
+          "score": 24.8,
           "liggetid_dage": 4,
-          "liggetid_percentile": 2,
+          "liggetid_percentile": 3,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -5645,9 +5754,9 @@
         "nettoafkast": -0.006097788873038516,
         "nettoafkast_pct": -0.61
       },
-      "score": 19.6,
+      "score": 19.5,
       "score_breakdown": {
-        "score": 19.6,
+        "score": 19.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -5874,7 +5983,7 @@
         },
         "mispricing_percentile": 47,
         "nettoafkast_percentile": 71,
-        "motivation_percentile": 10,
+        "motivation_percentile": 11,
         "kvalitet_percentile": 47,
         "motivation_detail": {
           "score": 27.9,
@@ -6953,9 +7062,9 @@
         "nettoafkast": 0.0001456810631229236,
         "nettoafkast_pct": 0.01
       },
-      "score": 58.6,
+      "score": 58.7,
       "score_breakdown": {
-        "score": 58.6,
+        "score": 58.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -7280,9 +7389,9 @@
         "nettoafkast": 0.001058761329305136,
         "nettoafkast_pct": 0.11
       },
-      "score": 34.5,
+      "score": 34.4,
       "score_breakdown": {
-        "score": 34.5,
+        "score": 34.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -7825,9 +7934,9 @@
         "nettoafkast": 0.004695210727969349,
         "nettoafkast_pct": 0.47
       },
-      "score": 40.5,
+      "score": 40.4,
       "score_breakdown": {
-        "score": 40.5,
+        "score": 40.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -8043,9 +8152,9 @@
         "nettoafkast": 0.002942410238179879,
         "nettoafkast_pct": 0.29
       },
-      "score": 45.4,
+      "score": 45.3,
       "score_breakdown": {
-        "score": 45.4,
+        "score": 45.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -8588,9 +8697,9 @@
         "nettoafkast": 0.005939592760180996,
         "nettoafkast_pct": 0.59
       },
-      "score": 43.4,
+      "score": 43.3,
       "score_breakdown": {
-        "score": 43.4,
+        "score": 43.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -8697,9 +8806,9 @@
         "nettoafkast": 0.005727881619937695,
         "nettoafkast_pct": 0.57
       },
-      "score": 44.9,
+      "score": 45.1,
       "score_breakdown": {
-        "score": 44.9,
+        "score": 45.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -8708,12 +8817,12 @@
         },
         "mispricing_percentile": 50,
         "nettoafkast_percentile": 66,
-        "motivation_percentile": 5,
+        "motivation_percentile": 6,
         "kvalitet_percentile": 42,
         "motivation_detail": {
-          "score": 24.9,
+          "score": 25.4,
           "liggetid_dage": 10,
-          "liggetid_percentile": 4,
+          "liggetid_percentile": 5,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -8915,9 +9024,9 @@
         "nettoafkast": 0.0327141975308642,
         "nettoafkast_pct": 3.27
       },
-      "score": 76.4,
+      "score": 76.5,
       "score_breakdown": {
-        "score": 76.4,
+        "score": 76.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -9242,9 +9351,9 @@
         "nettoafkast": 0.0037081717451523544,
         "nettoafkast_pct": 0.37
       },
-      "score": 56.4,
+      "score": 56.6,
       "score_breakdown": {
-        "score": 56.4,
+        "score": 56.6,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -9253,12 +9362,12 @@
         },
         "mispricing_percentile": 80,
         "nettoafkast_percentile": 57,
-        "motivation_percentile": 5,
+        "motivation_percentile": 6,
         "kvalitet_percentile": 62,
         "motivation_detail": {
-          "score": 24.9,
+          "score": 25.4,
           "liggetid_dage": 10,
-          "liggetid_percentile": 4,
+          "liggetid_percentile": 5,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -10332,9 +10441,9 @@
         "nettoafkast": 0.0004593576965669989,
         "nettoafkast_pct": 0.05
       },
-      "score": 33.3,
+      "score": 33.4,
       "score_breakdown": {
-        "score": 33.3,
+        "score": 33.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -10343,12 +10452,12 @@
         },
         "mispricing_percentile": 40,
         "nettoafkast_percentile": 42,
-        "motivation_percentile": 6,
+        "motivation_percentile": 7,
         "kvalitet_percentile": 33,
         "motivation_detail": {
-          "score": 25.4,
+          "score": 25.9,
           "liggetid_dage": 11,
-          "liggetid_percentile": 5,
+          "liggetid_percentile": 6,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -10441,9 +10550,9 @@
         "nettoafkast": 0.006886393088552916,
         "nettoafkast_pct": 0.69
       },
-      "score": 43.2,
+      "score": 43.1,
       "score_breakdown": {
-        "score": 43.2,
+        "score": 43.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -10668,7 +10777,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 51,
+        "mispricing_percentile": 50,
         "nettoafkast_percentile": 80,
         "motivation_percentile": 14,
         "kvalitet_percentile": 26,
@@ -10768,9 +10877,9 @@
         "nettoafkast": 0.0001330899435778294,
         "nettoafkast_pct": 0.01
       },
-      "score": 47.9,
+      "score": 47.8,
       "score_breakdown": {
-        "score": 47.9,
+        "score": 47.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -10877,9 +10986,9 @@
         "nettoafkast": 0.010811354581673307,
         "nettoafkast_pct": 1.08
       },
-      "score": 66.9,
+      "score": 67.1,
       "score_breakdown": {
-        "score": 66.9,
+        "score": 67.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -10891,9 +11000,9 @@
         "motivation_percentile": 7,
         "kvalitet_percentile": 58,
         "motivation_detail": {
-          "score": 25.8,
+          "score": 26.2,
           "liggetid_dage": 13,
-          "liggetid_percentile": 7,
+          "liggetid_percentile": 8,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -11431,7 +11540,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 30,
+        "mispricing_percentile": 29,
         "nettoafkast_percentile": 24,
         "motivation_percentile": 6,
         "kvalitet_percentile": 30,
@@ -12632,7 +12741,7 @@
         },
         "mispricing_percentile": 31,
         "nettoafkast_percentile": 88,
-        "motivation_percentile": 17,
+        "motivation_percentile": 18,
         "kvalitet_percentile": 48,
         "motivation_detail": {
           "score": 31.4,
@@ -13275,9 +13384,9 @@
         "nettoafkast": 0.017221523178807947,
         "nettoafkast_pct": 1.72
       },
-      "score": 66.1,
+      "score": 66.2,
       "score_breakdown": {
-        "score": 66.1,
+        "score": 66.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -14365,9 +14474,9 @@
         "nettoafkast": 0.005380278884462152,
         "nettoafkast_pct": 0.54
       },
-      "score": 47.0,
+      "score": 46.9,
       "score_breakdown": {
-        "score": 47.0,
+        "score": 46.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -15749,7 +15858,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 51,
+        "mispricing_percentile": 50,
         "nettoafkast_percentile": 12,
         "motivation_percentile": 19,
         "kvalitet_percentile": 58,
@@ -15969,7 +16078,7 @@
         },
         "mispricing_percentile": 59,
         "nettoafkast_percentile": 78,
-        "motivation_percentile": 17,
+        "motivation_percentile": 18,
         "kvalitet_percentile": 60,
         "motivation_detail": {
           "score": 31.4,
@@ -17224,9 +17333,9 @@
         "nettoafkast": 0.014487748344370862,
         "nettoafkast_pct": 1.45
       },
-      "score": 64.0,
+      "score": 63.9,
       "score_breakdown": {
-        "score": 64.0,
+        "score": 63.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -17442,9 +17551,9 @@
         "nettoafkast": 0.0020913965087281795,
         "nettoafkast_pct": 0.21
       },
-      "score": 39.3,
+      "score": 39.5,
       "score_breakdown": {
-        "score": 39.3,
+        "score": 39.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -17456,9 +17565,9 @@
         "motivation_percentile": 8,
         "kvalitet_percentile": 59,
         "motivation_detail": {
-          "score": 26.3,
+          "score": 26.8,
           "liggetid_dage": 17,
-          "liggetid_percentile": 8,
+          "liggetid_percentile": 9,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -17551,9 +17660,9 @@
         "nettoafkast": -0.010940317206450754,
         "nettoafkast_pct": -1.09
       },
-      "score": 9.3,
+      "score": 9.4,
       "score_breakdown": {
-        "score": 9.3,
+        "score": 9.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -17565,9 +17674,9 @@
         "motivation_percentile": 8,
         "kvalitet_percentile": 65,
         "motivation_detail": {
-          "score": 26.3,
+          "score": 26.8,
           "liggetid_dage": 17,
-          "liggetid_percentile": 8,
+          "liggetid_percentile": 9,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -18325,7 +18434,7 @@
         },
         "mispricing_percentile": 4,
         "nettoafkast_percentile": 8,
-        "motivation_percentile": 10,
+        "motivation_percentile": 11,
         "kvalitet_percentile": 48,
         "motivation_detail": {
           "score": 27.9,
@@ -18423,9 +18532,9 @@
         "nettoafkast": 0.006939036544850498,
         "nettoafkast_pct": 0.69
       },
-      "score": 54.7,
+      "score": 54.9,
       "score_breakdown": {
-        "score": 54.7,
+        "score": 54.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -18434,12 +18543,12 @@
         },
         "mispricing_percentile": 72,
         "nettoafkast_percentile": 70,
-        "motivation_percentile": 9,
+        "motivation_percentile": 10,
         "kvalitet_percentile": 33,
         "motivation_detail": {
-          "score": 26.9,
+          "score": 27.3,
           "liggetid_dage": 18,
-          "liggetid_percentile": 10,
+          "liggetid_percentile": 11,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -19840,9 +19949,9 @@
         "nettoafkast": 0.014487748344370862,
         "nettoafkast_pct": 1.45
       },
-      "score": 62.0,
+      "score": 62.1,
       "score_breakdown": {
-        "score": 62.0,
+        "score": 62.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -20167,9 +20276,9 @@
         "nettoafkast": 0.0010252240292067706,
         "nettoafkast_pct": 0.1
       },
-      "score": 26.3,
+      "score": 26.2,
       "score_breakdown": {
-        "score": 26.3,
+        "score": 26.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -20276,9 +20385,9 @@
         "nettoafkast": -0.0018040682414698162,
         "nettoafkast_pct": -0.18
       },
-      "score": 19.9,
+      "score": 20.0,
       "score_breakdown": {
-        "score": 19.9,
+        "score": 20.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -20821,9 +20930,9 @@
         "nettoafkast": 0.0034867486338797816,
         "nettoafkast_pct": 0.35
       },
-      "score": 30.8,
+      "score": 30.9,
       "score_breakdown": {
-        "score": 30.8,
+        "score": 30.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -20835,9 +20944,9 @@
         "motivation_percentile": 10,
         "kvalitet_percentile": 33,
         "motivation_detail": {
-          "score": 27.4,
+          "score": 27.8,
           "liggetid_dage": 22,
-          "liggetid_percentile": 12,
+          "liggetid_percentile": 13,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -21366,9 +21475,9 @@
         "nettoafkast": 0.02117892561983471,
         "nettoafkast_pct": 2.12
       },
-      "score": 70.7,
+      "score": 70.8,
       "score_breakdown": {
-        "score": 70.7,
+        "score": 70.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -21475,9 +21584,9 @@
         "nettoafkast": 0.011778630705394191,
         "nettoafkast_pct": 1.18
       },
-      "score": 63.5,
+      "score": 63.7,
       "score_breakdown": {
-        "score": 63.5,
+        "score": 63.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -21489,9 +21598,9 @@
         "motivation_percentile": 10,
         "kvalitet_percentile": 31,
         "motivation_detail": {
-          "score": 27.4,
+          "score": 27.8,
           "liggetid_dage": 22,
-          "liggetid_percentile": 12,
+          "liggetid_percentile": 13,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -22347,9 +22456,9 @@
         "nettoafkast": -0.003512058371735791,
         "nettoafkast_pct": -0.35
       },
-      "score": 21.3,
+      "score": 21.4,
       "score_breakdown": {
-        "score": 21.3,
+        "score": 21.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -22358,12 +22467,12 @@
         },
         "mispricing_percentile": 30,
         "nettoafkast_percentile": 19,
-        "motivation_percentile": 0,
+        "motivation_percentile": 1,
         "kvalitet_percentile": 36,
         "motivation_detail": {
-          "score": 17.9,
+          "score": 18.4,
           "liggetid_dage": 23,
-          "liggetid_percentile": 14,
+          "liggetid_percentile": 15,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -23437,9 +23546,9 @@
         "nettoafkast": 0.00026799431009957327,
         "nettoafkast_pct": 0.03
       },
-      "score": 24.8,
+      "score": 24.7,
       "score_breakdown": {
-        "score": 24.8,
+        "score": 24.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -23954,9 +24063,9 @@
         "motivation_percentile": 1,
         "kvalitet_percentile": 35,
         "motivation_detail": {
-          "score": 18.3,
+          "score": 18.7,
           "liggetid_dage": 25,
-          "liggetid_percentile": 15,
+          "liggetid_percentile": 16,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -24172,9 +24281,9 @@
         "motivation_percentile": 1,
         "kvalitet_percentile": 50,
         "motivation_detail": {
-          "score": 18.7,
+          "score": 19.1,
           "liggetid_dage": 26,
-          "liggetid_percentile": 16,
+          "liggetid_percentile": 17,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -24703,9 +24812,9 @@
         "nettoafkast": 0.00010660112359550562,
         "nettoafkast_pct": 0.01
       },
-      "score": 39.1,
+      "score": 39.0,
       "score_breakdown": {
-        "score": 39.1,
+        "score": 39.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -24823,7 +24932,7 @@
         },
         "mispricing_percentile": 65,
         "nettoafkast_percentile": 74,
-        "motivation_percentile": 1,
+        "motivation_percentile": 0,
         "kvalitet_percentile": 39,
         "motivation_detail": {
           "score": 18.1,
@@ -24932,7 +25041,7 @@
         },
         "mispricing_percentile": 13,
         "nettoafkast_percentile": 29,
-        "motivation_percentile": 1,
+        "motivation_percentile": 0,
         "kvalitet_percentile": 72,
         "motivation_detail": {
           "score": 18.1,
@@ -25030,9 +25139,9 @@
         "nettoafkast": -0.0038858925143953936,
         "nettoafkast_pct": -0.39
       },
-      "score": 18.7,
+      "score": 18.6,
       "score_breakdown": {
-        "score": 18.7,
+        "score": 18.6,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -25041,7 +25150,7 @@
         },
         "mispricing_percentile": 16,
         "nettoafkast_percentile": 17,
-        "motivation_percentile": 1,
+        "motivation_percentile": 0,
         "kvalitet_percentile": 71,
         "motivation_detail": {
           "score": 18.1,
@@ -26011,9 +26120,9 @@
         "nettoafkast": 0.0050310546875,
         "nettoafkast_pct": 0.5
       },
-      "score": 41.6,
+      "score": 41.5,
       "score_breakdown": {
-        "score": 41.6,
+        "score": 41.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -26338,9 +26447,9 @@
         "nettoafkast": 0.004340337711069418,
         "nettoafkast_pct": 0.43
       },
-      "score": 29.6,
+      "score": 29.5,
       "score_breakdown": {
-        "score": 29.6,
+        "score": 29.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -26461,9 +26570,9 @@
         "motivation_percentile": 1,
         "kvalitet_percentile": 46,
         "motivation_detail": {
-          "score": 19.0,
+          "score": 19.4,
           "liggetid_dage": 29,
-          "liggetid_percentile": 17,
+          "liggetid_percentile": 18,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": false,
@@ -27070,7 +27179,7 @@
         },
         "mispricing_percentile": 76,
         "nettoafkast_percentile": 34,
-        "motivation_percentile": 33,
+        "motivation_percentile": 34,
         "kvalitet_percentile": 42,
         "motivation_detail": {
           "score": 41.1,
@@ -27168,9 +27277,9 @@
         "nettoafkast": 0.0006033762057877813,
         "nettoafkast_pct": 0.06
       },
-      "score": 29.4,
+      "score": 29.3,
       "score_breakdown": {
-        "score": 29.4,
+        "score": 29.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -27286,7 +27395,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 30,
+        "mispricing_percentile": 29,
         "nettoafkast_percentile": 31,
         "motivation_percentile": 3,
         "kvalitet_percentile": 45,
@@ -27386,9 +27495,9 @@
         "nettoafkast": -0.003077114967462039,
         "nettoafkast_pct": -0.31
       },
-      "score": 23.3,
+      "score": 23.2,
       "score_breakdown": {
-        "score": 23.3,
+        "score": 23.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -28258,9 +28367,9 @@
         "nettoafkast": 0.014430874147551146,
         "nettoafkast_pct": 1.44
       },
-      "score": 61.2,
+      "score": 61.1,
       "score_breakdown": {
-        "score": 61.2,
+        "score": 61.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -28476,9 +28585,9 @@
         "nettoafkast": -0.0013220423412204235,
         "nettoafkast_pct": -0.13
       },
-      "score": 26.9,
+      "score": 26.8,
       "score_breakdown": {
-        "score": 26.9,
+        "score": 26.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -28487,7 +28596,7 @@
         },
         "mispricing_percentile": 26,
         "nettoafkast_percentile": 31,
-        "motivation_percentile": 6,
+        "motivation_percentile": 5,
         "kvalitet_percentile": 59,
         "motivation_detail": {
           "score": 25.2,
@@ -28694,9 +28803,9 @@
         "nettoafkast": 0.0034649386084583903,
         "nettoafkast_pct": 0.35
       },
-      "score": 62.8,
+      "score": 62.9,
       "score_breakdown": {
-        "score": 62.8,
+        "score": 62.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -28705,12 +28814,12 @@
         },
         "mispricing_percentile": 86,
         "nettoafkast_percentile": 56,
-        "motivation_percentile": 21,
+        "motivation_percentile": 22,
         "kvalitet_percentile": 72,
         "motivation_detail": {
-          "score": 34.4,
+          "score": 34.8,
           "liggetid_dage": 33,
-          "liggetid_percentile": 18,
+          "liggetid_percentile": 19,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -28803,9 +28912,9 @@
         "nettoafkast": 0.01397579185520362,
         "nettoafkast_pct": 1.4
       },
-      "score": 42.6,
+      "score": 42.7,
       "score_breakdown": {
-        "score": 42.6,
+        "score": 42.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -28817,9 +28926,9 @@
         "motivation_percentile": 22,
         "kvalitet_percentile": 32,
         "motivation_detail": {
-          "score": 34.9,
+          "score": 35.3,
           "liggetid_dage": 34,
-          "liggetid_percentile": 20,
+          "liggetid_percentile": 21,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -29035,9 +29144,9 @@
         "motivation_percentile": 22,
         "kvalitet_percentile": 33,
         "motivation_detail": {
-          "score": 34.9,
+          "score": 35.3,
           "liggetid_dage": 34,
-          "liggetid_percentile": 20,
+          "liggetid_percentile": 21,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -29904,7 +30013,7 @@
         },
         "mispricing_percentile": 48,
         "nettoafkast_percentile": 55,
-        "motivation_percentile": 33,
+        "motivation_percentile": 34,
         "kvalitet_percentile": 51,
         "motivation_detail": {
           "score": 41.1,
@@ -30329,9 +30438,9 @@
         "nettoafkast": 0.00347135231316726,
         "nettoafkast_pct": 0.35
       },
-      "score": 45.2,
+      "score": 45.1,
       "score_breakdown": {
-        "score": 45.2,
+        "score": 45.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -30656,9 +30765,9 @@
         "nettoafkast": 0.006939036544850498,
         "nettoafkast_pct": 0.69
       },
-      "score": 63.7,
+      "score": 63.8,
       "score_breakdown": {
-        "score": 63.7,
+        "score": 63.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -30667,12 +30776,12 @@
         },
         "mispricing_percentile": 87,
         "nettoafkast_percentile": 70,
-        "motivation_percentile": 22,
+        "motivation_percentile": 23,
         "kvalitet_percentile": 37,
         "motivation_detail": {
-          "score": 35.4,
+          "score": 35.8,
           "liggetid_dage": 35,
-          "liggetid_percentile": 22,
+          "liggetid_percentile": 23,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -31388,7 +31497,7 @@
         },
         "mispricing_percentile": 67,
         "nettoafkast_percentile": 29,
-        "motivation_percentile": 33,
+        "motivation_percentile": 34,
         "kvalitet_percentile": 45,
         "motivation_detail": {
           "score": 41.1,
@@ -31704,9 +31813,9 @@
         "nettoafkast": 0.005380278884462152,
         "nettoafkast_pct": 0.54
       },
-      "score": 48.7,
+      "score": 48.6,
       "score_breakdown": {
-        "score": 48.7,
+        "score": 48.6,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -32970,9 +33079,9 @@
         "nettoafkast": -0.0014912511759172153,
         "nettoafkast_pct": -0.15
       },
-      "score": 26.5,
+      "score": 26.6,
       "score_breakdown": {
-        "score": 26.5,
+        "score": 26.6,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -32984,9 +33093,9 @@
         "motivation_percentile": 23,
         "kvalitet_percentile": 49,
         "motivation_detail": {
-          "score": 35.8,
+          "score": 36.2,
           "liggetid_dage": 38,
-          "liggetid_percentile": 23,
+          "liggetid_percentile": 24,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -33265,7 +33374,7 @@
           "kvalitet": 0.1
         },
         "mispricing_percentile": 53,
-        "nettoafkast_percentile": 61,
+        "nettoafkast_percentile": 60,
         "motivation_percentile": 34,
         "kvalitet_percentile": 43,
         "motivation_detail": {
@@ -33364,9 +33473,9 @@
         "nettoafkast": 0.029729533678756477,
         "nettoafkast_pct": 2.97
       },
-      "score": 70.9,
+      "score": 71.0,
       "score_breakdown": {
-        "score": 70.9,
+        "score": 71.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -33920,12 +34029,12 @@
         },
         "mispricing_percentile": 42,
         "nettoafkast_percentile": 57,
-        "motivation_percentile": 23,
+        "motivation_percentile": 24,
         "kvalitet_percentile": 50,
         "motivation_detail": {
-          "score": 36.2,
+          "score": 36.5,
           "liggetid_dage": 39,
-          "liggetid_percentile": 24,
+          "liggetid_percentile": 25,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -34672,16 +34781,16 @@
         "nettoafkast": 0.002922508591065292,
         "nettoafkast_pct": 0.29
       },
-      "score": 35.3,
+      "score": 35.2,
       "score_breakdown": {
-        "score": 35.3,
+        "score": 35.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 28,
+        "mispricing_percentile": 27,
         "nettoafkast_percentile": 54,
         "motivation_percentile": 25,
         "kvalitet_percentile": 30,
@@ -35108,9 +35217,9 @@
         "nettoafkast": 0.0024101328903654486,
         "nettoafkast_pct": 0.24
       },
-      "score": 45.3,
+      "score": 45.2,
       "score_breakdown": {
-        "score": 45.3,
+        "score": 45.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -35326,9 +35435,9 @@
         "nettoafkast": -0.005859292837715322,
         "nettoafkast_pct": -0.59
       },
-      "score": 22.9,
+      "score": 22.8,
       "score_breakdown": {
-        "score": 22.9,
+        "score": 22.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -35544,9 +35653,9 @@
         "nettoafkast": 0.002922508591065292,
         "nettoafkast_pct": 0.29
       },
-      "score": 38.1,
+      "score": 38.0,
       "score_breakdown": {
-        "score": 38.1,
+        "score": 38.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -35871,9 +35980,9 @@
         "nettoafkast": -0.003512058371735791,
         "nettoafkast_pct": -0.35
       },
-      "score": 36.0,
+      "score": 36.1,
       "score_breakdown": {
-        "score": 36.0,
+        "score": 36.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -35882,10 +35991,10 @@
         },
         "mispricing_percentile": 23,
         "nettoafkast_percentile": 19,
-        "motivation_percentile": 69,
+        "motivation_percentile": 70,
         "kvalitet_percentile": 72,
         "motivation_detail": {
-          "score": 61.2,
+          "score": 61.5,
           "liggetid_dage": 43,
           "liggetid_percentile": 26,
           "prisnedslag_pct": 7,
@@ -35980,9 +36089,9 @@
         "nettoafkast": 0.0013982185273159146,
         "nettoafkast_pct": 0.14
       },
-      "score": 56.4,
+      "score": 56.5,
       "score_breakdown": {
-        "score": 56.4,
+        "score": 56.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -35991,12 +36100,12 @@
         },
         "mispricing_percentile": 59,
         "nettoafkast_percentile": 47,
-        "motivation_percentile": 67,
+        "motivation_percentile": 68,
         "kvalitet_percentile": 50,
         "motivation_detail": {
-          "score": 59.7,
+          "score": 60.1,
           "liggetid_dage": 44,
-          "liggetid_percentile": 27,
+          "liggetid_percentile": 28,
           "prisnedslag_pct": 6,
           "price_cut_count": 1,
           "was_relisted": true,
@@ -36089,9 +36198,9 @@
         "nettoafkast": -0.004668004115226337,
         "nettoafkast_pct": -0.47
       },
-      "score": 24.9,
+      "score": 24.8,
       "score_breakdown": {
-        "score": 24.9,
+        "score": 24.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -36534,7 +36643,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 41,
+        "mispricing_percentile": 40,
         "nettoafkast_percentile": 37,
         "motivation_percentile": 27,
         "kvalitet_percentile": 51,
@@ -37407,7 +37516,7 @@
           "kvalitet": 0.1
         },
         "mispricing_percentile": 39,
-        "nettoafkast_percentile": 51,
+        "nettoafkast_percentile": 50,
         "motivation_percentile": 78,
         "kvalitet_percentile": 33,
         "motivation_detail": {
@@ -37724,9 +37833,9 @@
         "nettoafkast": 0.006928354978354978,
         "nettoafkast_pct": 0.69
       },
-      "score": 64.0,
+      "score": 63.9,
       "score_breakdown": {
-        "score": 64.0,
+        "score": 63.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -37842,7 +37951,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 89,
+        "mispricing_percentile": 90,
         "nettoafkast_percentile": 40,
         "motivation_percentile": 22,
         "kvalitet_percentile": 27,
@@ -38378,9 +38487,9 @@
         "nettoafkast": 0.007234064080944351,
         "nettoafkast_pct": 0.72
       },
-      "score": 52.2,
+      "score": 52.3,
       "score_breakdown": {
-        "score": 52.2,
+        "score": 52.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -38389,12 +38498,12 @@
         },
         "mispricing_percentile": 55,
         "nettoafkast_percentile": 71,
-        "motivation_percentile": 25,
+        "motivation_percentile": 26,
         "kvalitet_percentile": 40,
         "motivation_detail": {
-          "score": 37.2,
+          "score": 37.6,
           "liggetid_dage": 47,
-          "liggetid_percentile": 28,
+          "liggetid_percentile": 29,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -38814,9 +38923,9 @@
         "nettoafkast": 0.0043864357864357864,
         "nettoafkast_pct": 0.44
       },
-      "score": 55.4,
+      "score": 55.5,
       "score_breakdown": {
-        "score": 55.4,
+        "score": 55.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -38824,13 +38933,13 @@
           "kvalitet": 0.1
         },
         "mispricing_percentile": 71,
-        "nettoafkast_percentile": 61,
-        "motivation_percentile": 26,
+        "nettoafkast_percentile": 60,
+        "motivation_percentile": 27,
         "kvalitet_percentile": 36,
         "motivation_detail": {
-          "score": 37.8,
+          "score": 38.1,
           "liggetid_dage": 48,
-          "liggetid_percentile": 30,
+          "liggetid_percentile": 31,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -38923,9 +39032,9 @@
         "nettoafkast": -0.0051951935081148565,
         "nettoafkast_pct": -0.52
       },
-      "score": 18.5,
+      "score": 18.7,
       "score_breakdown": {
-        "score": 18.5,
+        "score": 18.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -38934,12 +39043,12 @@
         },
         "mispricing_percentile": 16,
         "nettoafkast_percentile": 12,
-        "motivation_percentile": 26,
+        "motivation_percentile": 27,
         "kvalitet_percentile": 31,
         "motivation_detail": {
-          "score": 37.8,
+          "score": 38.1,
           "liggetid_dage": 48,
-          "liggetid_percentile": 30,
+          "liggetid_percentile": 31,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -39250,9 +39359,9 @@
         "nettoafkast": 0.007129236330772707,
         "nettoafkast_pct": 0.71
       },
-      "score": 46.9,
+      "score": 46.8,
       "score_breakdown": {
-        "score": 46.9,
+        "score": 46.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -40340,9 +40449,9 @@
         "nettoafkast": 0.004265472779369627,
         "nettoafkast_pct": 0.43
       },
-      "score": 55.5,
+      "score": 55.6,
       "score_breakdown": {
-        "score": 55.5,
+        "score": 55.6,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -40354,7 +40463,7 @@
         "motivation_percentile": 61,
         "kvalitet_percentile": 59,
         "motivation_detail": {
-          "score": 55.1,
+          "score": 55.5,
           "liggetid_dage": 49,
           "liggetid_percentile": 32,
           "prisnedslag_pct": 3,
@@ -40894,7 +41003,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 63,
+        "mispricing_percentile": 62,
         "nettoafkast_percentile": 20,
         "motivation_percentile": 36,
         "kvalitet_percentile": 42,
@@ -41539,9 +41648,9 @@
         "nettoafkast": 0.00416994301994302,
         "nettoafkast_pct": 0.42
       },
-      "score": 51.3,
+      "score": 51.5,
       "score_breakdown": {
-        "score": 51.3,
+        "score": 51.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -41550,12 +41659,12 @@
         },
         "mispricing_percentile": 40,
         "nettoafkast_percentile": 60,
-        "motivation_percentile": 61,
+        "motivation_percentile": 62,
         "kvalitet_percentile": 52,
         "motivation_detail": {
-          "score": 55.4,
+          "score": 55.9,
           "liggetid_dage": 51,
-          "liggetid_percentile": 33,
+          "liggetid_percentile": 34,
           "prisnedslag_pct": 3,
           "price_cut_count": 1,
           "was_relisted": true,
@@ -41757,9 +41866,9 @@
         "nettoafkast": 0.007335388127853881,
         "nettoafkast_pct": 0.73
       },
-      "score": 54.4,
+      "score": 54.3,
       "score_breakdown": {
-        "score": 54.4,
+        "score": 54.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -41866,9 +41975,9 @@
         "nettoafkast": 0.012295303867403315,
         "nettoafkast_pct": 1.23
       },
-      "score": 73.5,
+      "score": 73.4,
       "score_breakdown": {
-        "score": 73.5,
+        "score": 73.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -42204,7 +42313,7 @@
         },
         "mispricing_percentile": 86,
         "nettoafkast_percentile": 22,
-        "motivation_percentile": 7,
+        "motivation_percentile": 6,
         "kvalitet_percentile": 58,
         "motivation_detail": {
           "score": 25.8,
@@ -42411,9 +42520,9 @@
         "nettoafkast": 0.002922508591065292,
         "nettoafkast_pct": 0.29
       },
-      "score": 57.8,
+      "score": 57.7,
       "score_breakdown": {
-        "score": 57.8,
+        "score": 57.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -42696,9 +42805,9 @@
         "nettoafkast": 0.008769905213270143,
         "nettoafkast_pct": 0.88
       },
-      "score": 59.6,
+      "score": 59.5,
       "score_breakdown": {
-        "score": 59.6,
+        "score": 59.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -42923,7 +43032,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 28,
+        "mispricing_percentile": 27,
         "nettoafkast_percentile": 71,
         "motivation_percentile": 44,
         "kvalitet_percentile": 38,
@@ -43241,9 +43350,9 @@
         "nettoafkast": -0.0021714033539276256,
         "nettoafkast_pct": -0.22
       },
-      "score": 32.6,
+      "score": 32.8,
       "score_breakdown": {
-        "score": 32.6,
+        "score": 32.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -43252,12 +43361,12 @@
         },
         "mispricing_percentile": 29,
         "nettoafkast_percentile": 27,
-        "motivation_percentile": 29,
+        "motivation_percentile": 30,
         "kvalitet_percentile": 72,
         "motivation_detail": {
-          "score": 39.0,
+          "score": 39.4,
           "liggetid_dage": 52,
-          "liggetid_percentile": 34,
+          "liggetid_percentile": 35,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -43568,9 +43677,9 @@
         "nettoafkast": -0.001090809968847352,
         "nettoafkast_pct": -0.11
       },
-      "score": 33.1,
+      "score": 33.0,
       "score_breakdown": {
-        "score": 33.1,
+        "score": 33.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -43796,7 +43905,7 @@
           "kvalitet": 0.1
         },
         "mispricing_percentile": 43,
-        "nettoafkast_percentile": 21,
+        "nettoafkast_percentile": 20,
         "motivation_percentile": 68,
         "kvalitet_percentile": 69,
         "motivation_detail": {
@@ -44222,9 +44331,9 @@
         "nettoafkast": 0.00165,
         "nettoafkast_pct": 0.17
       },
-      "score": 54.6,
+      "score": 54.5,
       "score_breakdown": {
-        "score": 54.6,
+        "score": 54.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -44985,9 +45094,9 @@
         "nettoafkast": 0.0001456810631229236,
         "nettoafkast_pct": 0.01
       },
-      "score": 28.4,
+      "score": 28.3,
       "score_breakdown": {
-        "score": 28.4,
+        "score": 28.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -45868,7 +45977,7 @@
         },
         "mispricing_percentile": 89,
         "nettoafkast_percentile": 23,
-        "motivation_percentile": 17,
+        "motivation_percentile": 18,
         "kvalitet_percentile": 75,
         "motivation_detail": {
           "score": 31.4,
@@ -46195,7 +46304,7 @@
         },
         "mispricing_percentile": 54,
         "nettoafkast_percentile": 12,
-        "motivation_percentile": 19,
+        "motivation_percentile": 20,
         "kvalitet_percentile": 67,
         "motivation_detail": {
           "score": 32.8,
@@ -47492,9 +47601,9 @@
         "nettoafkast": -0.002765089514066496,
         "nettoafkast_pct": -0.28
       },
-      "score": 45.5,
+      "score": 45.4,
       "score_breakdown": {
-        "score": 45.5,
+        "score": 45.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -47710,9 +47819,9 @@
         "nettoafkast": -0.007431624500665779,
         "nettoafkast_pct": -0.74
       },
-      "score": 21.2,
+      "score": 21.1,
       "score_breakdown": {
-        "score": 21.2,
+        "score": 21.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -48909,9 +49018,9 @@
         "nettoafkast": -0.006169798769333112,
         "nettoafkast_pct": -0.62
       },
-      "score": 35.1,
+      "score": 35.0,
       "score_breakdown": {
-        "score": 35.1,
+        "score": 35.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -52162,9 +52271,9 @@
         "nettoafkast": 0.014688214285714285,
         "nettoafkast_pct": 1.47
       },
-      "score": 62.8,
+      "score": 62.7,
       "score_breakdown": {
-        "score": 62.8,
+        "score": 62.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -53344,9 +53453,9 @@
         "nettoafkast": 0.011514826498422713,
         "nettoafkast_pct": 1.15
       },
-      "score": 66.2,
+      "score": 66.3,
       "score_breakdown": {
-        "score": 66.2,
+        "score": 66.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -53562,9 +53671,9 @@
         "nettoafkast": 0.018879637262984337,
         "nettoafkast_pct": 1.89
       },
-      "score": 67.4,
+      "score": 67.3,
       "score_breakdown": {
-        "score": 67.4,
+        "score": 67.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -53671,9 +53780,9 @@
         "nettoafkast": 0.00553957345971564,
         "nettoafkast_pct": 0.55
       },
-      "score": 55.7,
+      "score": 55.6,
       "score_breakdown": {
-        "score": 55.7,
+        "score": 55.6,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -53816,7 +53925,7 @@
         },
         "mispricing_percentile": 50,
         "nettoafkast_percentile": 91,
-        "motivation_percentile": 54,
+        "motivation_percentile": 55,
         "kvalitet_percentile": 64,
         "motivation_detail": {
           "score": 51.7,
@@ -53914,9 +54023,9 @@
         "nettoafkast": 0.001045729537366548,
         "nettoafkast_pct": 0.1
       },
-      "score": 40.2,
+      "score": 40.1,
       "score_breakdown": {
-        "score": 40.2,
+        "score": 40.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -53925,7 +54034,7 @@
         },
         "mispricing_percentile": 24,
         "nettoafkast_percentile": 45,
-        "motivation_percentile": 54,
+        "motivation_percentile": 55,
         "kvalitet_percentile": 63,
         "motivation_detail": {
           "score": 51.7,
@@ -54426,7 +54535,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 59,
+        "mispricing_percentile": 58,
         "nettoafkast_percentile": 80,
         "motivation_percentile": 86,
         "kvalitet_percentile": 51,
@@ -54535,7 +54644,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 54,
+        "mispricing_percentile": 53,
         "nettoafkast_percentile": 45,
         "motivation_percentile": 63,
         "kvalitet_percentile": 59,
@@ -54987,9 +55096,9 @@
         "nettoafkast": 0.02022871883061049,
         "nettoafkast_pct": 2.02
       },
-      "score": 71.1,
+      "score": 71.2,
       "score_breakdown": {
-        "score": 71.1,
+        "score": 71.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -55205,9 +55314,9 @@
         "nettoafkast": 0.007428534031413613,
         "nettoafkast_pct": 0.74
       },
-      "score": 76.0,
+      "score": 75.9,
       "score_breakdown": {
-        "score": 76.0,
+        "score": 75.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -55314,9 +55423,9 @@
         "nettoafkast": -0.0007912398921832884,
         "nettoafkast_pct": -0.08
       },
-      "score": 30.7,
+      "score": 30.6,
       "score_breakdown": {
-        "score": 30.7,
+        "score": 30.6,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -56295,9 +56404,9 @@
         "nettoafkast": -0.007076841448189763,
         "nettoafkast_pct": -0.71
       },
-      "score": 17.0,
+      "score": 17.1,
       "score_breakdown": {
-        "score": 17.0,
+        "score": 17.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -56306,7 +56415,7 @@
         },
         "mispricing_percentile": 10,
         "nettoafkast_percentile": 5,
-        "motivation_percentile": 44,
+        "motivation_percentile": 45,
         "kvalitet_percentile": 26,
         "motivation_detail": {
           "score": 46.1,
@@ -56731,9 +56840,9 @@
         "nettoafkast": 0.00022765895106944037,
         "nettoafkast_pct": 0.02
       },
-      "score": 44.5,
+      "score": 44.4,
       "score_breakdown": {
-        "score": 44.5,
+        "score": 44.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -56959,7 +57068,7 @@
           "kvalitet": 0.1
         },
         "mispricing_percentile": 42,
-        "nettoafkast_percentile": 21,
+        "nettoafkast_percentile": 20,
         "motivation_percentile": 48,
         "kvalitet_percentile": 58,
         "motivation_detail": {
@@ -57494,9 +57603,9 @@
         "nettoafkast": 0.01213953488372093,
         "nettoafkast_pct": 1.21
       },
-      "score": 73.4,
+      "score": 73.3,
       "score_breakdown": {
-        "score": 73.4,
+        "score": 73.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -58148,9 +58257,9 @@
         "nettoafkast": -0.00013464275547964702,
         "nettoafkast_pct": -0.01
       },
-      "score": 40.2,
+      "score": 40.1,
       "score_breakdown": {
-        "score": 40.2,
+        "score": 40.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -59414,16 +59523,16 @@
         "nettoafkast": 0.006304978354978355,
         "nettoafkast_pct": 0.63
       },
-      "score": 66.5,
+      "score": 66.4,
       "score_breakdown": {
-        "score": 66.5,
+        "score": 66.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 54,
+        "mispricing_percentile": 53,
         "nettoafkast_percentile": 67,
         "motivation_percentile": 87,
         "kvalitet_percentile": 74,
@@ -60311,9 +60420,9 @@
         "nettoafkast": 0.0032218602967788636,
         "nettoafkast_pct": 0.32
       },
-      "score": 63.0,
+      "score": 62.9,
       "score_breakdown": {
-        "score": 63.0,
+        "score": 62.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -60648,7 +60757,7 @@
           "kvalitet": 0.1
         },
         "mispricing_percentile": 18,
-        "nettoafkast_percentile": 21,
+        "nettoafkast_percentile": 20,
         "motivation_percentile": 97,
         "kvalitet_percentile": 33,
         "motivation_detail": {
@@ -61141,9 +61250,9 @@
         "nettoafkast": -0.00014167852062588906,
         "nettoafkast_pct": -0.01
       },
-      "score": 49.2,
+      "score": 49.1,
       "score_breakdown": {
-        "score": 49.2,
+        "score": 49.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -61686,9 +61795,9 @@
         "nettoafkast": 0.007155882352941177,
         "nettoafkast_pct": 0.72
       },
-      "score": 53.4,
+      "score": 53.3,
       "score_breakdown": {
-        "score": 53.4,
+        "score": 53.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -61805,8 +61914,8 @@
           "kvalitet": 0.1
         },
         "mispricing_percentile": 28,
-        "nettoafkast_percentile": 21,
-        "motivation_percentile": 44,
+        "nettoafkast_percentile": 20,
+        "motivation_percentile": 45,
         "kvalitet_percentile": 34,
         "motivation_detail": {
           "score": 46.1,
@@ -62122,9 +62231,9 @@
         "nettoafkast": -0.003838085742771685,
         "nettoafkast_pct": -0.38
       },
-      "score": 22.9,
+      "score": 22.8,
       "score_breakdown": {
-        "score": 22.9,
+        "score": 22.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -64193,9 +64302,9 @@
         "nettoafkast": 0.0035293357933579334,
         "nettoafkast_pct": 0.35
       },
-      "score": 62.8,
+      "score": 62.7,
       "score_breakdown": {
-        "score": 62.8,
+        "score": 62.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -64422,7 +64531,7 @@
         },
         "mispricing_percentile": 60,
         "nettoafkast_percentile": 74,
-        "motivation_percentile": 83,
+        "motivation_percentile": 82,
         "kvalitet_percentile": 54,
         "motivation_detail": {
           "score": 69.9,
@@ -64738,9 +64847,9 @@
         "nettoafkast": -0.0005660714285714286,
         "nettoafkast_pct": -0.06
       },
-      "score": 53.3,
+      "score": 53.2,
       "score_breakdown": {
-        "score": 53.3,
+        "score": 53.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -66507,9 +66616,9 @@
         "nettoafkast": -0.0054065465814448965,
         "nettoafkast_pct": -0.54
       },
-      "score": 19.2,
+      "score": 19.3,
       "score_breakdown": {
-        "score": 19.2,
+        "score": 19.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -66954,7 +67063,7 @@
         },
         "mispricing_percentile": 35,
         "nettoafkast_percentile": 34,
-        "motivation_percentile": 33,
+        "motivation_percentile": 34,
         "kvalitet_percentile": 29,
         "motivation_detail": {
           "score": 41.1,
@@ -67773,9 +67882,9 @@
         "nettoafkast": 0.005023205741626794,
         "nettoafkast_pct": 0.5
       },
-      "score": 59.2,
+      "score": 59.3,
       "score_breakdown": {
-        "score": 59.2,
+        "score": 59.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -68427,9 +68536,9 @@
         "nettoafkast": 0.002091035856573705,
         "nettoafkast_pct": 0.21
       },
-      "score": 61.4,
+      "score": 61.3,
       "score_breakdown": {
-        "score": 61.4,
+        "score": 61.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -68754,16 +68863,16 @@
         "nettoafkast": 0.0006267025089605735,
         "nettoafkast_pct": 0.06
       },
-      "score": 52.0,
+      "score": 51.9,
       "score_breakdown": {
-        "score": 52.0,
+        "score": 51.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 59,
+        "mispricing_percentile": 58,
         "nettoafkast_percentile": 43,
         "motivation_percentile": 52,
         "kvalitet_percentile": 53,
@@ -69844,9 +69953,9 @@
         "nettoafkast": -0.0014455176577120434,
         "nettoafkast_pct": -0.14
       },
-      "score": 57.4,
+      "score": 57.3,
       "score_breakdown": {
-        "score": 57.4,
+        "score": 57.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -70783,9 +70892,9 @@
         "nettoafkast": 0.004431807674526121,
         "nettoafkast_pct": 0.44
       },
-      "score": 77.2,
+      "score": 77.1,
       "score_breakdown": {
-        "score": 77.2,
+        "score": 77.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -70793,7 +70902,7 @@
           "kvalitet": 0.1
         },
         "mispricing_percentile": 91,
-        "nettoafkast_percentile": 61,
+        "nettoafkast_percentile": 60,
         "motivation_percentile": 91,
         "kvalitet_percentile": 43,
         "motivation_detail": {
@@ -71898,9 +72007,9 @@
         "nettoafkast": -0.00583021472392638,
         "nettoafkast_pct": -0.58
       },
-      "score": 36.1,
+      "score": 36.0,
       "score_breakdown": {
-        "score": 36.1,
+        "score": 36.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -72837,9 +72946,9 @@
         "nettoafkast": -0.0021950236966824643,
         "nettoafkast_pct": -0.22
       },
-      "score": 49.7,
+      "score": 49.6,
       "score_breakdown": {
-        "score": 49.7,
+        "score": 49.6,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -73273,9 +73382,9 @@
         "nettoafkast": 0.004756746031746032,
         "nettoafkast_pct": 0.48
       },
-      "score": 84.4,
+      "score": 84.3,
       "score_breakdown": {
-        "score": 84.4,
+        "score": 84.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -73382,9 +73491,9 @@
         "nettoafkast": -0.009319496309161963,
         "nettoafkast_pct": -0.93
       },
-      "score": 8.5,
+      "score": 8.4,
       "score_breakdown": {
-        "score": 8.5,
+        "score": 8.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -74799,9 +74908,9 @@
         "nettoafkast": -0.0009102848101265823,
         "nettoafkast_pct": -0.09
       },
-      "score": 35.8,
+      "score": 35.7,
       "score_breakdown": {
-        "score": 35.8,
+        "score": 35.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -75126,9 +75235,9 @@
         "nettoafkast": 0.002091035856573705,
         "nettoafkast_pct": 0.21
       },
-      "score": 47.1,
+      "score": 47.0,
       "score_breakdown": {
-        "score": 47.1,
+        "score": 47.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -75235,9 +75344,9 @@
         "nettoafkast": -0.005189920159680639,
         "nettoafkast_pct": -0.52
       },
-      "score": 44.7,
+      "score": 44.6,
       "score_breakdown": {
-        "score": 44.7,
+        "score": 44.6,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -75453,9 +75562,9 @@
         "nettoafkast": -0.005470537428023033,
         "nettoafkast_pct": -0.55
       },
-      "score": 46.8,
+      "score": 46.7,
       "score_breakdown": {
-        "score": 46.8,
+        "score": 46.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -75681,7 +75790,7 @@
           "kvalitet": 0.1
         },
         "mispricing_percentile": 41,
-        "nettoafkast_percentile": 21,
+        "nettoafkast_percentile": 20,
         "motivation_percentile": 70,
         "kvalitet_percentile": 33,
         "motivation_detail": {
@@ -76107,9 +76216,9 @@
         "nettoafkast": 8.539518900343643e-05,
         "nettoafkast_pct": 0.01
       },
-      "score": 66.3,
+      "score": 66.2,
       "score_breakdown": {
-        "score": 66.3,
+        "score": 66.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -78530,9 +78639,9 @@
         "nettoafkast": 8.539518900343643e-05,
         "nettoafkast_pct": 0.01
       },
-      "score": 40.0,
+      "score": 39.9,
       "score_breakdown": {
-        "score": 40.0,
+        "score": 39.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -79588,7 +79697,7 @@
           "kvalitet": 0.1
         },
         "mispricing_percentile": 60,
-        "nettoafkast_percentile": 49,
+        "nettoafkast_percentile": 48,
         "motivation_percentile": 45,
         "kvalitet_percentile": 67,
         "motivation_detail": {
@@ -80844,9 +80953,9 @@
         "nettoafkast": -0.0014354984894259818,
         "nettoafkast_pct": -0.14
       },
-      "score": 39.1,
+      "score": 39.0,
       "score_breakdown": {
-        "score": 39.1,
+        "score": 39.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -82370,9 +82479,9 @@
         "nettoafkast": -0.00033272425249169434,
         "nettoafkast_pct": -0.03
       },
-      "score": 51.4,
+      "score": 51.3,
       "score_breakdown": {
-        "score": 51.4,
+        "score": 51.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -82697,9 +82806,9 @@
         "nettoafkast": 0.01024751552795031,
         "nettoafkast_pct": 1.02
       },
-      "score": 78.7,
+      "score": 78.8,
       "score_breakdown": {
-        "score": 78.7,
+        "score": 78.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -83024,9 +83133,9 @@
         "nettoafkast": 0.003151068376068376,
         "nettoafkast_pct": 0.32
       },
-      "score": 62.4,
+      "score": 62.3,
       "score_breakdown": {
-        "score": 62.4,
+        "score": 62.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -83678,9 +83787,9 @@
         "nettoafkast": 0.01024751552795031,
         "nettoafkast_pct": 1.02
       },
-      "score": 75.7,
+      "score": 75.8,
       "score_breakdown": {
-        "score": 75.7,
+        "score": 75.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -84299,7 +84408,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 7,
+        "mispricing_percentile": 6,
         "nettoafkast_percentile": 6,
         "motivation_percentile": 59,
         "kvalitet_percentile": 28,
@@ -85567,7 +85676,7 @@
         },
         "mispricing_percentile": 78,
         "nettoafkast_percentile": 8,
-        "motivation_percentile": 33,
+        "motivation_percentile": 34,
         "kvalitet_percentile": 25,
         "motivation_detail": {
           "score": 41.1,
@@ -85665,9 +85774,9 @@
         "nettoafkast": -0.006524034620505992,
         "nettoafkast_pct": -0.65
       },
-      "score": 28.7,
+      "score": 28.6,
       "score_breakdown": {
-        "score": 28.7,
+        "score": 28.6,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -87627,9 +87736,9 @@
         "nettoafkast": -0.0010218670076726343,
         "nettoafkast_pct": -0.1
       },
-      "score": 61.1,
+      "score": 61.0,
       "score_breakdown": {
-        "score": 61.1,
+        "score": 61.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -87845,9 +87954,9 @@
         "nettoafkast": 0.0024101328903654486,
         "nettoafkast_pct": 0.24
       },
-      "score": 77.0,
+      "score": 76.9,
       "score_breakdown": {
-        "score": 77.0,
+        "score": 76.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -87856,7 +87965,7 @@
         },
         "mispricing_percentile": 95,
         "nettoafkast_percentile": 52,
-        "motivation_percentile": 82,
+        "motivation_percentile": 81,
         "kvalitet_percentile": 73,
         "motivation_detail": {
           "score": 69.0,
@@ -87954,18 +88063,18 @@
         "nettoafkast": 0.001266717791411043,
         "nettoafkast_pct": 0.13
       },
-      "score": 75.1,
+      "score": 75.0,
       "score_breakdown": {
-        "score": 75.1,
+        "score": 75.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 93,
+        "mispricing_percentile": 94,
         "nettoafkast_percentile": 47,
-        "motivation_percentile": 82,
+        "motivation_percentile": 81,
         "kvalitet_percentile": 73,
         "motivation_detail": {
           "score": 69.0,
@@ -88074,7 +88183,7 @@
         },
         "mispricing_percentile": 94,
         "nettoafkast_percentile": 41,
-        "motivation_percentile": 82,
+        "motivation_percentile": 81,
         "kvalitet_percentile": 73,
         "motivation_detail": {
           "score": 69.0,
@@ -88390,9 +88499,9 @@
         "nettoafkast": 0.005380278884462152,
         "nettoafkast_pct": 0.54
       },
-      "score": 49.0,
+      "score": 48.9,
       "score_breakdown": {
-        "score": 49.0,
+        "score": 48.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -88608,9 +88717,9 @@
         "nettoafkast": 0.0006611436950146628,
         "nettoafkast_pct": 0.07
       },
-      "score": 33.0,
+      "score": 32.9,
       "score_breakdown": {
-        "score": 33.0,
+        "score": 32.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -88935,9 +89044,9 @@
         "nettoafkast": 0.0014811526479750778,
         "nettoafkast_pct": 0.15
       },
-      "score": 48.0,
+      "score": 47.9,
       "score_breakdown": {
-        "score": 48.0,
+        "score": 47.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -89480,9 +89589,9 @@
         "nettoafkast": 0.006122199170124481,
         "nettoafkast_pct": 0.61
       },
-      "score": 45.9,
+      "score": 45.8,
       "score_breakdown": {
-        "score": 45.9,
+        "score": 45.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -90461,9 +90570,9 @@
         "nettoafkast": 0.009828109452736319,
         "nettoafkast_pct": 0.98
       },
-      "score": 59.6,
+      "score": 59.5,
       "score_breakdown": {
-        "score": 59.6,
+        "score": 59.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -90679,9 +90788,9 @@
         "nettoafkast": 0.019329432624113477,
         "nettoafkast_pct": 1.93
       },
-      "score": 64.7,
+      "score": 64.6,
       "score_breakdown": {
-        "score": 64.7,
+        "score": 64.6,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -90788,9 +90897,9 @@
         "nettoafkast": 0.02175916030534351,
         "nettoafkast_pct": 2.18
       },
-      "score": 86.3,
+      "score": 86.4,
       "score_breakdown": {
-        "score": 86.3,
+        "score": 86.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -91660,9 +91769,9 @@
         "nettoafkast": 0.010997120418848167,
         "nettoafkast_pct": 1.1
       },
-      "score": 71.7,
+      "score": 71.6,
       "score_breakdown": {
-        "score": 71.7,
+        "score": 71.6,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -93102,9 +93211,9 @@
         "nettoafkast": 0.007774378109452736,
         "nettoafkast_pct": 0.78
       },
-      "score": 53.1,
+      "score": 53.0,
       "score_breakdown": {
-        "score": 53.1,
+        "score": 53.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -93220,7 +93329,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 91,
+        "mispricing_percentile": 92,
         "nettoafkast_percentile": 84,
         "motivation_percentile": 33,
         "kvalitet_percentile": 48,
@@ -93865,9 +93974,9 @@
         "nettoafkast": 0.005118460873324687,
         "nettoafkast_pct": 0.51
       },
-      "score": 43.7,
+      "score": 43.6,
       "score_breakdown": {
-        "score": 43.7,
+        "score": 43.6,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -95291,8 +95400,8 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 13,
-        "nettoafkast_percentile": 21,
+        "mispricing_percentile": 12,
+        "nettoafkast_percentile": 20,
         "motivation_percentile": 42,
         "kvalitet_percentile": 42,
         "motivation_detail": {
@@ -95947,7 +96056,7 @@
         },
         "mispricing_percentile": 87,
         "nettoafkast_percentile": 78,
-        "motivation_percentile": 83,
+        "motivation_percentile": 82,
         "kvalitet_percentile": 29,
         "motivation_detail": {
           "score": 69.9,
@@ -96372,9 +96481,9 @@
         "nettoafkast": 0.009409408602150537,
         "nettoafkast_pct": 0.94
       },
-      "score": 50.4,
+      "score": 50.3,
       "score_breakdown": {
-        "score": 50.4,
+        "score": 50.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -97202,9 +97311,9 @@
         "nettoafkast": 0.001038704318936877,
         "nettoafkast_pct": 0.1
       },
-      "score": 61.8,
+      "score": 61.7,
       "score_breakdown": {
-        "score": 61.8,
+        "score": 61.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -97747,9 +97856,9 @@
         "nettoafkast": 0.005507733097657976,
         "nettoafkast_pct": 0.55
       },
-      "score": 69.0,
+      "score": 68.9,
       "score_breakdown": {
-        "score": 69.0,
+        "score": 68.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -97865,7 +97974,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 45,
+        "mispricing_percentile": 44,
         "nettoafkast_percentile": 67,
         "motivation_percentile": 81,
         "kvalitet_percentile": 55,
@@ -98074,9 +98183,9 @@
         "nettoafkast": 0.005141341991341991,
         "nettoafkast_pct": 0.51
       },
-      "score": 64.4,
+      "score": 64.3,
       "score_breakdown": {
-        "score": 64.4,
+        "score": 64.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -98193,7 +98302,7 @@
           "kvalitet": 0.1
         },
         "mispricing_percentile": 32,
-        "nettoafkast_percentile": 61,
+        "nettoafkast_percentile": 60,
         "motivation_percentile": 52,
         "kvalitet_percentile": 71,
         "motivation_detail": {
@@ -98401,9 +98510,9 @@
         "nettoafkast": 0.004550836820083682,
         "nettoafkast_pct": 0.46
       },
-      "score": 48.3,
+      "score": 48.2,
       "score_breakdown": {
-        "score": 48.3,
+        "score": 48.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -99382,9 +99491,9 @@
         "nettoafkast": 0.007774378109452736,
         "nettoafkast_pct": 0.78
       },
-      "score": 60.6,
+      "score": 60.5,
       "score_breakdown": {
-        "score": 60.6,
+        "score": 60.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -99500,7 +99609,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 66,
+        "mispricing_percentile": 65,
         "nettoafkast_percentile": 88,
         "motivation_percentile": 57,
         "kvalitet_percentile": 55,
@@ -100430,9 +100539,9 @@
         "nettoafkast": 0.009952617079889807,
         "nettoafkast_pct": 1.0
       },
-      "score": 79.2,
+      "score": 79.3,
       "score_breakdown": {
-        "score": 79.2,
+        "score": 79.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -101151,9 +101260,9 @@
         "nettoafkast": 0.005141341991341991,
         "nettoafkast_pct": 0.51
       },
-      "score": 64.9,
+      "score": 64.8,
       "score_breakdown": {
-        "score": 64.9,
+        "score": 64.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -101478,9 +101587,9 @@
         "nettoafkast": 0.006813507109004739,
         "nettoafkast_pct": 0.68
       },
-      "score": 60.5,
+      "score": 60.4,
       "score_breakdown": {
-        "score": 60.5,
+        "score": 60.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -101763,9 +101872,9 @@
         "nettoafkast": 0.010014640883977901,
         "nettoafkast_pct": 1.0
       },
-      "score": 60.0,
+      "score": 60.1,
       "score_breakdown": {
-        "score": 60.0,
+        "score": 60.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -102853,9 +102962,9 @@
         "nettoafkast": 0.01362275641025641,
         "nettoafkast_pct": 1.36
       },
-      "score": 66.3,
+      "score": 66.2,
       "score_breakdown": {
-        "score": 66.3,
+        "score": 66.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -103180,9 +103289,9 @@
         "nettoafkast": 0.014434236615994713,
         "nettoafkast_pct": 1.44
       },
-      "score": 72.6,
+      "score": 72.5,
       "score_breakdown": {
-        "score": 72.6,
+        "score": 72.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -103289,9 +103398,9 @@
         "nettoafkast": 0.017354578754578756,
         "nettoafkast_pct": 1.74
       },
-      "score": 76.7,
+      "score": 76.8,
       "score_breakdown": {
-        "score": 76.7,
+        "score": 76.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -105218,7 +105327,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 32,
+        "mispricing_percentile": 31,
         "nettoafkast_percentile": 45,
         "motivation_percentile": 57,
         "kvalitet_percentile": 67,
@@ -105645,9 +105754,9 @@
         "nettoafkast": 0.007774378109452736,
         "nettoafkast_pct": 0.78
       },
-      "score": 73.8,
+      "score": 73.7,
       "score_breakdown": {
-        "score": 73.8,
+        "score": 73.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -106299,9 +106408,9 @@
         "nettoafkast": -0.0008898860398860399,
         "nettoafkast_pct": -0.09
       },
-      "score": 46.1,
+      "score": 46.0,
       "score_breakdown": {
-        "score": 46.1,
+        "score": 46.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -106844,9 +106953,9 @@
         "nettoafkast": -0.0008898860398860399,
         "nettoafkast_pct": -0.09
       },
-      "score": 51.5,
+      "score": 51.4,
       "score_breakdown": {
-        "score": 51.5,
+        "score": 51.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -107389,9 +107498,9 @@
         "nettoafkast": -0.004292245720040282,
         "nettoafkast_pct": -0.43
       },
-      "score": 31.0,
+      "score": 30.9,
       "score_breakdown": {
-        "score": 31.0,
+        "score": 30.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -107498,9 +107607,9 @@
         "nettoafkast": 0.008802404600104547,
         "nettoafkast_pct": 0.88
       },
-      "score": 63.8,
+      "score": 63.7,
       "score_breakdown": {
-        "score": 63.8,
+        "score": 63.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -107509,7 +107618,7 @@
         },
         "mispricing_percentile": 46,
         "nettoafkast_percentile": 74,
-        "motivation_percentile": 80,
+        "motivation_percentile": 79,
         "kvalitet_percentile": 71,
         "motivation_detail": {
           "score": 68.0,
@@ -107607,9 +107716,9 @@
         "nettoafkast": 0.018608015267175572,
         "nettoafkast_pct": 1.86
       },
-      "score": 89.2,
+      "score": 89.3,
       "score_breakdown": {
-        "score": 89.2,
+        "score": 89.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -109242,9 +109351,9 @@
         "nettoafkast": 0.0024101328903654486,
         "nettoafkast_pct": 0.24
       },
-      "score": 38.1,
+      "score": 38.0,
       "score_breakdown": {
-        "score": 38.1,
+        "score": 38.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -109787,9 +109896,9 @@
         "nettoafkast": 0.005380278884462152,
         "nettoafkast_pct": 0.54
       },
-      "score": 43.8,
+      "score": 43.7,
       "score_breakdown": {
-        "score": 43.8,
+        "score": 43.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -110014,7 +110123,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 13,
+        "mispricing_percentile": 12,
         "nettoafkast_percentile": 11,
         "motivation_percentile": 38,
         "kvalitet_percentile": 25,
@@ -113720,7 +113829,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 91,
+        "mispricing_percentile": 92,
         "nettoafkast_percentile": 74,
         "motivation_percentile": 55,
         "kvalitet_percentile": 36,
@@ -114038,16 +114147,16 @@
         "nettoafkast": 0.00347135231316726,
         "nettoafkast_pct": 0.35
       },
-      "score": 49.2,
+      "score": 49.1,
       "score_breakdown": {
-        "score": 49.2,
+        "score": 49.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 45,
+        "mispricing_percentile": 44,
         "nettoafkast_percentile": 56,
         "motivation_percentile": 57,
         "kvalitet_percentile": 31,
@@ -118191,7 +118300,7 @@
         },
         "mispricing_percentile": 10,
         "nettoafkast_percentile": 48,
-        "motivation_percentile": 44,
+        "motivation_percentile": 45,
         "kvalitet_percentile": 40,
         "motivation_detail": {
           "score": 46.1,
@@ -119161,9 +119270,9 @@
         "nettoafkast": 0.0023854063018242124,
         "nettoafkast_pct": 0.24
       },
-      "score": 38.5,
+      "score": 38.4,
       "score_breakdown": {
-        "score": 38.5,
+        "score": 38.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -119270,9 +119379,9 @@
         "nettoafkast": 0.00406070110701107,
         "nettoafkast_pct": 0.41
       },
-      "score": 52.4,
+      "score": 52.3,
       "score_breakdown": {
-        "score": 52.4,
+        "score": 52.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -119597,9 +119706,9 @@
         "nettoafkast": 0.0024101328903654486,
         "nettoafkast_pct": 0.24
       },
-      "score": 44.0,
+      "score": 43.9,
       "score_breakdown": {
-        "score": 44.0,
+        "score": 43.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -120033,9 +120142,9 @@
         "nettoafkast": 0.0024101328903654486,
         "nettoafkast_pct": 0.24
       },
-      "score": 51.7,
+      "score": 51.6,
       "score_breakdown": {
-        "score": 51.7,
+        "score": 51.6,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -122540,9 +122649,9 @@
         "nettoafkast": -6.800554016620499e-05,
         "nettoafkast_pct": -0.01
       },
-      "score": 52.4,
+      "score": 52.3,
       "score_breakdown": {
-        "score": 52.4,
+        "score": 52.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -122867,9 +122976,9 @@
         "nettoafkast": 0.001042395896197948,
         "nettoafkast_pct": 0.1
       },
-      "score": 54.8,
+      "score": 54.7,
       "score_breakdown": {
-        "score": 54.8,
+        "score": 54.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -123630,9 +123739,9 @@
         "nettoafkast": -0.0007360419397116645,
         "nettoafkast_pct": -0.07
       },
-      "score": 47.8,
+      "score": 47.7,
       "score_breakdown": {
-        "score": 47.8,
+        "score": 47.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -123966,7 +124075,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 87,
+        "mispricing_percentile": 88,
         "nettoafkast_percentile": 41,
         "motivation_percentile": 35,
         "kvalitet_percentile": 36,
@@ -124066,9 +124175,9 @@
         "nettoafkast": 0.001058761329305136,
         "nettoafkast_pct": 0.11
       },
-      "score": 59.3,
+      "score": 59.2,
       "score_breakdown": {
-        "score": 59.3,
+        "score": 59.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -124393,16 +124502,16 @@
         "nettoafkast": 0.0014811526479750778,
         "nettoafkast_pct": 0.15
       },
-      "score": 68.8,
+      "score": 68.7,
       "score_breakdown": {
-        "score": 68.8,
+        "score": 68.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 87,
+        "mispricing_percentile": 88,
         "nettoafkast_percentile": 48,
         "motivation_percentile": 81,
         "kvalitet_percentile": 31,
@@ -125265,9 +125374,9 @@
         "nettoafkast": -0.005032529118136439,
         "nettoafkast_pct": -0.5
       },
-      "score": 53.4,
+      "score": 53.5,
       "score_breakdown": {
-        "score": 53.4,
+        "score": 53.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -126137,9 +126246,9 @@
         "nettoafkast": 0.01033944020356234,
         "nettoafkast_pct": 1.03
       },
-      "score": 58.3,
+      "score": 58.2,
       "score_breakdown": {
-        "score": 58.3,
+        "score": 58.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -127009,9 +127118,9 @@
         "nettoafkast": 0.0024101328903654486,
         "nettoafkast_pct": 0.24
       },
-      "score": 45.1,
+      "score": 45.0,
       "score_breakdown": {
-        "score": 45.1,
+        "score": 45.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -128644,9 +128753,9 @@
         "nettoafkast": 0.00347135231316726,
         "nettoafkast_pct": 0.35
       },
-      "score": 67.5,
+      "score": 67.4,
       "score_breakdown": {
-        "score": 67.5,
+        "score": 67.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -128971,9 +129080,9 @@
         "nettoafkast": 0.0023952870892797874,
         "nettoafkast_pct": 0.24
       },
-      "score": 57.3,
+      "score": 57.2,
       "score_breakdown": {
-        "score": 57.3,
+        "score": 57.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -129298,9 +129407,9 @@
         "nettoafkast": 0.0013982185273159146,
         "nettoafkast_pct": 0.14
       },
-      "score": 33.6,
+      "score": 33.7,
       "score_breakdown": {
-        "score": 33.6,
+        "score": 33.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -129312,9 +129421,9 @@
         "motivation_percentile": 30,
         "kvalitet_percentile": 33,
         "motivation_detail": {
-          "score": 39.4,
+          "score": 39.7,
           "liggetid_dage": 57,
-          "liggetid_percentile": 35,
+          "liggetid_percentile": 36,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -129421,9 +129530,9 @@
         "motivation_percentile": 74,
         "kvalitet_percentile": 62,
         "motivation_detail": {
-          "score": 64.4,
+          "score": 64.7,
           "liggetid_dage": 58,
-          "liggetid_percentile": 36,
+          "liggetid_percentile": 37,
           "prisnedslag_pct": 7,
           "price_cut_count": 1,
           "was_relisted": true,
@@ -129516,9 +129625,9 @@
         "nettoafkast": 0.004658797653958944,
         "nettoafkast_pct": 0.47
       },
-      "score": 68.1,
+      "score": 68.2,
       "score_breakdown": {
-        "score": 68.1,
+        "score": 68.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -129527,10 +129636,10 @@
         },
         "mispricing_percentile": 79,
         "nettoafkast_percentile": 61,
-        "motivation_percentile": 71,
+        "motivation_percentile": 72,
         "kvalitet_percentile": 38,
         "motivation_detail": {
-          "score": 62.9,
+          "score": 63.3,
           "liggetid_dage": 59,
           "liggetid_percentile": 38,
           "prisnedslag_pct": 6,
@@ -129625,9 +129734,9 @@
         "nettoafkast": 0.009918199233716476,
         "nettoafkast_pct": 0.99
       },
-      "score": 66.4,
+      "score": 66.6,
       "score_breakdown": {
-        "score": 66.4,
+        "score": 66.6,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -129636,10 +129745,10 @@
         },
         "mispricing_percentile": 82,
         "nettoafkast_percentile": 78,
-        "motivation_percentile": 32,
+        "motivation_percentile": 33,
         "kvalitet_percentile": 42,
         "motivation_detail": {
-          "score": 40.4,
+          "score": 40.8,
           "liggetid_dage": 60,
           "liggetid_percentile": 39,
           "prisnedslag_pct": 0,
@@ -129734,9 +129843,9 @@
         "nettoafkast": -0.0027643094841930116,
         "nettoafkast_pct": -0.28
       },
-      "score": 49.9,
+      "score": 50.0,
       "score_breakdown": {
-        "score": 49.9,
+        "score": 50.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -129745,12 +129854,12 @@
         },
         "mispricing_percentile": 49,
         "nettoafkast_percentile": 24,
-        "motivation_percentile": 80,
+        "motivation_percentile": 81,
         "kvalitet_percentile": 70,
         "motivation_detail": {
-          "score": 68.3,
+          "score": 68.6,
           "liggetid_dage": 61,
-          "liggetid_percentile": 40,
+          "liggetid_percentile": 41,
           "prisnedslag_pct": 12,
           "price_cut_count": 1,
           "was_relisted": true,
@@ -129843,9 +129952,9 @@
         "nettoafkast": -0.007824690371554135,
         "nettoafkast_pct": -0.78
       },
-      "score": 16.4,
+      "score": 16.5,
       "score_breakdown": {
-        "score": 16.4,
+        "score": 16.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -129857,9 +129966,9 @@
         "motivation_percentile": 34,
         "kvalitet_percentile": 72,
         "motivation_detail": {
-          "score": 41.2,
+          "score": 41.5,
           "liggetid_dage": 62,
-          "liggetid_percentile": 41,
+          "liggetid_percentile": 42,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -129952,9 +130061,9 @@
         "nettoafkast": 0.002638809831824062,
         "nettoafkast_pct": 0.26
       },
-      "score": 55.9,
+      "score": 56.1,
       "score_breakdown": {
-        "score": 55.9,
+        "score": 56.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -129963,12 +130072,12 @@
         },
         "mispricing_percentile": 71,
         "nettoafkast_percentile": 53,
-        "motivation_percentile": 34,
+        "motivation_percentile": 35,
         "kvalitet_percentile": 46,
         "motivation_detail": {
-          "score": 41.5,
+          "score": 41.8,
           "liggetid_dage": 66,
-          "liggetid_percentile": 42,
+          "liggetid_percentile": 43,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -130061,9 +130170,9 @@
         "nettoafkast": 0.01282965367965368,
         "nettoafkast_pct": 1.28
       },
-      "score": 78.1,
+      "score": 78.2,
       "score_breakdown": {
-        "score": 78.1,
+        "score": 78.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -130075,9 +130184,9 @@
         "motivation_percentile": 82,
         "kvalitet_percentile": 54,
         "motivation_detail": {
-          "score": 69.6,
+          "score": 69.9,
           "liggetid_dage": 69,
-          "liggetid_percentile": 43,
+          "liggetid_percentile": 44,
           "prisnedslag_pct": 8,
           "price_cut_count": 2,
           "was_relisted": true,
@@ -130170,9 +130279,9 @@
         "nettoafkast": 0.005177190332326284,
         "nettoafkast_pct": 0.52
       },
-      "score": 42.9,
+      "score": 43.0,
       "score_breakdown": {
-        "score": 42.9,
+        "score": 43.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -130181,10 +130290,10 @@
         },
         "mispricing_percentile": 34,
         "nettoafkast_percentile": 63,
-        "motivation_percentile": 36,
+        "motivation_percentile": 37,
         "kvalitet_percentile": 33,
         "motivation_detail": {
-          "score": 42.2,
+          "score": 42.5,
           "liggetid_dage": 71,
           "liggetid_percentile": 45,
           "prisnedslag_pct": 0,
@@ -130279,9 +130388,9 @@
         "nettoafkast": 0.0043864357864357864,
         "nettoafkast_pct": 0.44
       },
-      "score": 54.9,
+      "score": 55.0,
       "score_breakdown": {
-        "score": 54.9,
+        "score": 55.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -130289,11 +130398,11 @@
           "kvalitet": 0.1
         },
         "mispricing_percentile": 59,
-        "nettoafkast_percentile": 61,
-        "motivation_percentile": 37,
+        "nettoafkast_percentile": 60,
+        "motivation_percentile": 38,
         "kvalitet_percentile": 56,
         "motivation_detail": {
-          "score": 42.6,
+          "score": 42.9,
           "liggetid_dage": 85,
           "liggetid_percentile": 46,
           "prisnedslag_pct": 0,
@@ -130388,9 +130497,9 @@
         "nettoafkast": 0.007234064080944351,
         "nettoafkast_pct": 0.72
       },
-      "score": 64.5,
+      "score": 64.6,
       "score_breakdown": {
-        "score": 64.5,
+        "score": 64.6,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -130402,9 +130511,9 @@
         "motivation_percentile": 39,
         "kvalitet_percentile": 39,
         "motivation_detail": {
-          "score": 43.3,
+          "score": 43.6,
           "liggetid_dage": 86,
-          "liggetid_percentile": 48,
+          "liggetid_percentile": 49,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -130497,9 +130606,9 @@
         "nettoafkast": 0.0020913965087281795,
         "nettoafkast_pct": 0.21
       },
-      "score": 72.1,
+      "score": 72.2,
       "score_breakdown": {
-        "score": 72.1,
+        "score": 72.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -130511,9 +130620,9 @@
         "motivation_percentile": 87,
         "kvalitet_percentile": 74,
         "motivation_detail": {
-          "score": 72.3,
+          "score": 72.5,
           "liggetid_dage": 86,
-          "liggetid_percentile": 48,
+          "liggetid_percentile": 49,
           "prisnedslag_pct": 11,
           "price_cut_count": 2,
           "was_relisted": true,
@@ -130606,9 +130715,9 @@
         "nettoafkast": -0.0027643094841930116,
         "nettoafkast_pct": -0.28
       },
-      "score": 32.4,
+      "score": 32.5,
       "score_breakdown": {
-        "score": 32.4,
+        "score": 32.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -130620,9 +130729,9 @@
         "motivation_percentile": 85,
         "kvalitet_percentile": 45,
         "motivation_detail": {
-          "score": 71.1,
+          "score": 71.3,
           "liggetid_dage": 86,
-          "liggetid_percentile": 48,
+          "liggetid_percentile": 49,
           "prisnedslag_pct": 8,
           "price_cut_count": 2,
           "was_relisted": true,
@@ -130729,7 +130838,7 @@
         "motivation_percentile": 71,
         "kvalitet_percentile": 38,
         "motivation_detail": {
-          "score": 62.4,
+          "score": 62.7,
           "liggetid_dage": 91,
           "liggetid_percentile": 51,
           "prisnedslag_pct": 4,
@@ -130824,9 +130933,9 @@
         "nettoafkast": 0.0054208269525268,
         "nettoafkast_pct": 0.54
       },
-      "score": 77.8,
+      "score": 77.9,
       "score_breakdown": {
-        "score": 77.8,
+        "score": 77.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -130835,10 +130944,10 @@
         },
         "mispricing_percentile": 93,
         "nettoafkast_percentile": 64,
-        "motivation_percentile": 88,
+        "motivation_percentile": 89,
         "kvalitet_percentile": 37,
         "motivation_detail": {
-          "score": 73.4,
+          "score": 73.6,
           "liggetid_dage": 92,
           "liggetid_percentile": 52,
           "prisnedslag_pct": 11,
@@ -130933,9 +131042,9 @@
         "nettoafkast": 0.0064357605177993524,
         "nettoafkast_pct": 0.64
       },
-      "score": 73.9,
+      "score": 74.0,
       "score_breakdown": {
-        "score": 73.9,
+        "score": 74.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -130947,9 +131056,9 @@
         "motivation_percentile": 72,
         "kvalitet_percentile": 43,
         "motivation_detail": {
-          "score": 63.1,
+          "score": 63.4,
           "liggetid_dage": 94,
-          "liggetid_percentile": 53,
+          "liggetid_percentile": 54,
           "prisnedslag_pct": 4,
           "price_cut_count": 1,
           "was_relisted": true,
@@ -131042,23 +131151,23 @@
         "nettoafkast": 0.0020913965087281795,
         "nettoafkast_pct": 0.21
       },
-      "score": 53.2,
+      "score": 53.3,
       "score_breakdown": {
-        "score": 53.2,
+        "score": 53.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 54,
+        "mispricing_percentile": 53,
         "nettoafkast_percentile": 50,
-        "motivation_percentile": 65,
+        "motivation_percentile": 66,
         "kvalitet_percentile": 38,
         "motivation_detail": {
-          "score": 58.5,
+          "score": 58.8,
           "liggetid_dage": 96,
-          "liggetid_percentile": 54,
+          "liggetid_percentile": 55,
           "prisnedslag_pct": 5,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -131162,12 +131271,12 @@
         },
         "mispricing_percentile": 52,
         "nettoafkast_percentile": 46,
-        "motivation_percentile": 63,
+        "motivation_percentile": 64,
         "kvalitet_percentile": 40,
         "motivation_detail": {
-          "score": 56.9,
+          "score": 57.2,
           "liggetid_dage": 99,
-          "liggetid_percentile": 55,
+          "liggetid_percentile": 56,
           "prisnedslag_pct": 4,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -131274,7 +131383,7 @@
         "motivation_percentile": 81,
         "kvalitet_percentile": 61,
         "motivation_detail": {
-          "score": 68.7,
+          "score": 68.9,
           "liggetid_dage": 100,
           "liggetid_percentile": 57,
           "prisnedslag_pct": 6,
@@ -131369,9 +131478,9 @@
         "nettoafkast": -0.005624383078730905,
         "nettoafkast_pct": -0.56
       },
-      "score": 33.2,
+      "score": 33.4,
       "score_breakdown": {
-        "score": 33.2,
+        "score": 33.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -131380,10 +131489,10 @@
         },
         "mispricing_percentile": 21,
         "nettoafkast_percentile": 10,
-        "motivation_percentile": 71,
+        "motivation_percentile": 72,
         "kvalitet_percentile": 73,
         "motivation_detail": {
-          "score": 62.9,
+          "score": 63.3,
           "liggetid_dage": 107,
           "liggetid_percentile": 58,
           "prisnedslag_pct": 3,
@@ -131478,9 +131587,9 @@
         "nettoafkast": 0.006906799336650083,
         "nettoafkast_pct": 0.69
       },
-      "score": 55.7,
+      "score": 55.8,
       "score_breakdown": {
-        "score": 55.7,
+        "score": 55.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -131489,10 +131598,10 @@
         },
         "mispricing_percentile": 56,
         "nettoafkast_percentile": 70,
-        "motivation_percentile": 45,
+        "motivation_percentile": 46,
         "kvalitet_percentile": 35,
         "motivation_detail": {
-          "score": 46.5,
+          "score": 46.8,
           "liggetid_dage": 110,
           "liggetid_percentile": 59,
           "prisnedslag_pct": 0,
@@ -131587,9 +131696,9 @@
         "nettoafkast": 0.009455534709193246,
         "nettoafkast_pct": 0.95
       },
-      "score": 60.9,
+      "score": 61.0,
       "score_breakdown": {
-        "score": 60.9,
+        "score": 61.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -131601,9 +131710,9 @@
         "motivation_percentile": 46,
         "kvalitet_percentile": 36,
         "motivation_detail": {
-          "score": 46.9,
+          "score": 47.1,
           "liggetid_dage": 112,
-          "liggetid_percentile": 60,
+          "liggetid_percentile": 61,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -131696,9 +131805,9 @@
         "nettoafkast": -0.001880852994555354,
         "nettoafkast_pct": -0.19
       },
-      "score": 41.0,
+      "score": 41.1,
       "score_breakdown": {
-        "score": 41.0,
+        "score": 41.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -131710,9 +131819,9 @@
         "motivation_percentile": 47,
         "kvalitet_percentile": 73,
         "motivation_detail": {
-          "score": 47.2,
+          "score": 47.5,
           "liggetid_dage": 115,
-          "liggetid_percentile": 61,
+          "liggetid_percentile": 62,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -131805,9 +131914,9 @@
         "nettoafkast": 0.014526096997690531,
         "nettoafkast_pct": 1.45
       },
-      "score": 76.4,
+      "score": 76.5,
       "score_breakdown": {
-        "score": 76.4,
+        "score": 76.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -131816,12 +131925,12 @@
         },
         "mispricing_percentile": 77,
         "nettoafkast_percentile": 87,
-        "motivation_percentile": 79,
+        "motivation_percentile": 80,
         "kvalitet_percentile": 35,
         "motivation_detail": {
-          "score": 67.9,
+          "score": 68.2,
           "liggetid_dage": 116,
-          "liggetid_percentile": 62,
+          "liggetid_percentile": 63,
           "prisnedslag_pct": 5,
           "price_cut_count": 1,
           "was_relisted": true,
@@ -131928,9 +132037,9 @@
         "motivation_percentile": 74,
         "kvalitet_percentile": 50,
         "motivation_detail": {
-          "score": 64.9,
+          "score": 65.2,
           "liggetid_dage": 121,
-          "liggetid_percentile": 64,
+          "liggetid_percentile": 65,
           "prisnedslag_pct": 3,
           "price_cut_count": 1,
           "was_relisted": true,
@@ -132023,9 +132132,9 @@
         "nettoafkast": -0.004038467100506146,
         "nettoafkast_pct": -0.4
       },
-      "score": 26.8,
+      "score": 26.9,
       "score_breakdown": {
-        "score": 26.8,
+        "score": 26.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -132037,9 +132146,9 @@
         "motivation_percentile": 70,
         "kvalitet_percentile": 53,
         "motivation_detail": {
-          "score": 61.5,
+          "score": 61.8,
           "liggetid_dage": 121,
-          "liggetid_percentile": 64,
+          "liggetid_percentile": 65,
           "prisnedslag_pct": 5,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -132132,9 +132241,9 @@
         "nettoafkast": -0.0012693857965451055,
         "nettoafkast_pct": -0.13
       },
-      "score": 40.1,
+      "score": 40.2,
       "score_breakdown": {
-        "score": 40.1,
+        "score": 40.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -132143,10 +132252,10 @@
         },
         "mispricing_percentile": 43,
         "nettoafkast_percentile": 31,
-        "motivation_percentile": 49,
+        "motivation_percentile": 50,
         "kvalitet_percentile": 38,
         "motivation_detail": {
-          "score": 48.7,
+          "score": 48.9,
           "liggetid_dage": 125,
           "liggetid_percentile": 66,
           "prisnedslag_pct": 0,
@@ -132252,12 +132361,12 @@
         },
         "mispricing_percentile": 33,
         "nettoafkast_percentile": 12,
-        "motivation_percentile": 83,
+        "motivation_percentile": 84,
         "kvalitet_percentile": 31,
         "motivation_detail": {
-          "score": 70.3,
+          "score": 70.4,
           "liggetid_dage": 126,
-          "liggetid_percentile": 67,
+          "liggetid_percentile": 68,
           "prisnedslag_pct": 18,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -132350,9 +132459,9 @@
         "nettoafkast": 0.00416994301994302,
         "nettoafkast_pct": 0.42
       },
-      "score": 74.2,
+      "score": 74.3,
       "score_breakdown": {
-        "score": 74.2,
+        "score": 74.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -132361,10 +132470,10 @@
         },
         "mispricing_percentile": 92,
         "nettoafkast_percentile": 60,
-        "motivation_percentile": 79,
+        "motivation_percentile": 80,
         "kvalitet_percentile": 36,
         "motivation_detail": {
-          "score": 67.9,
+          "score": 68.2,
           "liggetid_dage": 127,
           "liggetid_percentile": 69,
           "prisnedslag_pct": 4,
@@ -132459,9 +132568,9 @@
         "nettoafkast": -0.001480885122410546,
         "nettoafkast_pct": -0.15
       },
-      "score": 42.9,
+      "score": 43.0,
       "score_breakdown": {
-        "score": 42.9,
+        "score": 43.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -132473,7 +132582,7 @@
         "motivation_percentile": 51,
         "kvalitet_percentile": 66,
         "motivation_detail": {
-          "score": 49.6,
+          "score": 49.8,
           "liggetid_dage": 127,
           "liggetid_percentile": 69,
           "prisnedslag_pct": 0,
@@ -132568,9 +132677,9 @@
         "nettoafkast": -0.0025995769881556685,
         "nettoafkast_pct": -0.26
       },
-      "score": 43.8,
+      "score": 43.9,
       "score_breakdown": {
-        "score": 43.8,
+        "score": 43.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -132579,10 +132688,10 @@
         },
         "mispricing_percentile": 43,
         "nettoafkast_percentile": 25,
-        "motivation_percentile": 75,
+        "motivation_percentile": 76,
         "kvalitet_percentile": 42,
         "motivation_detail": {
-          "score": 65.8,
+          "score": 66.1,
           "liggetid_dage": 129,
           "liggetid_percentile": 71,
           "prisnedslag_pct": 2,
@@ -132677,9 +132786,9 @@
         "nettoafkast": 0.0007679138321995465,
         "nettoafkast_pct": 0.08
       },
-      "score": 48.7,
+      "score": 48.8,
       "score_breakdown": {
-        "score": 48.7,
+        "score": 48.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -132691,7 +132800,7 @@
         "motivation_percentile": 52,
         "kvalitet_percentile": 70,
         "motivation_detail": {
-          "score": 50.4,
+          "score": 50.6,
           "liggetid_dage": 131,
           "liggetid_percentile": 72,
           "prisnedslag_pct": 0,
@@ -132800,9 +132909,9 @@
         "motivation_percentile": 53,
         "kvalitet_percentile": 70,
         "motivation_detail": {
-          "score": 50.8,
+          "score": 51.0,
           "liggetid_dage": 132,
-          "liggetid_percentile": 73,
+          "liggetid_percentile": 74,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -132909,7 +133018,7 @@
         "motivation_percentile": 91,
         "kvalitet_percentile": 42,
         "motivation_detail": {
-          "score": 76.4,
+          "score": 76.6,
           "liggetid_dage": 134,
           "liggetid_percentile": 75,
           "prisnedslag_pct": 6,
@@ -133018,7 +133127,7 @@
         "motivation_percentile": 54,
         "kvalitet_percentile": 46,
         "motivation_detail": {
-          "score": 51.3,
+          "score": 51.5,
           "liggetid_dage": 134,
           "liggetid_percentile": 75,
           "prisnedslag_pct": 0,
@@ -133113,9 +133222,9 @@
         "nettoafkast": 0.004146230440967283,
         "nettoafkast_pct": 0.41
       },
-      "score": 51.4,
+      "score": 51.5,
       "score_breakdown": {
-        "score": 51.4,
+        "score": 51.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -133124,10 +133233,10 @@
         },
         "mispricing_percentile": 47,
         "nettoafkast_percentile": 59,
-        "motivation_percentile": 55,
+        "motivation_percentile": 56,
         "kvalitet_percentile": 39,
         "motivation_detail": {
-          "score": 51.9,
+          "score": 52.1,
           "liggetid_dage": 138,
           "liggetid_percentile": 77,
           "prisnedslag_pct": 0,
@@ -133236,7 +133345,7 @@
         "motivation_percentile": 96,
         "kvalitet_percentile": 34,
         "motivation_detail": {
-          "score": 81.4,
+          "score": 81.5,
           "liggetid_dage": 140,
           "liggetid_percentile": 79,
           "prisnedslag_pct": 11,
@@ -133342,10 +133451,10 @@
         },
         "mispricing_percentile": 46,
         "nettoafkast_percentile": 53,
-        "motivation_percentile": 90,
+        "motivation_percentile": 91,
         "kvalitet_percentile": 46,
         "motivation_detail": {
-          "score": 75.3,
+          "score": 75.4,
           "liggetid_dage": 140,
           "liggetid_percentile": 79,
           "prisnedslag_pct": 6,
@@ -133454,9 +133563,9 @@
         "motivation_percentile": 57,
         "kvalitet_percentile": 39,
         "motivation_detail": {
-          "score": 52.9,
+          "score": 53.1,
           "liggetid_dage": 147,
-          "liggetid_percentile": 80,
+          "liggetid_percentile": 81,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
           "was_relisted": true,
@@ -133549,9 +133658,9 @@
         "nettoafkast": -0.0027643094841930116,
         "nettoafkast_pct": -0.28
       },
-      "score": 59.6,
+      "score": 59.7,
       "score_breakdown": {
-        "score": 59.6,
+        "score": 59.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -133563,7 +133672,7 @@
         "motivation_percentile": 89,
         "kvalitet_percentile": 71,
         "motivation_detail": {
-          "score": 73.7,
+          "score": 73.9,
           "liggetid_dage": 148,
           "liggetid_percentile": 82,
           "prisnedslag_pct": 5,
@@ -133672,7 +133781,7 @@
         "motivation_percentile": 96,
         "kvalitet_percentile": 34,
         "motivation_detail": {
-          "score": 81.5,
+          "score": 81.6,
           "liggetid_dage": 149,
           "liggetid_percentile": 83,
           "prisnedslag_pct": 13,
@@ -133781,7 +133890,7 @@
         "motivation_percentile": 59,
         "kvalitet_percentile": 64,
         "motivation_detail": {
-          "score": 54.0,
+          "score": 54.2,
           "liggetid_dage": 160,
           "liggetid_percentile": 84,
           "prisnedslag_pct": 0,
@@ -133887,10 +133996,10 @@
         },
         "mispricing_percentile": 41,
         "nettoafkast_percentile": 13,
-        "motivation_percentile": 59,
+        "motivation_percentile": 60,
         "kvalitet_percentile": 43,
         "motivation_detail": {
-          "score": 54.4,
+          "score": 54.5,
           "liggetid_dage": 162,
           "liggetid_percentile": 85,
           "prisnedslag_pct": 0,
@@ -133985,9 +134094,9 @@
         "nettoafkast": -0.010058460254537868,
         "nettoafkast_pct": -1.01
       },
-      "score": 15.0,
+      "score": 15.1,
       "score_breakdown": {
-        "score": 15.0,
+        "score": 15.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -133999,7 +134108,7 @@
         "motivation_percentile": 60,
         "kvalitet_percentile": 28,
         "motivation_detail": {
-          "score": 54.7,
+          "score": 54.9,
           "liggetid_dage": 163,
           "liggetid_percentile": 86,
           "prisnedslag_pct": 0,
@@ -134094,9 +134203,9 @@
         "nettoafkast": -0.004910959792477302,
         "nettoafkast_pct": -0.49
       },
-      "score": 24.4,
+      "score": 24.5,
       "score_breakdown": {
-        "score": 24.4,
+        "score": 24.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -134108,7 +134217,7 @@
         "motivation_percentile": 61,
         "kvalitet_percentile": 61,
         "motivation_detail": {
-          "score": 55.1,
+          "score": 55.2,
           "liggetid_dage": 168,
           "liggetid_percentile": 88,
           "prisnedslag_pct": 0,
@@ -134203,9 +134312,9 @@
         "nettoafkast": 0.005727881619937695,
         "nettoafkast_pct": 0.57
       },
-      "score": 69.1,
+      "score": 69.2,
       "score_breakdown": {
-        "score": 69.1,
+        "score": 69.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -134217,7 +134326,7 @@
         "motivation_percentile": 81,
         "kvalitet_percentile": 29,
         "motivation_detail": {
-          "score": 68.8,
+          "score": 69.0,
           "liggetid_dage": 171,
           "liggetid_percentile": 89,
           "prisnedslag_pct": 5,
@@ -134326,7 +134435,7 @@
         "motivation_percentile": 62,
         "kvalitet_percentile": 72,
         "motivation_detail": {
-          "score": 55.8,
+          "score": 55.9,
           "liggetid_dage": 184,
           "liggetid_percentile": 90,
           "prisnedslag_pct": 0,
@@ -134435,7 +134544,7 @@
         "motivation_percentile": 82,
         "kvalitet_percentile": 34,
         "motivation_detail": {
-          "score": 69.6,
+          "score": 69.7,
           "liggetid_dage": 197,
           "liggetid_percentile": 91,
           "prisnedslag_pct": 5,
@@ -134544,7 +134653,7 @@
         "motivation_percentile": 91,
         "kvalitet_percentile": 38,
         "motivation_detail": {
-          "score": 75.8,
+          "score": 75.9,
           "liggetid_dage": 198,
           "liggetid_percentile": 93,
           "prisnedslag_pct": 9,
@@ -134653,7 +134762,7 @@
         "motivation_percentile": 83,
         "kvalitet_percentile": 27,
         "motivation_detail": {
-          "score": 70.1,
+          "score": 70.2,
           "liggetid_dage": 198,
           "liggetid_percentile": 93,
           "prisnedslag_pct": 5,
@@ -134762,7 +134871,7 @@
         "motivation_percentile": 78,
         "kvalitet_percentile": 30,
         "motivation_detail": {
-          "score": 67.1,
+          "score": 67.2,
           "liggetid_dage": 203,
           "liggetid_percentile": 95,
           "prisnedslag_pct": 3,
@@ -134871,7 +134980,7 @@
         "motivation_percentile": 89,
         "kvalitet_percentile": 72,
         "motivation_detail": {
-          "score": 73.5,
+          "score": 73.6,
           "liggetid_dage": 204,
           "liggetid_percentile": 96,
           "prisnedslag_pct": 6,
@@ -134977,10 +135086,10 @@
         },
         "mispricing_percentile": 32,
         "nettoafkast_percentile": 28,
-        "motivation_percentile": 95,
+        "motivation_percentile": 96,
         "kvalitet_percentile": 72,
         "motivation_detail": {
-          "score": 80.8,
+          "score": 80.9,
           "liggetid_dage": 217,
           "liggetid_percentile": 97,
           "prisnedslag_pct": 6,
@@ -135089,7 +135198,7 @@
         "motivation_percentile": 98,
         "kvalitet_percentile": 67,
         "motivation_detail": {
-          "score": 86.0,
+          "score": 86.1,
           "liggetid_dage": 291,
           "liggetid_percentile": 98,
           "prisnedslag_pct": 7,
@@ -135184,9 +135293,9 @@
         "nettoafkast": 0.013050873362445415,
         "nettoafkast_pct": 1.31
       },
-      "score": 72.0,
+      "score": 72.1,
       "score_breakdown": {
-        "score": 72.0,
+        "score": 72.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -135198,7 +135307,7 @@
         "motivation_percentile": 66,
         "kvalitet_percentile": 32,
         "motivation_detail": {
-          "score": 58.7,
+          "score": 58.8,
           "liggetid_dage": 504,
           "liggetid_percentile": 99,
           "prisnedslag_pct": 0,
@@ -135511,9 +135620,9 @@
         "nettoafkast": 0.0013982185273159146,
         "nettoafkast_pct": 0.14
       },
-      "score": 67.3,
+      "score": 67.2,
       "score_breakdown": {
-        "score": 67.3,
+        "score": 67.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -136174,7 +136283,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 28,
+        "mispricing_percentile": 27,
         "nettoafkast_percentile": 16,
         "motivation_percentile": 36,
         "kvalitet_percentile": 40,
@@ -136601,9 +136710,9 @@
         "nettoafkast": -0.003908002936857563,
         "nettoafkast_pct": -0.39
       },
-      "score": 40.9,
+      "score": 40.8,
       "score_breakdown": {
-        "score": 40.9,
+        "score": 40.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -136819,9 +136928,9 @@
         "nettoafkast": -0.001880852994555354,
         "nettoafkast_pct": -0.19
       },
-      "score": 46.4,
+      "score": 46.3,
       "score_breakdown": {
-        "score": 46.4,
+        "score": 46.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -137800,9 +137909,9 @@
         "nettoafkast": -0.001880852994555354,
         "nettoafkast_pct": -0.19
       },
-      "score": 50.5,
+      "score": 50.4,
       "score_breakdown": {
-        "score": 50.5,
+        "score": 50.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -139762,9 +139871,9 @@
         "nettoafkast": 0.00416994301994302,
         "nettoafkast_pct": 0.42
       },
-      "score": 60.2,
+      "score": 60.1,
       "score_breakdown": {
-        "score": 60.2,
+        "score": 60.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -139991,7 +140100,7 @@
         },
         "mispricing_percentile": 48,
         "nettoafkast_percentile": 42,
-        "motivation_percentile": 33,
+        "motivation_percentile": 34,
         "kvalitet_percentile": 58,
         "motivation_detail": {
           "score": 41.1,
@@ -140919,9 +141028,9 @@
         "nettoafkast": -0.0027643094841930116,
         "nettoafkast_pct": -0.28
       },
-      "score": 25.8,
+      "score": 25.7,
       "score_breakdown": {
-        "score": 25.8,
+        "score": 25.7,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -141573,9 +141682,9 @@
         "nettoafkast": 0.008661482820976492,
         "nettoafkast_pct": 0.87
       },
-      "score": 52.2,
+      "score": 52.1,
       "score_breakdown": {
-        "score": 52.2,
+        "score": 52.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -141800,7 +141909,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 67,
+        "mispricing_percentile": 66,
         "nettoafkast_percentile": 56,
         "motivation_percentile": 49,
         "kvalitet_percentile": 30,
@@ -142009,9 +142118,9 @@
         "nettoafkast": 0.0004737250554323725,
         "nettoafkast_pct": 0.05
       },
-      "score": 49.6,
+      "score": 49.5,
       "score_breakdown": {
-        "score": 49.6,
+        "score": 49.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -142118,9 +142227,9 @@
         "nettoafkast": -0.0008210578842315369,
         "nettoafkast_pct": -0.08
       },
-      "score": 45.9,
+      "score": 45.8,
       "score_breakdown": {
-        "score": 45.9,
+        "score": 45.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -142881,9 +142990,9 @@
         "nettoafkast": 0.00416994301994302,
         "nettoafkast_pct": 0.42
       },
-      "score": 60.1,
+      "score": 60.0,
       "score_breakdown": {
-        "score": 60.1,
+        "score": 60.0,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -143099,9 +143208,9 @@
         "nettoafkast": 0.007676379310344828,
         "nettoafkast_pct": 0.77
       },
-      "score": 64.4,
+      "score": 64.3,
       "score_breakdown": {
-        "score": 64.4,
+        "score": 64.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -143208,9 +143317,9 @@
         "nettoafkast": -7.717622080679405e-05,
         "nettoafkast_pct": -0.01
       },
-      "score": 53.6,
+      "score": 53.5,
       "score_breakdown": {
-        "score": 53.6,
+        "score": 53.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -143327,7 +143436,7 @@
           "kvalitet": 0.1
         },
         "mispricing_percentile": 46,
-        "nettoafkast_percentile": 51,
+        "nettoafkast_percentile": 50,
         "motivation_percentile": 94,
         "kvalitet_percentile": 31,
         "motivation_detail": {
@@ -143437,7 +143546,7 @@
         },
         "mispricing_percentile": 1,
         "nettoafkast_percentile": 4,
-        "motivation_percentile": 94,
+        "motivation_percentile": 95,
         "kvalitet_percentile": 30,
         "motivation_detail": {
           "score": 79.8,
@@ -143971,9 +144080,9 @@
         "nettoafkast": 0.0028573490813648293,
         "nettoafkast_pct": 0.29
       },
-      "score": 65.5,
+      "score": 65.4,
       "score_breakdown": {
-        "score": 65.5,
+        "score": 65.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -144432,16 +144541,16 @@
         "nettoafkast": -0.004087131560028756,
         "nettoafkast_pct": -0.41
       },
-      "score": 22.0,
+      "score": 21.9,
       "score_breakdown": {
-        "score": 22.0,
+        "score": 21.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 20,
+        "mispricing_percentile": 19,
         "nettoafkast_percentile": 17,
         "motivation_percentile": 32,
         "kvalitet_percentile": 27,
@@ -144650,9 +144759,9 @@
         "nettoafkast": -0.009233938040747977,
         "nettoafkast_pct": -0.92
       },
-      "score": 20.1,
+      "score": 20.2,
       "score_breakdown": {
-        "score": 20.1,
+        "score": 20.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -144986,7 +145095,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 45,
+        "mispricing_percentile": 44,
         "nettoafkast_percentile": 31,
         "motivation_percentile": 94,
         "kvalitet_percentile": 27,
@@ -146394,9 +146503,9 @@
         "nettoafkast": 0.0002861823361823362,
         "nettoafkast_pct": 0.03
       },
-      "score": 46.4,
+      "score": 46.3,
       "score_breakdown": {
-        "score": 46.4,
+        "score": 46.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -146939,9 +147048,9 @@
         "nettoafkast": 0.0023952870892797874,
         "nettoafkast_pct": 0.24
       },
-      "score": 39.5,
+      "score": 39.4,
       "score_breakdown": {
-        "score": 39.5,
+        "score": 39.4,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -147048,9 +147157,9 @@
         "nettoafkast": 0.005344731610337972,
         "nettoafkast_pct": 0.53
       },
-      "score": 51.6,
+      "score": 51.5,
       "score_breakdown": {
-        "score": 51.6,
+        "score": 51.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -147713,7 +147822,7 @@
         },
         "mispricing_percentile": 41,
         "nettoafkast_percentile": 60,
-        "motivation_percentile": 54,
+        "motivation_percentile": 55,
         "kvalitet_percentile": 69,
         "motivation_detail": {
           "score": 51.7,
@@ -147811,9 +147920,9 @@
         "nettoafkast": 0.005380278884462152,
         "nettoafkast_pct": 0.54
       },
-      "score": 67.2,
+      "score": 67.1,
       "score_breakdown": {
-        "score": 67.2,
+        "score": 67.1,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -148029,9 +148138,9 @@
         "nettoafkast": 0.004695210727969349,
         "nettoafkast_pct": 0.47
       },
-      "score": 54.9,
+      "score": 54.8,
       "score_breakdown": {
-        "score": 54.9,
+        "score": 54.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -149991,9 +150100,9 @@
         "nettoafkast": 0.00045223665223665223,
         "nettoafkast_pct": 0.05
       },
-      "score": 39.9,
+      "score": 39.8,
       "score_breakdown": {
-        "score": 39.9,
+        "score": 39.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -151626,9 +151735,9 @@
         "nettoafkast": 0.04290679012345679,
         "nettoafkast_pct": 4.29
       },
-      "score": 73.4,
+      "score": 73.5,
       "score_breakdown": {
-        "score": 73.4,
+        "score": 73.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -151911,9 +152020,9 @@
         "nettoafkast": 0.027931981981981983,
         "nettoafkast_pct": 2.79
       },
-      "score": 79.1,
+      "score": 79.2,
       "score_breakdown": {
-        "score": 79.1,
+        "score": 79.2,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -152129,9 +152238,9 @@
         "nettoafkast": 0.014055917159763313,
         "nettoafkast_pct": 1.41
       },
-      "score": 54.0,
+      "score": 53.9,
       "score_breakdown": {
-        "score": 54.0,
+        "score": 53.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -152574,7 +152683,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 74,
+        "mispricing_percentile": 75,
         "nettoafkast_percentile": 98,
         "motivation_percentile": 64,
         "kvalitet_percentile": 39,
@@ -152674,9 +152783,9 @@
         "nettoafkast": 0.04263452088452088,
         "nettoafkast_pct": 4.26
       },
-      "score": 81.4,
+      "score": 81.3,
       "score_breakdown": {
-        "score": 81.4,
+        "score": 81.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -153228,7 +153337,7 @@
           "motivation": 0.2,
           "kvalitet": 0.1
         },
-        "mispricing_percentile": 74,
+        "mispricing_percentile": 75,
         "nettoafkast_percentile": 70,
         "motivation_percentile": 52,
         "kvalitet_percentile": 66,
@@ -153437,9 +153546,9 @@
         "nettoafkast": -0.0007206036745406824,
         "nettoafkast_pct": -0.07
       },
-      "score": 55.0,
+      "score": 54.9,
       "score_breakdown": {
-        "score": 55.0,
+        "score": 54.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -153655,9 +153764,9 @@
         "nettoafkast": -0.000403099730458221,
         "nettoafkast_pct": -0.04
       },
-      "score": 51.9,
+      "score": 51.8,
       "score_breakdown": {
-        "score": 51.9,
+        "score": 51.8,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -154102,7 +154211,7 @@
         },
         "mispricing_percentile": 42,
         "nettoafkast_percentile": 46,
-        "motivation_percentile": 7,
+        "motivation_percentile": 6,
         "kvalitet_percentile": 65,
         "motivation_detail": {
           "score": 25.8,
@@ -155083,7 +155192,7 @@
         },
         "mispricing_percentile": 2,
         "nettoafkast_percentile": 4,
-        "motivation_percentile": 54,
+        "motivation_percentile": 55,
         "kvalitet_percentile": 72,
         "motivation_detail": {
           "score": 51.7,
@@ -155181,9 +155290,9 @@
         "nettoafkast": 0.009828109452736319,
         "nettoafkast_pct": 0.98
       },
-      "score": 67.8,
+      "score": 67.9,
       "score_breakdown": {
-        "score": 67.8,
+        "score": 67.9,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -155737,7 +155846,7 @@
         },
         "mispricing_percentile": 14,
         "nettoafkast_percentile": 31,
-        "motivation_percentile": 17,
+        "motivation_percentile": 18,
         "kvalitet_percentile": 26,
         "motivation_detail": {
           "score": 31.4,
@@ -156120,9 +156229,9 @@
         "nettoafkast": -0.007518923418423974,
         "nettoafkast_pct": -0.75
       },
-      "score": 48.2,
+      "score": 48.3,
       "score_breakdown": {
-        "score": 48.2,
+        "score": 48.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -156992,9 +157101,9 @@
         "nettoafkast": -8.520055325034577e-05,
         "nettoafkast_pct": -0.01
       },
-      "score": 37.6,
+      "score": 37.5,
       "score_breakdown": {
-        "score": 37.6,
+        "score": 37.5,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -157428,9 +157537,9 @@
         "nettoafkast": 0.004662332695984704,
         "nettoafkast_pct": 0.47
       },
-      "score": 53.4,
+      "score": 53.3,
       "score_breakdown": {
-        "score": 53.4,
+        "score": 53.3,
         "weights": {
           "mispricing": 0.4,
           "nettoafkast": 0.3,
@@ -238406,5 +238515,5 @@
       "sold_or_removed": true
     }
   ],
-  "scoring_last_updated": "2026-10-23T04:09:16.096671+00:00"
+  "scoring_last_updated": "2026-10-23T09:50:05.565753+00:00"
 }
