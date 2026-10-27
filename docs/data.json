@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-27T19:57:27.100657+00:00",
+  "last_updated": "2026-10-27T23:41:48.123877+00:00",
   "area_stats": {
     "ringkoebing": {
       "avg_kr_per_m2": 32006,
@@ -122933,7 +122933,7 @@
       "grund_m2": 1520,
       "byggeaar": 1983,
       "kr_per_m2": 29230.0,
-      "dage_paa_markedet": 276,
+      "dage_paa_markedet": 277,
       "energimaerke": "C",
       "latitude": 55.88823,
       "longitude": 11.53518,
@@ -123016,7 +123016,7 @@
         "kvalitet_percentile": 66,
         "motivation_detail": {
           "score": 69.3,
-          "liggetid_dage": 276,
+          "liggetid_dage": 277,
           "liggetid_percentile": 97,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
@@ -123027,7 +123027,7 @@
         "mispricing_available": true,
         "nettoafkast_available": true
       },
-      "reason": "32% over modelpris, 276 dage på markedet, -0.1% afkast"
+      "reason": "32% over modelpris, 277 dage på markedet, -0.1% afkast"
     },
     {
       "id": 2278392,
@@ -241198,5 +241198,5 @@
       "sold_or_removed": true
     }
   ],
-  "scoring_last_updated": "2026-10-27T19:57:27.100657+00:00"
+  "scoring_last_updated": "2026-10-27T23:41:48.123877+00:00"
 }
