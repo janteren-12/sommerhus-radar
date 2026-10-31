@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-31T19:48:57.919434+00:00",
+  "last_updated": "2026-10-31T23:14:03.678669+00:00",
   "area_stats": {
     "djursland": {
       "avg_kr_per_m2": 28698,
@@ -122430,7 +122430,7 @@
       "grund_m2": 1520,
       "byggeaar": 1983,
       "kr_per_m2": 29230.0,
-      "dage_paa_markedet": 280,
+      "dage_paa_markedet": 281,
       "energimaerke": "C",
       "latitude": 55.88823,
       "longitude": 11.53518,
@@ -122513,7 +122513,7 @@
         "kvalitet_percentile": 65,
         "motivation_detail": {
           "score": 69.0,
-          "liggetid_dage": 280,
+          "liggetid_dage": 281,
           "liggetid_percentile": 97,
           "prisnedslag_pct": 0,
           "price_cut_count": 0,
@@ -122524,7 +122524,7 @@
         "mispricing_available": true,
         "nettoafkast_available": true
       },
-      "reason": "32% over modelpris, 280 dage på markedet, -0.1% afkast"
+      "reason": "32% over modelpris, 281 dage på markedet, -0.1% afkast"
     },
     {
       "id": 2278392,
@@ -245231,5 +245231,5 @@
       "sold_or_removed": true
     }
   ],
-  "scoring_last_updated": "2026-10-31T19:48:57.919434+00:00"
+  "scoring_last_updated": "2026-10-31T23:14:03.678669+00:00"
 }
