@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-05T02:05:13.021290+00:00",
+  "last_updated": "2026-11-05T10:35:34.533713+00:00",
   "area_stats": {
     "odsherred": {
       "avg_kr_per_m2": 40574,
@@ -2575,7 +2575,7 @@
       "prisaendring_kr": null,
       "udbetaling": 175000,
       "ejerudgift_md": 4564,
-      "link": "https://www.boliga.dk/bolig/2381453/oeerkrogvejen-2-119-121-8400-ebeltoft",
+      "link": "https://www.boliga.dk/bolig/2381453/oeerkrogvejen-2-121-8400-ebeltoft",
       "first_seen": "2026-11-03T02:50:21.527214+00:00",
       "sold_or_removed": false,
       "price_cut_count": 0,
@@ -248937,5 +248937,5 @@
       "sold_or_removed": true
     }
   ],
-  "scoring_last_updated": "2026-11-05T02:05:13.021290+00:00"
+  "scoring_last_updated": "2026-11-05T10:35:34.533713+00:00"
 }
